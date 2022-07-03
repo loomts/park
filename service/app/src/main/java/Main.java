@@ -39,7 +39,7 @@ public class Main{
         System.setIn(fis);
         PrintStream ps = null;
         try {
-            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\nowFlows.out"));
+            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\nowFlow.out"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -316,17 +316,17 @@ public class Main{
                 "}";
         return JSONObject.fromObject(returnStr); // 把字符串转成 JSONArray  对象
     }
-    public static void convSiteHealth(){
+    public static void convSitesHealth(){
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\in\\siteHealth.in");
+            fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\in\\sitesHealth.in");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         System.setIn(fis);
         PrintStream ps = null;
         try {
-            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\siteHealth.out"));
+            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\sitesHealth.out"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -379,17 +379,17 @@ public class Main{
                 "}";
         return JSONObject.fromObject(returnStr); // 把字符串转成 JSONArray  对象
     }
-    public static void convSiteUserNumber(){
+    public static void convSitesUserNumber(){
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\in\\siteUserNumber.in");
+            fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\in\\sitesUserNumber.in");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         System.setIn(fis);
         PrintStream ps = null;
         try {
-            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\siteUserNumber.out"));
+            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\sitesUserNumber.out"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -419,7 +419,7 @@ public class Main{
         convWlan();
         convDeviceFlow();
         convDeviceDetail();
-        convSiteHealth();
-        convSiteUserNumber();
+        convSitesHealth();
+        convSitesUserNumber();
     }
 }
