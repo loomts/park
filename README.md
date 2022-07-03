@@ -86,8 +86,8 @@ oneHour、oneToTwoHour、twoToFourHour、fourToSixHour、sixToEightHour、eightH
 ### 伪接口（无交互，后端运行之后vue应该可以直接通过http的get请求获得数据）
 
 ```
-localhost:2333/ 								 ~>Hello, World!
-localhost:2333/hello 						 ~>Hello, World!
+localhost:2333/ 							   ~>Hello, World!
+localhost:2333/hello 					   ~>Hello, World!
 localhost:2333/deviceDetail			 ~>deviceDetail.out
 localhost:2333/deviceWlan				 ~>deviceWlan.out
 localhost:2333/histFlow          ~>histFlow.out
