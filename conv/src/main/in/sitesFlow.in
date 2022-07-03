@@ -1,0 +1,6 @@
+{errcode: "0.0",errmsg: "",data: [{targetName: "humanflow",counts: [{count: "4532",stamp: 1656738000}]},{targetName: "ReVisitedRate",counts: [{count: "1.599",stamp: 1656738000}]}]}
+{errcode: "0.0",errmsg: "",data: [{targetName: "humanflow",counts: [{count: "8110",stamp: 1656738000}]},{targetName: "ReVisitedRate",counts: [{count: "2.72",stamp: 1656738000}]}]}
+{errcode: "0.0",errmsg: "",data: [{targetName: "humanflow",counts: [{count: "5078",stamp: 1656738000}]},{targetName: "ReVisitedRate",counts: [{count: "1.589",stamp: 1656738000}]}]}
+{errcode: "0.0",errmsg: "",data: [{targetName: "humanflow",counts: [{count: "3371",stamp: 1656738000}]},{targetName: "ReVisitedRate",counts: [{count: "1.581",stamp: 1656738000}]}]}
+{errcode: "0.0",errmsg: "",data: [{targetName: "humanflow",counts: [{count: "9817",stamp: 1656738000}]},{targetName: "ReVisitedRate",counts: [{count: "1.599",stamp: 1656738000}]}]}
+{errcode: "0.0",errmsg: "",data: [{targetName: "humanflow",counts: [{count: "8656",stamp: 1656738000}]},{targetName: "ReVisitedRate",counts: [{count: "1.59",stamp: 1656738000}]}]}
