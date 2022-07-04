@@ -7,6 +7,7 @@
 - [x] sql~>api处理后的数据和注册登录
 - [ ] 地图&&路径
 - [x] 伪造接口
+- [x] 完善RESEfulAPI
 
 获取华为API的函数在 *service/RESTAPI*
 
@@ -97,3 +98,4 @@ localhost:2333/sitesHealth       ~>sitesHealth.out
 localhost:2333/sitesUserNumber   ~>sitesUserNumber.out
 localhost:2333/sitesWlan         ~>sitesWlan.out
 ```
+
