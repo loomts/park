@@ -1,7 +1,8 @@
 public class EndpointApi {
-    public static void main(){
-        String siteId = "9dffc44b-1824-42a4-ac48-616e3f0eaa2a";
+    public static void main(String[]args){
+        String siteId = "e5917eda-cce2-4658-9d01-c52694cd774f";
         String tagId = "31f35021-e656-472a-8937-9c6d6da76e6e";
+        String deviceId = "ea25fdbf-8dee-4823-bac2-5bfe8e3359ca";
         Long startTime = 1568563200000L;
         Long endTime = 1568573200000L;
         Integer iStartTime = 1567526400;
@@ -21,6 +22,21 @@ public class EndpointApi {
         String sitesHealthRes = sitesHealth.getRes();
         EndpointanlsOpenApiUtil.TopNSsidTraffic topNSsidTraffic = apiUtil.new TopNSsidTraffic(siteId,startTime,endTime,"day","5","1");
         String topNSsidTrafficRes = topNSsidTraffic.getRes();
-
+        EndpointanlsOpenApiUtil.DwellTime dwellTime = apiUtil.new DwellTime("0",iStartTime,iEndTime,"day",tagId);
+        String dwellTimeRes = dwellTime.getRes();
+        EndpointanlsOpenApiUtil.TerminalStatistics terminalStatistics = apiUtil.new TerminalStatistics(siteId);
+        String terminalStatisticsRes = terminalStatistics.getRes();
+        EndpointanlsOpenApiUtil.DeviceDetail deviceDetail = apiUtil.new DeviceDetail(deviceId);
+        String deviceDetailRes = deviceDetail.getRes();
+        System.out.println(tagsRes);
+        System.out.println(realtimeFlowRes);
+        System.out.println(historyFlowRes);
+        System.out.println(loyaltyRes);
+        System.out.println(deviceTrafficRes);
+        System.out.println(sitesHealthRes);
+        System.out.println(topNSsidTrafficRes);
+        System.out.println(dwellTimeRes);
+        System.out.println(terminalStatisticsRes);
+        System.out.println(deviceDetailRes);
     }
 }

@@ -11,6 +11,7 @@
         <module name="API" />
         <module name="lbs-data-relay" />
         <module name="lbs" />
+        <module name="RESTfulAPI" />
       </profile>
     </annotationProcessing>
   </component>
@@ -18,6 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="API" options="-parameters -extdirs E:\github\EP1\API/lib" />
       <module name="RESTAPI" options="-parameters -extdirs E:\github\EP1\service\RESTAPI/lib" />
+      <module name="RESTfulAPI" options="-parameters -extdirs E:\github\EP1\service\RESTfulAPI/lib" />
       <module name="lbs" options="-parameters -extdirs E:\github\EP1\lbs/lib" />
       <module name="lbs-data-relay" options="-parameters -extdirs E:\codehub\lbs/lib" />
     </option>

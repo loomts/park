@@ -15,6 +15,10 @@ public class EndpointanlsOpenApiUtil {
     private static ApiClient apiClient = null;
     private static Gson gson = null;
 
+    EndpointanlsOpenApiUtil() {
+        super();
+    }
+
     public static ApiClient getApi() {
         if (apiClient == null) {
             apiClient = new ApiClient();
@@ -32,6 +36,7 @@ public class EndpointanlsOpenApiUtil {
         return gson;
     }
 
+    // 获取设备标签
     class Tags {
         private String res = null;
 
@@ -52,8 +57,10 @@ public class EndpointanlsOpenApiUtil {
         }
     }
 
+    // 查询实时接入客户数量
     class RealtimeFlow {
         private String res = null;
+
         RealtimeFlow(String siteId, String tagId) {
             gson = getGson();
             EndpointanlsOpenApiApi api = new EndpointanlsOpenApiApi(getApi());
@@ -65,15 +72,17 @@ public class EndpointanlsOpenApiUtil {
                 e.printStackTrace();
             }
         }
+
         public String getRes() {
             return res;
         }
     }
 
+    // 查询历史接入客户数量
     class HistoryFlow {
         private String res = null;
 
-        HistoryFlow(Long startTime,Long endTime,String siteId,String tagId) {
+        HistoryFlow(Long startTime, Long endTime, String siteId, String tagId) {
             gson = getGson();
             EndpointanlsOpenApiApi api = new EndpointanlsOpenApiApi(getApi());
             try {
@@ -84,14 +93,17 @@ public class EndpointanlsOpenApiUtil {
                 e.printStackTrace();
             }
         }
-        public String getRes(){
+
+        public String getRes() {
             return res;
         }
     }
 
+    // 查询回头客记录
     class Loyalty {
         private String res = null;
-        Loyalty(String tagType,Integer startTime,Integer endTime,String timeUnit,String tagId) {
+
+        Loyalty(String tagType, Integer startTime, Integer endTime, String timeUnit, String tagId) {
             gson = getGson();
             EndpointanlsOpenApiApi api = new EndpointanlsOpenApiApi(getApi());
             try {
@@ -102,13 +114,16 @@ public class EndpointanlsOpenApiUtil {
                 e.printStackTrace();
             }
         }
-        public String getRes(){
+
+        public String getRes() {
             return res;
         }
     }
 
+    // 查询站点维度TopN设备或者所有设备的上行流量、下行流量
     class DeviceTraffic {
         private String res = null;
+
         DeviceTraffic(String siteId, String timeDimension, Integer top, Long beginTime, Long endTime) {
             gson = getGson();
             PerformanceOpenApiApi api = new PerformanceOpenApiApi(getApi());
@@ -122,13 +137,16 @@ public class EndpointanlsOpenApiUtil {
                 e.printStackTrace();
             }
         }
-        public String getRes(){
+
+        public String getRes() {
             return res;
         }
     }
 
+    // 基于站点的站点健康度查询
     class SitesHealth {
         private String res = null;
+
         SitesHealth(String siteId) {
             gson = getGson();
             PerformanceOpenApiApi api = new PerformanceOpenApiApi(getApi());
@@ -140,14 +158,17 @@ public class EndpointanlsOpenApiUtil {
                 e.printStackTrace();
             }
         }
-        public String getRes(){
+
+        public String getRes() {
             return res;
         }
     }
 
+    // 查询TOP N SSID流量和最近在线用户数
     class TopNSsidTraffic {
         private String res = null;
-        TopNSsidTraffic(String siteId,Long beginTime,Long endTime,String timeGranularity,String top,String deviceType) {
+
+        TopNSsidTraffic(String siteId, Long beginTime, Long endTime, String timeGranularity, String top, String deviceType) {
             gson = getGson();
             PerformanceOpenApiApi api = new PerformanceOpenApiApi(getApi());
             try {
@@ -155,6 +176,71 @@ public class EndpointanlsOpenApiUtil {
                 // access api
                 TopNSSIDTrafficListDto response = api.queryTopNSSIDTraffic(siteId, beginTime, endTime, timeGranularity, top, deviceType);
                 res = gson.toJson(response);
+            } catch (ApiException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public String getRes() {
+            return res;
+        }
+    }
+
+    // 查询访客驻留时长的历史趋势
+    class DwellTime {
+        private String res = null;
+
+        DwellTime(String tagType, Integer startTime, Integer endTime, String timeUnit, String tagId) {
+            gson = getGson();
+            EndpointanlsOpenApiApi api = new EndpointanlsOpenApiApi(apiClient);
+            try {
+                // access api
+                FlowDistrResp response = api.queryDwellTimeDistr(tagId, tagType, startTime, endTime, timeUnit);
+                res = gson.toJson(response);
+            } catch (ApiException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public String getRes() {
+            return res;
+        }
+    }
+
+    // 查询站点维度下用户在线时长信息
+    class TerminalStatistics {
+        private String res = null;
+
+        TerminalStatistics(String siteId) {
+            gson = getGson();
+            StationOpenApiApi api = new StationOpenApiApi(apiClient);
+            try {
+                // access api
+                ClientStatisticalInfoDto response = api.queryTerminalStatistics(siteId);
+                res = gson.toJson(response);
+            } catch (ApiException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public String getRes() {
+            return res;
+        }
+    }
+
+    // 查询单设备的性能数据
+    class DeviceDetail {
+        private String res = null;
+
+        DeviceDetail(String deviceId) {
+            gson = getGson();
+            PerformanceOpenApiApi api = new PerformanceOpenApiApi(getApi());
+            try {
+                // access api
+                UUID uDeviceId = UUID.fromString(deviceId);
+                DevicePerformanceResp response = api.singleDevicePerformanceDetail(uDeviceId);
+                String result = gson.toJson(response);
+                System.out.println(result);
             } catch (ApiException e) {
                 e.printStackTrace();
             }

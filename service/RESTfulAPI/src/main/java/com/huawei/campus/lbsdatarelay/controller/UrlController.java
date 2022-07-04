@@ -95,7 +95,7 @@ public class UrlController {
         apiClient.setHost("cn2.naas.huaweicloud.com");
         apiClient.setPort("18002");
         //根据Sitename查询siteId
-        String siteName = "site01";
+        String siteName = "001-c4";
         SiteManagerApi siteManagerApi = new SiteManagerApi(apiClient);
         UUID siteId = UUID.fromString(siteManagerApi.querySites(1, 20, siteName).getData().get(0).getId());
         System.out.println("siteId : " + siteId);
