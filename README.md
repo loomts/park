@@ -7,7 +7,7 @@
 - [x] sql~>api处理后的数据和注册登录
 - [ ] 地图&&路径
 - [x] 伪造接口
-- [x] 完善RESEfulAPI
+- [ ] RESEfulAPI再加点函数
 
 获取华为API的函数在 *service/RESTAPI*
 
