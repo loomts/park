@@ -75,7 +75,7 @@ def getHistFlow():
 
 # ------------------------------------------------------------------------------------------------------------------------------------
 
-with open("nowFlows.txt", "w") as f:
+with open("nowFlows.in", "w") as f:
     for i in range(3600):
         S = "{" \
             "errcode: \"0.0\"," \
@@ -105,7 +105,7 @@ with open("nowFlows.txt", "w") as f:
 
 # ------------------------------------------------------------------------------------------------------------------------------------
 
-with open("histFlow.txt", "w") as f:
+with open("histFlow.in", "w") as f:
     for i in range(168):
         S = "{" \
             "errcode: \"0.0\"," \
@@ -149,7 +149,7 @@ arr[4] += r3
 # ------------------------------------------------------------------------------------------------------------------------------------
 
 
-with open("sitesFlow.txt", "w") as f:
+with open("sitesFlow.in", "w") as f:
     for i in range(6):
         S = "{" \
             "errcode: \"0.0\"," \
@@ -179,7 +179,7 @@ with open("sitesFlow.txt", "w") as f:
 
 # ------------------------------------------------------------------------------------------------------------------------------------
 
-with open("sitesWlan.txt", "w") as f:
+with open("sitesWlan.in", "w") as f:
     for i in range(6):
         S = "{" + \
             "errcode: \"0.0\"," + \
@@ -222,7 +222,7 @@ deviceId = ["d13ca36d-fe68-48ae-b183-35cd77e97509",
             "ba5a38d8-0353-4d57-b76c-a32305a3cf1a",
             "c4a00229-e06d-43ea-aded-c9388a61d2fd",
             "cdbc4240-bfeb-4298-b009-1082d4201a95"]
-with open("deviceWlan.txt", "w") as f:
+with open("deviceTraffic.in", "w") as f:
     for i in range(len(deviceId)):
         temp = random.randint(500, 1000)/1000
         S = "{" + \

@@ -12,7 +12,7 @@ public class controller {
         server.createContext("/", new hello());
         server.createContext("/hello", new hello());
         server.createContext("/deviceDetail", new deviceDetailHandler());
-        server.createContext("/deviceWlan", new deviceWlanHandler());
+        server.createContext("/deviceTraffic", new deviceTrafficHandler());
         server.createContext("/histFlow", new histFlowHandler());
         server.createContext("/nowFlow", new nowFlowHandler());
         server.createContext("/sitesFlow", new sitesFlowHandler());
@@ -37,7 +37,7 @@ public class controller {
 
     static class deviceDetailHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-            FileInputStream fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\out\\deviceDetail.out");
+            FileInputStream fis = new FileInputStream("src\\main\\out\\deviceDetail.out");
             System.setIn(fis);
             BufferedReader cin = new BufferedReader(new InputStreamReader(System.in));
             StringBuilder sb = new StringBuilder();
@@ -60,9 +60,9 @@ public class controller {
         }
     }
 
-    static class deviceWlanHandler implements HttpHandler {
+    static class deviceTrafficHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-            FileInputStream fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\out\\deviceWlan.out");
+            FileInputStream fis = new FileInputStream("src\\main\\out\\deviceTraffic.out");
             System.setIn(fis);
             BufferedReader cin = new BufferedReader(new InputStreamReader(System.in));
             StringBuilder sb = new StringBuilder();
@@ -87,7 +87,7 @@ public class controller {
 
     static class histFlowHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-            FileInputStream fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\out\\histFlow.out");
+            FileInputStream fis = new FileInputStream("src\\main\\out\\histFlow.out");
             System.setIn(fis);
             BufferedReader cin = new BufferedReader(new InputStreamReader(System.in));
             StringBuilder sb = new StringBuilder();
@@ -111,7 +111,7 @@ public class controller {
 
     static class nowFlowHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-            FileInputStream fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\out\\nowFlow.out");
+            FileInputStream fis = new FileInputStream("src\\main\\out\\nowFlow.out");
             System.setIn(fis);
             BufferedReader cin = new BufferedReader(new InputStreamReader(System.in));
             StringBuilder sb = new StringBuilder();
@@ -136,7 +136,7 @@ public class controller {
 
     static class sitesFlowHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-            FileInputStream fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\out\\sitesFlow.out");
+            FileInputStream fis = new FileInputStream("src\\main\\out\\sitesFlow.out");
             System.setIn(fis);
             BufferedReader cin = new BufferedReader(new InputStreamReader(System.in));
             StringBuilder sb = new StringBuilder();
@@ -161,7 +161,7 @@ public class controller {
 
     static class sitesHealthHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-            FileInputStream fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\out\\sitesHealth.out");
+            FileInputStream fis = new FileInputStream("src\\main\\out\\sitesHealth.out");
             System.setIn(fis);
             BufferedReader cin = new BufferedReader(new InputStreamReader(System.in));
             StringBuilder sb = new StringBuilder();
@@ -186,7 +186,7 @@ public class controller {
 
     static class sitesUserNumberHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-            FileInputStream fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\out\\sitesUserNumber.out");
+            FileInputStream fis = new FileInputStream("src\\main\\out\\sitesUserNumber.out");
             System.setIn(fis);
             BufferedReader cin = new BufferedReader(new InputStreamReader(System.in));
             StringBuilder sb = new StringBuilder();
@@ -211,7 +211,7 @@ public class controller {
 
     static class sitesWlanHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-            FileInputStream fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\out\\sitesWlan.out");
+            FileInputStream fis = new FileInputStream("src\\main\\out\\sitesWlan.out");
             System.setIn(fis);
             BufferedReader cin = new BufferedReader(new InputStreamReader(System.in));
             StringBuilder sb = new StringBuilder();

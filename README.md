@@ -23,7 +23,7 @@
 
 ### 数据约束
 
-- *service/app/src/main/out/deviceDetail.out*
+- *service/app/src/main/out/deviceDetail.out* 从后端获取设备详细信息
 
   ```
   name：设备名
@@ -45,13 +45,16 @@
   unit：流量单位
   ```
 
-- *service/app/src/main/out/sitesWlan.out*  查询站点的上行速率、下行速率
+- *service/app/src/main/out/histFlow.out* 历史人流量 168条，以h为单位，24*7
+- *service/app/src/main/out/nowFlow.out* 当前人流量 3600条，以s为单位，3600s，动态演示
+- *service/app/src/main/out/sitesFlow.out* 站点人流量 6条，2022-07-02 13:00:00这一时刻6个景点的人数（想要加多点也可以叫我加）
 
-  ```
-  timestamp：时间戳
-  unit：单位
-  uplinkRate：上行速率
-  downlinkRate：下行速率
+这三个参数是一样的，时间默认从2022-07-02 13:00:00开始。
+
+- ```
+  humanFlow:人流量
+  reVisitedRate:重复访问率
+  stamp:时间戳（可以搜时间戳转换工具将其转换成正常的时间）
   ```
 
 - *service/app/src/main/out/siteHealth.out* 查询站点&&设备健康度
@@ -63,26 +66,29 @@
   siteHealth：站点健康度
   ```
 
-- *service/app/src/main/out/histFlow.out* 历史人流量 168条，以h为单位，24*7
-- *service/app/src/main/out/nowFlow.out* 目前人流量 3600条，以s为单位，3600s，动态演示
-- *service/app/src/main/out/sitesFlow.out* 站点人流量 6条，2022-07-02 13:00:00这一时刻6个景点的人数（想要加多点也可以叫我加）
-
-这三个参数是一样的，时间默认从2022-07-02 13:00:00开始。
-
-```
-humanFlow:人流量
-reVisitedRate:重复访问率
-stamp:时间戳（可以搜时间戳转换工具将其转换成正常的时间）
-```
-
 - *service/app/src/main/out/siteUserNumber.out*
 
-```
-exprWorse、exprBad、exprGood、exprBetter：体验差、体验一般、体验良好、体验佳的用户（终端）数
-oneHour、oneToTwoHour、twoToFourHour、fourToSixHour、sixToEightHour、eightHour：此时在线一小时以内、一小时到两小时、两小时到四小时、四小时到六小时、六小时到八小时、八小时的用户（终端）数
-```
+  ```
+  exprWorse：体验差的用户（终端）数
+  exprBad：体验一般的用户（终端）数
+  exprGood：体验良好的用户（终端）数
+  exprBetter：体验佳的用户（终端）数
+  oneHour：在线一小时以内的用户（终端）数
+  oneToTwoHour：在线一到两小时的用户（终端）数
+  twoToFourHour：在线两到四小时的用户（终端）数
+  fourToSixHour：在线四到六小时的用户（终端）数
+  sixToEightHour：在线六到八小时的用户（终端）数
+  eightHour：在线八小时以上的用户（终端）数
+  ```
 
+- *service/app/src/main/out/sitesWlan.out*  查询站点的上行速率、下行速率
 
+  ```
+  timestamp：时间戳
+  unit：单位
+  uplinkRate：上行速率
+  downlinkRate：下行速率
+  ```
 
 ### 伪接口（无交互，后端运行之后vue应该可以直接通过http的get请求获得数据）
 
@@ -90,7 +96,7 @@ oneHour、oneToTwoHour、twoToFourHour、fourToSixHour、sixToEightHour、eightH
 localhost:2333/ 							   ~>Hello, World!
 localhost:2333/hello 					   ~>Hello, World!
 localhost:2333/deviceDetail			 ~>deviceDetail.out
-localhost:2333/deviceWlan				 ~>deviceWlan.out
+localhost:2333/deviceTraffic		 ~>deviceTraffic.out
 localhost:2333/histFlow          ~>histFlow.out
 localhost:2333/nowFlow           ~>nowFlow.out
 localhost:2333/sitesFlow         ~>sitesFlow.out

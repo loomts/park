@@ -32,14 +32,14 @@ public class Main{
     public static void convNowFlow(){
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\in\\nowFlow.in");
+            fis = new FileInputStream("src\\main\\in\\nowFlow.in");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         System.setIn(fis);
         PrintStream ps = null;
         try {
-            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\nowFlow.out"));
+            ps = new PrintStream(new FileOutputStream("src\\main\\out\\nowFlow.out"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -65,14 +65,14 @@ public class Main{
     public static void convHistFlow(){
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\in\\histFlow.in");
+            fis = new FileInputStream("src\\main\\in\\histFlow.in");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         System.setIn(fis);
         PrintStream ps = null;
         try {
-            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\histFlow.out"));
+            ps = new PrintStream(new FileOutputStream("src\\main\\out\\histFlow.out"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -98,14 +98,14 @@ public class Main{
     public static void convSitesFlow(){
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\in\\sitesFlow.in");
+            fis = new FileInputStream("src\\main\\in\\sitesFlow.in");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         System.setIn(fis);
         PrintStream ps = null;
         try {
-            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\sitesFlow.out"));
+            ps = new PrintStream(new FileOutputStream("src\\main\\out\\sitesFlow.out"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -150,14 +150,14 @@ public class Main{
     public static void convWlan(){
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\in\\sitesWlan.in");
+            fis = new FileInputStream("src\\main\\in\\sitesWlan.in");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         System.setIn(fis);
         PrintStream ps = null;
         try {
-            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\sitesWlan.out"));
+            ps = new PrintStream(new FileOutputStream("src\\main\\out\\sitesWlan.out"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -203,14 +203,14 @@ public class Main{
     public static void convDeviceFlow(){
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\in\\deviceWlan.in");
+            fis = new FileInputStream("src\\main\\in\\deviceTraffic.in");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         System.setIn(fis);
         PrintStream ps = null;
         try {
-            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\deviceWlan.out"));
+            ps = new PrintStream(new FileOutputStream("src\\main\\out\\deviceTraffic.out"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -268,14 +268,14 @@ public class Main{
     public static void convDeviceDetail(){
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\in\\deviceDetail.in");
+            fis = new FileInputStream("src\\main\\in\\deviceDetail.in");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         System.setIn(fis);
         PrintStream ps = null;
         try {
-            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\deviceDetail.out"));
+            ps = new PrintStream(new FileOutputStream("src\\main\\out\\deviceDetail.out"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -319,14 +319,14 @@ public class Main{
     public static void convSitesHealth(){
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\in\\sitesHealth.in");
+            fis = new FileInputStream("src\\main\\in\\sitesHealth.in");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         System.setIn(fis);
         PrintStream ps = null;
         try {
-            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\sitesHealth.out"));
+            ps = new PrintStream(new FileOutputStream("src\\main\\out\\sitesHealth.out"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -382,14 +382,14 @@ public class Main{
     public static void convSitesUserNumber(){
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream("E:\\github\\EP1\\conv\\src\\main\\in\\sitesUserNumber.in");
+            fis = new FileInputStream("src\\main\\in\\sitesUserNumber.in");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         System.setIn(fis);
         PrintStream ps = null;
         try {
-            ps = new PrintStream(new FileOutputStream("E:\\github\\EP1\\conv\\src\\main\\out\\sitesUserNumber.out"));
+            ps = new PrintStream(new FileOutputStream("src\\main\\out\\sitesUserNumber.out"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

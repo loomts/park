@@ -10,9 +10,9 @@ export function getDeviceDetail() {
     method: 'get',
   })
 }
-export function getDeviceWlan() {
+export function getDeviceTraffic() {
   return request({
-    url: '/deviceWlan',
+    url: '/deviceTraffic',
     method: 'get',
   })
 }
