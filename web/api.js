@@ -1,4 +1,4 @@
-export function getDeviceDetail() {
+export function hello() {
   return request({
     url: '/hello',
     method: 'get',
@@ -22,31 +22,31 @@ export function getHistFlow() {
     method: 'get',
   })
 }
-export function getDeviceDetail() {
+export function getNowFlow() {
   return request({
     url: '/nowFlow',
     method: 'get',
   })
 }
-export function getDeviceDetail() {
+export function getSitesFlow() {
   return request({
     url: '/sitesFlow',
     method: 'get',
   })
 }
-export function getDeviceDetail() {
+export function getSitesHealth() {
   return request({
     url: '/sitesHealth',
     method: 'get',
   })
 }
-export function getDeviceDetail() {
+export function getSitesUserNumber() {
   return request({
     url: '/sitesUserNumber',
     method: 'get',
   })
 }
-export function getDeviceDetail() {
+export function getSitesWlan() {
   return request({
     url: '/sitesWlan',
     method: 'get',
