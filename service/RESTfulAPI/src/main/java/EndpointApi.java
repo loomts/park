@@ -1,5 +1,5 @@
 public class EndpointApi {
-    public static void main(String[]args){
+    EndpointApi(){
         String siteId = "e5917eda-cce2-4658-9d01-c52694cd774f";
         String tagId = "31f35021-e656-472a-8937-9c6d6da76e6e";
         String deviceId = "ea25fdbf-8dee-4823-bac2-5bfe8e3359ca";
@@ -38,5 +38,8 @@ public class EndpointApi {
         System.out.println(dwellTimeRes);
         System.out.println(terminalStatisticsRes);
         System.out.println(deviceDetailRes);
+    }
+    public static void main(String[]args){
+        new EndpointApi();
     }
 }

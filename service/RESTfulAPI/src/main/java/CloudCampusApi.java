@@ -28,6 +28,9 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import javax.websocket.Endpoint;
+
 public class CloudCampusApi {
         public static void main(String[] args) throws IOException, JSONException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
 
@@ -115,6 +118,7 @@ public class CloudCampusApi {
                 System.out.println(responseStr);
                 System.out.println("----------------------------------------");
             }
+            EndpointApi endpointApi = new EndpointApi();
             httpclient.close();
         }
 
