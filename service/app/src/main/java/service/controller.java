@@ -9,7 +9,7 @@ import java.net.InetSocketAddress;
 public class controller {
     public static void main(String[] args) throws Exception {
         HttpServer server = HttpServer.create(new InetSocketAddress(2333), 0);
-        server.createContext("/", new hello());
+//        server.createContext("/", new hello());
         server.createContext("/hello", new hello());
         server.createContext("/deviceDetail", new deviceDetailHandler());
         server.createContext("/deviceTraffic", new deviceTrafficHandler());
@@ -46,7 +46,7 @@ public class controller {
                 try {
                     str = cin.readLine();
 //                    System.out.println(str);
-                    sb.append(str).append("\n");
+                    sb.append(str).append(",\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -71,7 +71,7 @@ public class controller {
                 try {
                     str = cin.readLine();
 //                    System.out.println(str);
-                    sb.append(str).append("\n");
+                    sb.append(str).append(",\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -95,7 +95,7 @@ public class controller {
                 String str = null;
                 try {
                     str = cin.readLine();
-                    sb.append(str).append("\n");
+                    sb.append(str).append(",\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -120,7 +120,7 @@ public class controller {
                 try {
                     str = cin.readLine();
 //                    System.out.println(str);
-                    sb.append(str).append("\n");
+                    sb.append(str).append(",\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -145,7 +145,7 @@ public class controller {
                 try {
                     str = cin.readLine();
 //                    System.out.println(str);
-                    sb.append(str).append("\n");
+                    sb.append(str).append(",\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -170,7 +170,7 @@ public class controller {
                 try {
                     str = cin.readLine();
 //                    System.out.println(str);
-                    sb.append(str).append("\n");
+                    sb.append(str).append(",\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -195,7 +195,7 @@ public class controller {
                 try {
                     str = cin.readLine();
 //                    System.out.println(str);
-                    sb.append(str).append("\n");
+                    sb.append(str).append(",\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -220,7 +220,7 @@ public class controller {
                 try {
                     str = cin.readLine();
 //                    System.out.println(str);
-                    sb.append(str).append("\n");
+                    sb.append(str).append(",\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

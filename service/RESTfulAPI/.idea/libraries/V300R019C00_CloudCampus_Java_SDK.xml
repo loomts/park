@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="V300R019C00 CloudCampus Java SDK">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/V300R019C00 CloudCampus Java SDK.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
