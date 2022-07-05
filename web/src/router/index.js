@@ -165,7 +165,14 @@ export const asyncRoutes = [
     name: 'Monitor',
     alwaysShow: true,
     meta: { title: '重要场所监控', icon: 'box-open' },
-    children: [],
+    children: [
+      {
+        path: 'monitortest',
+        name: 'Monitortest',
+        component: () => import('@/views/monitor/monitortest/index'),
+        meta: { title: '重要场所监控', permissions: ['admin'] },
+      },
+    ],
   },
 
   {
