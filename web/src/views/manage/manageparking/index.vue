@@ -4,7 +4,6 @@
     <div id="myChart3" :style="{ width: '100%', height: '530px' }" />
     <div id="myChart4" :style="{ width: '100%', height: '600px' }" />
     <div id="myChart" :style="{ width: '100%', height: '1000px' }" />
-    <!-- <img src="D:/桌面（D盘）/c4/vue_c4/src/assets/pakingLot.jpeg" /> -->
   </div>
 </template>
 <script>
@@ -111,7 +110,7 @@
               max: 415,
               splitNumber: 5,
               itemStyle: {
-                color: '#58D9F9',
+                color: '#FF8B8B',
                 shadowColor: 'rgba(0,138,255,0.45)',
                 shadowBlur: 10,
                 shadowOffsetX: 2,
@@ -160,7 +159,7 @@
                 backgroundColor: '#fff',
                 borderColor: '#999',
                 borderWidth: 2,
-                width: '60%',
+                width: '80%',
                 lineHeight: 40,
                 height: 70,
                 borderRadius: 8,
@@ -256,7 +255,7 @@
                 backgroundColor: '#fff',
                 borderColor: '#999',
                 borderWidth: 2,
-                width: '60%',
+                width: '80%',
                 lineHeight: 40,
                 height: 70,
                 borderRadius: 8,
@@ -284,7 +283,7 @@
               },
               data: [
                 {
-                  value: 245,
+                  value: 235,
                 },
               ],
             },
@@ -303,8 +302,8 @@
               max: 165,
               splitNumber: 5,
               itemStyle: {
-                color: '#58D9F9',
-                shadowColor: 'rgba(0,138,255,0.45)',
+                color: '#B4E197',
+                shadowColor: 'rgba(0,138,255,0.25)',
                 shadowBlur: 10,
                 shadowOffsetX: 2,
                 shadowOffsetY: 2,
@@ -352,7 +351,7 @@
                 backgroundColor: '#fff',
                 borderColor: '#999',
                 borderWidth: 2,
-                width: '60%',
+                width: '80%',
                 lineHeight: 40,
                 height: 70,
                 borderRadius: 8,

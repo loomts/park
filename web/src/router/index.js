@@ -54,22 +54,22 @@ export const asyncRoutes = [
     ],
   },
   /* {
-    path: "/test",
-    component: Layout,
-    redirect: "noRedirect",
-    children: [
-      {
-        path: "test",
-        name: "Test",
-        component: () => import("@/views/test/index"),
-        meta: {
-          title: "test",
-          icon: "marker",
-          permissions: ["admin"],
+      path: "/test",
+      component: Layout,
+      redirect: "noRedirect",
+      children: [
+        {
+          path: "test",
+          name: "Test",
+          component: () => import("@/views/test/index"),
+          meta: {
+            title: "test",
+            icon: "marker",
+            permissions: ["admin"],
+          },
         },
-      },
-    ],
-  }, */
+      ],
+    }, */
 
   {
     path: '/manage',
@@ -152,7 +152,7 @@ export const asyncRoutes = [
       {
         path: 'querycontact',
         name: 'Querycontact',
-        component: () => import('@/views/mall/goodsList/index'),
+        component: () => import('@/views/control/querycloser/index'),
         meta: { title: '密接查询', permissions: ['admin'] },
       },
     ],

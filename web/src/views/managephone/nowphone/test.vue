@@ -40,36 +40,51 @@
           <div class="block1">
             <div class="circle1"></div>
             <div class="text1">上行速率</div>
-            <div class="text11">{{ item.upwardSpeed }}</div>
-            <div class="text12">Kb/s</div>
+            <div class="text11">
+              {{ item.upwardSpeed }}
+              <span class="text12">Kb/s</span>
+            </div>
+            <br />
             <div class="hr1"><hr /></div>
           </div>
           <div class="block2">
             <div class="circle2"></div>
             <div class="text2">下行速率</div>
-            <div class="text21">{{ item.downwardSpeed }}</div>
-            <div class="text22">Kb/s</div>
+            <div class="text21">
+              {{ item.downwardSpeed }}
+              <span class="text22">Kb/s</span>
+            </div>
+            <br />
             <div class="hr2"><hr /></div>
           </div>
           <div class="block3">
             <div class="circle3"></div>
             <div class="text3">流量</div>
-            <div class="text31">{{ item.traffic }}</div>
-            <div class="text32">Bps</div>
+            <div class="text31">
+              {{ item.traffic }}
+              <span class="text32">Bps</span>
+            </div>
+            <br />
             <div class="hr3"><hr /></div>
           </div>
           <div class="block4">
             <div class="circle4"></div>
             <div class="text4">cpu占有率</div>
-            <div class="text41">{{ item.cpuRate }}</div>
-            <div class="text42">%</div>
+            <div class="text41">
+              {{ item.cpuRate }}
+              <span class="text42">%</span>
+            </div>
+            <br />
             <div class="hr4"><hr /></div>
           </div>
           <div class="block5">
             <div class="circle5"></div>
             <div class="text5">经纬度</div>
-            <div class="text51">({{ item.gisLon }}, {{ item.gisLat }})</div>
-            <div class="text52">度</div>
+            <div class="text51">
+              ({{ item.gisLon }}, {{ item.gisLat }})
+              <span class="text52">度</span>
+            </div>
+            <br />
             <div class="hr5"><hr /></div>
           </div>
         </el-card>
@@ -137,16 +152,20 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.test {
+  font-family: 'Georgia', 'Lucida Sans', 'sans-serif', 'Lucida Grande',
+    'Lucida Sans';
+}
 .card {
-    ::v-deep {
-      .el-card__body {
-        .echarts {
-          width: 100%;
-          height: 305px;
-        }
+  ::v-deep {
+    .el-card__body {
+      .echarts {
+        width: 100%;
+        height: 305px;
       }
     }
   }
+}
 .text {
   font-size: 14px;
 }
@@ -165,7 +184,7 @@ export default {
 }
 
 .box-card {
-  margin: 0 auto;
+  margin-left: 100px;
   margin-top: 20px;
   width: 1200px;
 }
@@ -210,9 +229,7 @@ export default {
   margin-top: -20px;
 }
 .text1 {
-  font-family: '微软雅黑';
   font-size: 15px;
-  // color: red;
   text-align: left;
   margin-top: -16px;
   margin-left: 25px;
@@ -230,6 +247,7 @@ export default {
   // color: red;
 }
 .text12 {
+  font-family: 'Lucida Sans';
   font-size: 20px;
   text-align: left;
   margin-top: 5px;
@@ -267,6 +285,7 @@ export default {
   // color: orange;
 }
 .text22 {
+  font-family: 'Lucida Sans';
   font-size: 20px;
   text-align: left;
   margin-top: 5px;
@@ -303,6 +322,7 @@ export default {
   // color: pink;
 }
 .text32 {
+  font-family: 'Lucida Sans';
   font-size: 20px;
   text-align: left;
   margin-top: 5px;
@@ -339,6 +359,7 @@ export default {
   // color: green;
 }
 .text42 {
+  font-family: 'Lucida Sans';
   font-size: 20px;
   text-align: left;
   margin-top: 5px;

@@ -8,7 +8,6 @@
 </template>
 
 <script>
-  
   // 在vue组件中定义此变量，组件创建成功后该变量值为'/static/img/login-bg.df6a3174.png'
   // import VabChart from '@/plugins/echarts'
   // import { dependencies, devDependencies } from '../../../package.json'

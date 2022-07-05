@@ -12,7 +12,6 @@
         行程记录
       </span>
     </div>
-
     <el-row :gutter="20">
       <el-col :span="20" style="margin: 50px">
         <el-card class="card" shadow="always">
@@ -42,7 +41,12 @@
 
       <div v-show="show3">
         <el-col :span="20" style="margin: 50px">
-          <el-card class="card" shadow="always"></el-card>
+          <el-card class="card" shadow="always">
+            <img
+              src="@/assets/disney.png"
+              style="width: 1260px; height: 800px"
+            />
+          </el-card>
         </el-col>
 
         <el-col :span="20" style="margin: 30px">
@@ -201,7 +205,6 @@
             </el-timeline>
           </div>
         </el-col>
-        
       </div>
     </el-row>
   </div>
