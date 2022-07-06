@@ -94,15 +94,15 @@ export const asyncRoutes = [
       {
         path: 'hotgraph',
         name: 'Hotgraph',
-        component: () => import('@/views/vab/verify/index'),
+        component: () => import('@/views/manage/hotgraph/index'),
         meta: { title: '热点图', permissions: ['admin'] },
       },
-      {
-        path: 'managework',
-        name: 'Managework',
-        component: () => import('@/views/vab/verify/index'),
-        meta: { title: '园区基础设施', permissions: ['admin'] },
-      },
+      // {
+      //   path: 'managework',
+      //   name: 'Managework',
+      //   component: () => import('@/views/vab/verify/index'),
+      //   meta: { title: '园区基础设施', permissions: ['admin'] },
+      // },
       {
         path: 'manageparking',
         name: 'Manageparking',

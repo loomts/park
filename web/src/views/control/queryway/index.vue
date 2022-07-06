@@ -43,7 +43,7 @@
         <el-col :span="20" style="margin: 50px">
           <el-card class="card" shadow="always">
             <img
-              src="@/assets/disney.png"
+              src="@/assets/way.png"
               style="width: 1260px; height: 800px"
             />
           </el-card>
@@ -410,37 +410,37 @@ export default {
     // clearInterval(this.timer)
   },
   mounted() {
-    let base = +new Date(2020, 1, 1)
-    let oneDay = 24 * 3600 * 1000
-    let date = []
+    // let base = +new Date(2020, 1, 1)
+    // let oneDay = 24 * 3600 * 1000
+    // let date = []
 
-    let data = [Math.random() * 1500]
-    let now = new Date(base)
+    // let data = [Math.random() * 1500]
+    // let now = new Date(base)
 
-    const addData = (shift) => {
-      now = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')
-      date.push(now)
-      data.push(this.$baseLodash.random(20000, 60000))
+    // const addData = (shift) => {
+    //   now = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/')
+    //   date.push(now)
+    //   data.push(this.$baseLodash.random(20000, 60000))
 
-      if (shift) {
-        date.shift()
-        data.shift()
-      }
+    //   if (shift) {
+    //     date.shift()
+    //     data.shift()
+    //   }
 
-      now = new Date(+new Date(now) + oneDay)
-    }
-
-    // for (let i = 1; i < 6; i++) {
-    //   addData()
+    //   now = new Date(+new Date(now) + oneDay)
     // }
-    addData(true)
-    this.fwl.xAxis[0].data = date
-    this.fwl.series[0].data = data
-    this.timer = setInterval(() => {
-      addData(true)
-      this.fwl.xAxis[0].data = date
-      this.fwl.series[0].data = data
-    }, 3000)
+
+    // // for (let i = 1; i < 6; i++) {
+    // //   addData()
+    // // }
+    // addData(true)
+    // this.fwl.xAxis[0].data = date
+    // this.fwl.series[0].data = data
+    // this.timer = setInterval(() => {
+    //   addData(true)
+    //   this.fwl.xAxis[0].data = date
+    //   this.fwl.series[0].data = data
+    // }, 3000)
   },
   methods: {},
 }

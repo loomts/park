@@ -71,6 +71,9 @@ module.exports = {
           name: webpackBarName,
         }),
       ],
+      externals: {
+        heatmap:'heatmap',
+      },
     }
   },
   chainWebpack(config) {
