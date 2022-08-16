@@ -1,6 +1,24 @@
 ## 后端
 
-### TODO LIST
+### service app 
+│  └─libraries
+├─src
+│  └─main
+│      ├─dataMaker
+│      ├─in
+│      ├─java
+│      │  ├─database 数据库相关
+│      │  └─service 
+│      ├─out
+│      └─resources
+└─target
+    ├─classes
+    │  ├─database
+    │  └─service
+    └─generated-sources
+        └─annotations
+
+
 
 - [x] 获取api的函数
 - [x] 生成和整理数据，扔给前端(数据还剩下路径没造，明天（今天）早上思考一下咋弄:)
@@ -11,11 +29,11 @@
 
 获取华为API的函数在 *service/RESTAPI*
 
-数据库在 *service/mysql/data.sql*
+数据库在 *service/mysql/EP1.sql* (先create database EP1; use EP1;)
 
-伪造的后端接口 *service/app/src/main/java/service/controller.java*
+后端接口 *service/app/src/main/java/service/controller.java*
 
-伪造的前端接口 *web/api.js*
+前端接口? *web/api.js*
 
 
 

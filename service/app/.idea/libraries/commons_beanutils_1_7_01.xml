@@ -7,6 +7,7 @@
       <root url="jar://$PROJECT_DIR$/commons-logging.jar!/" />
       <root url="jar://$PROJECT_DIR$/ezmorph-1.0.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/json-lib-2.4-jdk15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mysql-connector.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
