@@ -3,17 +3,17 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {}
-  },
-}
+  export default {
+    data() {
+      return {}
+    },
+  }
 </script>
 
 <style>
-.test {
-  text-align: center;
-  font-size: 60px;
-  margin-top: 300px;
-}
+  .test {
+    text-align: center;
+    font-size: 60px;
+    margin-top: 300px;
+  }
 </style>

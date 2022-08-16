@@ -47,7 +47,7 @@
 
 - *service/app/src/main/out/histFlow.out* 历史人流量 168条，以h为单位，24*7
 - *service/app/src/main/out/nowFlow.out* 当前人流量 3600条，以s为单位，3600s，动态演示
-- *service/app/src/main/out/sitesFlow.out* 站点人流量 6条，2022-07-02 13:00:00这一时刻6个景点的人数（想要加多点也可以叫我加）
+- *service/app/src/main/out/siteFlow.out* 站点人流量 6条，2022-07-02 13:00:00这一时刻6个景点的人数（想要加多点也可以叫我加）
 
 这三个参数是一样的，时间默认从2022-07-02 13:00:00开始。
 
@@ -81,7 +81,7 @@
   eightHour：在线八小时以上的用户（终端）数
   ```
 
-- *service/app/src/main/out/sitesWlan.out*  查询站点的上行速率、下行速率
+- *service/app/src/main/out/siteWlan.out*  查询站点的上行速率、下行速率
 
   ```
   timestamp：时间戳
@@ -99,10 +99,10 @@ localhost:2333/deviceDetail			 ~>deviceDetail.out
 localhost:2333/deviceTraffic		 ~>deviceTraffic.out
 localhost:2333/histFlow          ~>histFlow.out
 localhost:2333/nowFlow           ~>nowFlow.out
-localhost:2333/sitesFlow         ~>sitesFlow.out
-localhost:2333/sitesHealth       ~>sitesHealth.out
-localhost:2333/sitesUserNumber   ~>sitesUserNumber.out
-localhost:2333/sitesWlan         ~>sitesWlan.out
+localhost:2333/siteFlow         ~>siteFlow.out
+localhost:2333/siteHealth       ~>siteHealth.out
+localhost:2333/siteUserNumber   ~>siteUserNumber.out
+localhost:2333/siteWlan         ~>siteWlan.out
 ```
 
 用到的华为RESEful接口：
@@ -152,7 +152,7 @@ downTraffic：下行流量
 unit：流量单位
 
 6. 基于站点的站点健康度查询
-class SitesHealth
+class SiteHealth
 public querySiteHealthList(String siteId)
 返回的主要参数
 siteId：站点ID
