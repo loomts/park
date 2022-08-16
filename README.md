@@ -11,8 +11,6 @@
 
 获取华为API的函数在 *service/RESTAPI*
 
-造的数据在 *service/app/src/main/out/*
-
 数据库在 *service/mysql/data.sql*
 
 伪造的后端接口 *service/app/src/main/java/service/controller.java*
@@ -21,11 +19,12 @@
 
 
 
-### 数据约束
+### 数据约束（表）
 
-- *service/app/src/main/out/deviceDetail.out* 从后端获取设备详细信息
+- *deviceDetail* 从后端获取设备详细信息 100行
 
   ```
+  deviceId: 设备Id
   name：设备名
   gisLon：经度
   gisLat：纬度
@@ -35,7 +34,7 @@
   cpuRate：cpu占有率
   ```
 
-- *service/app/src/main/out/deviceWlan.out* 查询设备1h内的上行流量、下行流量
+- *deviceTraffic* 查询设备1h内的上行流量、下行流量 6行
 
   ```
   deviceId：设备ID
@@ -45,19 +44,20 @@
   unit：流量单位
   ```
 
-- *service/app/src/main/out/histFlow.out* 历史人流量 168条，以h为单位，24*7
-- *service/app/src/main/out/nowFlow.out* 当前人流量 3600条，以s为单位，3600s，动态演示
-- *service/app/src/main/out/siteFlow.out* 站点人流量 6条，2022-07-02 13:00:00这一时刻6个景点的人数（想要加多点也可以叫我加）
+- *histFlow* 历史人流量 168条，以h为单位，24*7 170行
+- *nowFlow* 当前人流量 3600条，以s为单位，3600s，动态演示 1200行
+- *siteFlow* 站点人流量 6条，2022-07-02 13:00:00这一时刻6个景点的人数（想要加多点也可以叫我加） 6行
 
 这三个参数是一样的，时间默认从2022-07-02 13:00:00开始。
 
 - ```
+  siteId:站点Id
   humanFlow:人流量
   reVisitedRate:重复访问率
   stamp:时间戳（可以搜时间戳转换工具将其转换成正常的时间）
   ```
 
-- *service/app/src/main/out/siteHealth.out* 查询站点&&设备健康度
+- *siteHealth* 查询站点&&设备健康度 100行
 
   ```
   siteId：站点id
@@ -66,9 +66,10 @@
   siteHealth：站点健康度
   ```
 
-- *service/app/src/main/out/siteUserNumber.out*
+- *siteUserNumber* 500行
 
   ```
+  siteId：站点id
   exprWorse：体验差的用户（终端）数
   exprBad：体验一般的用户（终端）数
   exprGood：体验良好的用户（终端）数
@@ -81,28 +82,40 @@
   eightHour：在线八小时以上的用户（终端）数
   ```
 
-- *service/app/src/main/out/siteWlan.out*  查询站点的上行速率、下行速率
+- *siteWlan*  查询站点的上行速率、下行速率 6行
 
   ```
+  siteId：站点id
   timestamp：时间戳
   unit：单位
   uplinkRate：上行速率
   downlinkRate：下行速率
   ```
 
+- *user*  用户信息（mac地址的延伸） 6行
+
+  ```
+  userId：用户id
+  username: 用户名
+  phoneNumber：电话
+  address：地址
+  sex：性别
+  phoneType：手机型号
+  ```
 ### 伪接口（无交互，后端运行之后vue应该可以直接通过http的get请求获得数据）
 
 ```
-localhost:2333/ 							   ~>Hello, World!
-localhost:2333/hello 					   ~>Hello, World!
-localhost:2333/deviceDetail			 ~>deviceDetail.out
-localhost:2333/deviceTraffic		 ~>deviceTraffic.out
-localhost:2333/histFlow          ~>histFlow.out
-localhost:2333/nowFlow           ~>nowFlow.out
-localhost:2333/siteFlow         ~>siteFlow.out
-localhost:2333/siteHealth       ~>siteHealth.out
-localhost:2333/siteUserNumber   ~>siteUserNumber.out
-localhost:2333/siteWlan         ~>siteWlan.out
+localhost:2333/ 							 
+localhost:2333/hello 					 
+localhost:2333/deviceDetail		
+localhost:2333/deviceTraffic	
+localhost:2333/histFlow        
+localhost:2333/nowFlow         
+localhost:2333/siteFlow        
+localhost:2333/siteHealth      
+localhost:2333/siteUserNumber  
+localhost:2333/siteWlan        
+localhost:2333/user        
 ```
 
 用到的华为RESEful接口：
