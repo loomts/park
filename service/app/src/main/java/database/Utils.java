@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static database.Conn.getConn;
 
-class Utils {
+public class Utils {
 
     public static List deviceDetail(String limit) {
         List list = new ArrayList();
@@ -32,7 +32,7 @@ class Utils {
     public static List deviceTraffic(String limit) {
         List list = new ArrayList();
         try {
-            ResultSet rs = getConn().executeQuery("select * from deviceTraffic" + limit);
+            ResultSet rs = getConn().executeQuery("select * from deviceTraffic " + limit);
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
             int len = resultSetMetaData.getColumnCount();
             while (rs.next()) {
@@ -51,7 +51,7 @@ class Utils {
     public static List histFlow(String limit) {
         List list = new ArrayList();
         try {
-            ResultSet rs = getConn().executeQuery("select * from histFlow" + limit);
+            ResultSet rs = getConn().executeQuery("select * from histFlow " + limit);
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
             int len = resultSetMetaData.getColumnCount();
             while (rs.next()) {
@@ -70,7 +70,7 @@ class Utils {
     public static List nowFlow(String limit) {
         List list = new ArrayList();
         try {
-            ResultSet rs = getConn().executeQuery("select * from nowFlow" + limit);
+            ResultSet rs = getConn().executeQuery("select * from nowFlow " + limit);
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
             int len = resultSetMetaData.getColumnCount();
             while (rs.next()) {
@@ -89,7 +89,7 @@ class Utils {
     public static List siteFlow(String limit) {
         List list = new ArrayList();
         try {
-            ResultSet rs = getConn().executeQuery("select * from siteFlow" + limit);
+            ResultSet rs = getConn().executeQuery("select * from siteFlow " + limit);
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
             int len = resultSetMetaData.getColumnCount();
             while (rs.next()) {
@@ -108,7 +108,7 @@ class Utils {
     public static List siteHealth(String limit) {
         List list = new ArrayList();
         try {
-            ResultSet rs = getConn().executeQuery("select * from siteHealth" + limit);
+            ResultSet rs = getConn().executeQuery("select * from siteHealth " + limit);
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
             int len = resultSetMetaData.getColumnCount();
             while (rs.next()) {
@@ -127,7 +127,7 @@ class Utils {
     public static List siteUserNumber(String limit) {
         List list = new ArrayList();
         try {
-            ResultSet rs = getConn().executeQuery("select * from siteUserNumber" + limit);
+            ResultSet rs = getConn().executeQuery("select * from siteUserNumber " + limit);
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
             int len = resultSetMetaData.getColumnCount();
             while (rs.next()) {
@@ -146,7 +146,7 @@ class Utils {
     public static List siteWlan(String limit) {
         List list = new ArrayList();
         try {
-            ResultSet rs = getConn().executeQuery("select * from siteWlan" + limit);
+            ResultSet rs = getConn().executeQuery("select * from siteWlan " + limit);
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
             int len = resultSetMetaData.getColumnCount();
             while (rs.next()) {
@@ -165,7 +165,7 @@ class Utils {
     public static List user(String limit) {
         List list = new ArrayList();
         try {
-            ResultSet rs = getConn().executeQuery("select * from user" + limit);
+            ResultSet rs = getConn().executeQuery("select * from user " + limit);
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
             int len = resultSetMetaData.getColumnCount();
             while (rs.next()) {
@@ -183,9 +183,9 @@ class Utils {
 
     public static void main(String args[]) {
         try {
-            System.out.println(deviceDetail("where name='device32'"));
+            //System.out.println(deviceDetail("where name='device1'"));
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-}  
+}
