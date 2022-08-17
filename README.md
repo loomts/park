@@ -1,38 +1,23 @@
 ## 后端
 
 ### service app 
-
-### │  └─libraries
-
-### ├─src
-
-### │  └─main
-
-### │      ├─dataMaker
-
-### │      ├─in
-
-### │      ├─java
-
-### │      │  ├─database 数据库相关
-
-### │      │  └─service 
-
-### │      ├─out
-
-### │      └─resources
-
-### └─target
-
-###     ├─classes
-
-###     │  ├─database
-
-###     │  └─service
-
-###     └─generated-sources
-
-###         └─annotations
+├─.idea</br>
+│  └─libraries</br>
+├─src</br>
+│  └─main</br>
+│      ├─dataMaker</br>
+│      ├─in</br>
+│      ├─java</br>
+│      │  ├─database 数据库相关</br>
+│      │  └─service 启动即可测试api（记得导入包）</br>
+│      ├─out</br>
+│      └─resources</br>
+└─target</br>
+├─classes</br>
+│  ├─database</br>
+│  └─service</br>
+└─generated-sources</br>
+└─annotations</br>
 
 
 
@@ -55,7 +40,8 @@
 
 前端接口? *web/api.js*
 
-
+![加参数](param.png)
+![无参数](noparam.png)
 
 ### 数据约束（表）
 
