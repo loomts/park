@@ -265,4 +265,4 @@ type：类型
 * npm i
 * npm run lint --fix
 * npm run serve
-然后打开http://localhost:81/#/index即可看到首页。
+* 打开 http://localhost:81/#/index 即可看到首页。
