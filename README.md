@@ -260,5 +260,9 @@ type：类型
 
 
 
-
-
+## 使用方法：
+在web目录下执行以下命令：
+* npm i
+* npm run lint --fix
+* npm run serve
+然后打开http://localhost:81/#/index即可看到首页。

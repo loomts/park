@@ -306,12 +306,12 @@ insert into userNumber values("99",0,29,1669,4857,56,918,5348,9289,929,70);
 insert into userNumber values("100",9,4,1993,2360,42,48,217,6790,268,45);
 
 
-insert into user values(1,"user1","11211311415","area1","男");
-insert into user values(2,"user2","22111311415","area2","男");
-insert into user values(3,"user3","33211311415","area3","女");
-insert into user values(4,"user4","33411311415","area4","女");
-insert into user values(5,"user5","33211315415","area5","男");
-insert into user values(6,"user6","33211181415","area6","女");
+insert into user values(1,"阿猫","11211311415","羊村1号房","男");
+insert into user values(2,"阿狗","22111311415","羊村2号房","男");
+insert into user values(3,"阿猪","33211311415","羊村3号房","女");
+insert into user values(4,"阿鸟","33411311415","羊村4号房","女");
+insert into user values(5,"阿鸡","33211315415","羊村5号房","男");
+insert into user values(6,"阿鹅","33211181415","羊村6号房","女");
 
 
 insert into flow values(1,"humanFlow",84488.2,1.5,0);
