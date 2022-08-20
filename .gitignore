@@ -37,3 +37,4 @@ log/
 *.orig
 **/.github/
 **/.vscode/
+**/node_modules/
