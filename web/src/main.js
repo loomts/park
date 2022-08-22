@@ -6,8 +6,11 @@ import './plugins'
 import '@/layouts/export'
 // 引入Echarts
 import * as echarts from 'echarts'
+import BaiduMap from 'vue-baidu-map'
 Vue.prototype.$echarts = echarts
-
+Vue.use(BaiduMap, {
+  ak: 'zIqWyMZvUlRW8IMU9djlFeTBhGytYp1Q',
+})
 /**
  * @author https://gitee.com/chu1204505056/vue-admin-better （不想保留author可删除）
  * @description 生产环境默认都使用mock，如果正式用于生产环境时，记得去掉
