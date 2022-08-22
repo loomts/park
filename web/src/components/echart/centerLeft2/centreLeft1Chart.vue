@@ -6,7 +6,7 @@
 
 <script>
   import echartMixins from '@/utils/resizeMixins'
-
+  import axios from 'axios'
   export default {
     mixins: [echartMixins],
     data() {

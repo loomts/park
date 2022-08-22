@@ -1,8 +1,6 @@
 ## 后端
 
 ### service app 
-├─.idea</br>
-│  └─libraries</br>
 ├─src</br>
 │  └─main</br>
 │      ├─dataMaker</br>
@@ -261,8 +259,11 @@ type：类型
 
 
 ## 使用方法：
-在web目录下执行以下命令：
+1. 打开mysql服务器并根据service/mysql/EP1.sql文件建相关的表
+2. 配置service/app/src/main/resources/jdbc.properties中的自己的mysql密码(pwd)和账户名(user)
+3. 运行service/app/src/main/java/service/controller.java文件，以打开后端调用的相关端口
+4. 在web目录下执行以下命令：
 * npm i
 * npm run lint --fix
 * npm run serve
-* 打开 http://localhost:81/#/index 即可看到首页。
+* 打开 http://localhost:81/# 即可看到首页。

@@ -9023,6 +9023,7 @@ const data = [{
         cpuRate: 23,
     },
 ]
+
 module.exports = [{
     url: '/phoneuser/getList',
     type: 'post',
@@ -9042,5 +9043,5 @@ module.exports = [{
             totalCount: mockList.length,
             data: pageList,
         }
-    },
+    }    
 }, ]

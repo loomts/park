@@ -107,7 +107,7 @@
 
 <script>
   import { getPhoneUser, queryPhoneUser } from '@/api/phoneuser'
-
+  import * as allApi from '../../../../api.js'
   export default {
     name: 'Nowphone',
     data() {
@@ -130,6 +130,24 @@
       this.fetchData()
     },
     methods: {
+      async getNowUser(queryForm){
+        var startNo = (queryForm.pageNo-1)*queryForm.pageSize
+        var endNo = startNo + queryForm.pageSize
+        let data = []
+        var jsonObj = await allApi.getDeviceDetailByName(queryForm.title)
+        for (var i = startNo ; i < jsonObj.length && i < endNo ; i++) {
+            data.push({
+              name: jsonObj[i].name,
+              gisLon: jsonObj[i].gisLon,
+              gisLat: jsonObj[i].gisLat,
+              traffic: jsonObj[i].traffic,
+              upwardSpeed: jsonObj[i].upwardSpeed,
+              downwardSpeed: jsonObj[i].downwardSpeed,
+              cpuRate: jsonObj[i].cpuRate,
+            })
+        }
+        return [data,jsonObj.length];
+      },
       handleSizeChange(val) {
         this.queryForm.pageSize = val
         this.fetchData()
@@ -143,10 +161,9 @@
         this.fetchData()
       },
       async fetchData() {
-        const { data, totalCount } = await getPhoneUser(this.queryForm)
-        this.querydata = data
-        this.total = totalCount
-        // console.log(this.querydata[0].name)
+        var res = await this.getNowUser(this.queryForm)
+        this.querydata = res[0]
+        this.total = res[1]
       },
     },
   }

@@ -13,9 +13,9 @@
     ></div>
   </div>
 </template>
-
-<script>
+<script type="text/javascript">
   import echartMixins from '@/utils/resizeMixins'
+  import * as allApi from '../../../../api.js'
   export default {
     mixins: [echartMixins],
     data() {
@@ -30,7 +30,25 @@
       window.onresize = null
     },
     methods: {
-      draw() {
+      async getHistFlowData(){
+        let list = []
+        var jsonObj = await allApi.getHistFlow()
+        for (var i = 0; i < jsonObj.length && list.length<50; i++) {
+          if(jsonObj[i].humanFlow<50000)
+            list.push(jsonObj[i].humanFlow)
+        }
+        return list
+      },
+      async getNowFlowData(){
+        let list = []
+        var jsonObj = await allApi.getHistFlow()
+        for (var i = 51; i < jsonObj.length && list.length<50; i++) {
+          if(jsonObj[i].humanFlow>10000&&jsonObj[i].humanFlow<60000)
+            list.push(jsonObj[i].humanFlow-15000)
+        }
+        return list
+      },
+      async draw() {
         // 基于准备好的dom，初始化echarts实例
         this.chart = this.$echarts.init(
           document.getElementById('bottomLeftChart')
@@ -73,24 +91,13 @@
           '34分',
           '35分',
         ]
-        let lineData = [
-          18092, 20728, 24045, 28348, 32808, 36097, 39867, 44715, 48444, 50415,
-          56061, 62677, 59521, 67560, 18092, 20728, 24045, 28348, 32808, 36097,
-          39867, 44715, 48444, 50415, 36097, 39867, 44715, 48444, 50415, 50061,
-          32677, 49521, 32808, 40036,
-        ]
-        let barData = [
-          4600, 5000, 5500, 6500, 7500, 8500, 9900, 12500, 14000, 21500, 23200,
-          24450, 25250, 33300, 4600, 5000, 5500, 6500, 7500, 8500, 9900, 22500,
-          14000, 21500, 8500, 9900, 12500, 14000, 21500, 23200, 24450, 25250,
-          7500, 10002,
-        ]
+        let lineData = await this.getHistFlowData()
+        let barData =  await this.getNowFlowData()
         let rateData = []
-        for (let i = 0; i < 33; i++) {
+        for (let i = 0; i < 35; i++) {
           let rate = barData[i] / lineData[i]
           rateData[i] = rate.toFixed(2)
         }
-
         let option = {
           title: {
             text: '',
@@ -220,5 +227,4 @@
     },
   }
 </script>
-
 <style lang="scss" scoped></style>

@@ -13,7 +13,31 @@
 
 <script>
   import * as echarts from 'echarts'
-  import { getList } from '@/api/healthy'
+  import * as allApi from '../../../../api.js'
+  async function getData(){
+    let data = []
+    let listId = []
+    var jsonObj = await allApi.getSitesFlow()
+    for (var i = 0; i < jsonObj.length ; i++) {
+        listId.push(jsonObj[i].siteId)
+    }
+    for (var i = 0; i < listId.length ; i++) {
+        var Healthy = []
+        var nowId = listId[i]
+        var siteSFlowObj = await allApi.getSitesHealthById(nowId)
+        Healthy.push(siteSFlowObj[0].deviceHealth)
+        Healthy.push(siteSFlowObj[0].radioHealth)
+        Healthy.push(siteSFlowObj[0].siteHealth)
+        var siteSFlowObj = await allApi.getSitesFlowById(nowId)
+        Healthy.push(siteSFlowObj[0].humanFlow)
+        Healthy.push(siteSFlowObj[0].reVisitedRate)
+        data.push({
+          siteId: nowId,
+          Healthy: Healthy,
+        })
+    }
+    return data;
+  }
   export default {
     name: 'HealthyEcharts',
     data() {
@@ -25,16 +49,14 @@
       this.fetchData()
       setTimeout(() => {
         this.Access()
-      }, 100),
+      }, 500),
         this.Access()
     },
-    mounted() {},
+    mounted() {
+    },
     methods: {
       async fetchData() {
-        const { data } = await getList('')
-        this.picturedata = data
-        console.log(1)
-        console.log(this.pricturedata.length)
+        this.picturedata = await getData()
       },
       Access() {
         for (let i = 0; i < 6; i++) {
@@ -43,10 +65,8 @@
           })
           newPromise.then(() => {
             let chartDom = document.getElementById('Access' + i)
-            // console.log(chartDom)
             var myChart = echarts.init(chartDom)
             var that = this
-            // console.log(that.picturedata[0])
             var option = {
               color: ['#67F9D8', '#FFE434', '#56A3F1', '#FF917C'],
               title: {
@@ -100,9 +120,8 @@
                   },
                   data: [
                     {
-                      // value: [100, 100, 100, 100, 100],
+                      //value: [100, 100, 100, 100, 100],
                       value: that.picturedata[i].Healthy,
-                      // name: 'Data B',
                       label: {
                         show: true,
                         formatter: function (params) {
@@ -123,8 +142,6 @@
         }
       },
       initEcharts() {
-        // console.log(1)
-        // console.log(this.option.series[0].data[0].value[0])
       },
     },
   }

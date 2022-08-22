@@ -18,6 +18,7 @@ public class controller {
 //        server.createContext("/", new hello());
         server.createContext("/hello", new hello());
         server.createContext("/deviceDetail", new deviceDetailHandler());
+        server.createContext("/deviceDetailByName", new deviceDetailByNameHandler());
         server.createContext("/deviceTraffic", new deviceTrafficHandler());
         server.createContext("/histFlow", new histFlowHandler());
         server.createContext("/nowFlow", new nowFlowHandler());
@@ -53,9 +54,33 @@ public class controller {
         return "where " + QueryKey + " = " + "'" + QueryValue + "'";
     }
 
+    public static String getLimitStringByName(HttpExchange t) {
+        String postString = null;
+        try {
+            postString = IOUtils.toString(t.getRequestBody());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Map<String, String> postInfo = formData2Dic(postString);
+        String QueryKey = "", QueryValue = "";
+        Collection<String> keys = postInfo.keySet();
+        Collection<String> cvalues = postInfo.values();
+        Iterator<String> iterk = keys.iterator();
+        Iterator<String> itery = cvalues.iterator();
+        if (iterk.hasNext()) {
+            QueryKey = iterk.next().toString();
+        }
+        if (itery.hasNext()) {
+            QueryValue = itery.next().toString();
+        }
+        if (QueryValue == "") return "order by name";
+        return "where " + QueryKey + " like " + "'%" + QueryValue + "%' order by name";
+    }
+
     public static void OSwrite(HttpExchange t, List res) throws IOException {
         String response = JSON.toJSONString(res);
         t.getResponseHeaders().set("Content-Type", "application/json");
+        t.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
         try {
             t.sendResponseHeaders(200, response.length());
         } catch (IOException e) {
@@ -97,6 +122,14 @@ public class controller {
     static class deviceDetailHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
             String limitString = getLimitString(t);
+            List res = Utils.deviceDetail(limitString);
+            OSwrite(t, res);
+        }
+    }
+
+    static class deviceDetailByNameHandler implements HttpHandler {
+        public void handle(HttpExchange t) throws IOException {
+            String limitString = getLimitStringByName(t);
             List res = Utils.deviceDetail(limitString);
             OSwrite(t, res);
         }
