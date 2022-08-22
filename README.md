@@ -259,6 +259,7 @@ type：类型
 
 
 ## 使用方法：
+## 启动方法：
 1. 打开mysql服务器并根据service/mysql/EP1.sql文件建相关的表
 2. 配置service/app/src/main/resources/jdbc.properties中的自己的mysql密码(pwd)和账户名(user)
 3. 运行service/app/src/main/java/service/controller.java文件，以打开后端调用的相关端口

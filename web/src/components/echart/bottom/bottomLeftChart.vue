@@ -30,21 +30,20 @@
       window.onresize = null
     },
     methods: {
-      async getHistFlowData(){
+      async getHistFlowData() {
         let list = []
         var jsonObj = await allApi.getHistFlow()
-        for (var i = 0; i < jsonObj.length && list.length<50; i++) {
-          if(jsonObj[i].humanFlow<50000)
-            list.push(jsonObj[i].humanFlow)
+        for (var i = 0; i < jsonObj.length && list.length < 50; i++) {
+          if (jsonObj[i].humanFlow < 50000) list.push(jsonObj[i].humanFlow)
         }
         return list
       },
-      async getNowFlowData(){
+      async getNowFlowData() {
         let list = []
         var jsonObj = await allApi.getHistFlow()
-        for (var i = 51; i < jsonObj.length && list.length<50; i++) {
-          if(jsonObj[i].humanFlow>10000&&jsonObj[i].humanFlow<60000)
-            list.push(jsonObj[i].humanFlow-15000)
+        for (var i = 51; i < jsonObj.length && list.length < 50; i++) {
+          if (jsonObj[i].humanFlow > 10000 && jsonObj[i].humanFlow < 60000)
+            list.push(jsonObj[i].humanFlow - 15000)
         }
         return list
       },
@@ -92,7 +91,7 @@
           '35分',
         ]
         let lineData = await this.getHistFlowData()
-        let barData =  await this.getNowFlowData()
+        let barData = await this.getNowFlowData()
         let rateData = []
         for (let i = 0; i < 35; i++) {
           let rate = barData[i] / lineData[i]

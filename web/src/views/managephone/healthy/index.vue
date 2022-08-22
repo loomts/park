@@ -14,29 +14,29 @@
 <script>
   import * as echarts from 'echarts'
   import * as allApi from '../../../../api.js'
-  async function getData(){
+  async function getData() {
     let data = []
     let listId = []
     var jsonObj = await allApi.getSitesFlow()
-    for (var i = 0; i < jsonObj.length ; i++) {
-        listId.push(jsonObj[i].siteId)
+    for (var i = 0; i < jsonObj.length; i++) {
+      listId.push(jsonObj[i].siteId)
     }
-    for (var i = 0; i < listId.length ; i++) {
-        var Healthy = []
-        var nowId = listId[i]
-        var siteSFlowObj = await allApi.getSitesHealthById(nowId)
-        Healthy.push(siteSFlowObj[0].deviceHealth)
-        Healthy.push(siteSFlowObj[0].radioHealth)
-        Healthy.push(siteSFlowObj[0].siteHealth)
-        var siteSFlowObj = await allApi.getSitesFlowById(nowId)
-        Healthy.push(siteSFlowObj[0].humanFlow)
-        Healthy.push(siteSFlowObj[0].reVisitedRate)
-        data.push({
-          siteId: nowId,
-          Healthy: Healthy,
-        })
+    for (var i = 0; i < listId.length; i++) {
+      var Healthy = []
+      var nowId = listId[i]
+      var siteSFlowObj = await allApi.getSitesHealthById(nowId)
+      Healthy.push(siteSFlowObj[0].deviceHealth)
+      Healthy.push(siteSFlowObj[0].radioHealth)
+      Healthy.push(siteSFlowObj[0].siteHealth)
+      var siteSFlowObj = await allApi.getSitesFlowById(nowId)
+      Healthy.push(siteSFlowObj[0].humanFlow)
+      Healthy.push(siteSFlowObj[0].reVisitedRate)
+      data.push({
+        siteId: nowId,
+        Healthy: Healthy,
+      })
     }
-    return data;
+    return data
   }
   export default {
     name: 'HealthyEcharts',
@@ -52,8 +52,7 @@
       }, 500),
         this.Access()
     },
-    mounted() {
-    },
+    mounted() {},
     methods: {
       async fetchData() {
         this.picturedata = await getData()
@@ -141,8 +140,7 @@
           })
         }
       },
-      initEcharts() {
-      },
+      initEcharts() {},
     },
   }
 </script>

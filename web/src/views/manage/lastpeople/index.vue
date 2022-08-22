@@ -1,41 +1,41 @@
 <template>
   <div id="myChart" :style="{ width: '100%', height: '1000px' }" />
 </template>
-<script >
+<script>
   import * as allApi from '../../../../api.js'
   var dataMap = {}
-  async function getMinFlowData(){
+  async function getMinFlowData() {
     let list = []
     var jsonObj = await allApi.getHistFlow()
-    for (var i = 0; i < jsonObj.length && list.length<10*35; i++) {
-      if(jsonObj[i].humanFlow>5000)
-        list.push((jsonObj[i].humanFlow*0.03).toFixed(2))
+    for (var i = 0; i < jsonObj.length && list.length < 10 * 35; i++) {
+      if (jsonObj[i].humanFlow > 5000)
+        list.push((jsonObj[i].humanFlow * 0.03).toFixed(2))
     }
-    for (var i = 0; i < jsonObj.length && list.length<10*35; i++) {
-      if(jsonObj[i].humanFlow>5000)
-        list.push((jsonObj[i].humanFlow*0.05).toFixed(2))
+    for (var i = 0; i < jsonObj.length && list.length < 10 * 35; i++) {
+      if (jsonObj[i].humanFlow > 5000)
+        list.push((jsonObj[i].humanFlow * 0.05).toFixed(2))
     }
     return list
   }
-  async function getMaxFlowData(){
+  async function getMaxFlowData() {
     let list = []
     var jsonObj = await allApi.getHistFlow()
-    for (var i = 0; i < jsonObj.length && list.length<10*35; i++) {
-        list.push((jsonObj[i].humanFlow*0.18).toFixed(2))
+    for (var i = 0; i < jsonObj.length && list.length < 10 * 35; i++) {
+      list.push((jsonObj[i].humanFlow * 0.18).toFixed(2))
     }
-    for (var i = 0; i < jsonObj.length && list.length<10*35; i++) {
-        list.push((jsonObj[i].humanFlow*0.26).toFixed(2))
+    for (var i = 0; i < jsonObj.length && list.length < 10 * 35; i++) {
+      list.push((jsonObj[i].humanFlow * 0.26).toFixed(2))
     }
     return list
   }
-  async function getAvgFlowData(){
+  async function getAvgFlowData() {
     let list = []
     var jsonObj = await allApi.getHistFlow()
-    for (var i = 0; i < jsonObj.length && list.length<10*35; i++) {
-        list.push((jsonObj[i].humanFlow*0.16).toFixed(2))
+    for (var i = 0; i < jsonObj.length && list.length < 10 * 35; i++) {
+      list.push((jsonObj[i].humanFlow * 0.16).toFixed(2))
     }
-    for (var i = 0; i < jsonObj.length && list.length<10*35; i++) {
-        list.push((jsonObj[i].humanFlow*0.23).toFixed(2))
+    for (var i = 0; i < jsonObj.length && list.length < 10 * 35; i++) {
+      list.push((jsonObj[i].humanFlow * 0.23).toFixed(2))
     }
     return list
   }
@@ -70,8 +70,8 @@
     methods: {
       async drawLine() {
         // prettier-ignore
-      //景区总销售额
-      dataMap.dataGDP = dataFormatter({
+        //景区总销售额
+        dataMap.dataGDP = dataFormatter({
         //max : 60000,
         2021: [16251.93, 11307.28, 24515.76, 11237.55, 14359.88, 22226.7, 10568.83, 12582, 19195.69, 49110.27, 32318.85, 15300.65, 17560.18, 11702.82, 45361.85, 26931.03, 19632.26, 19669.56, 53210.28, 11720.87, 2522.66, 10011.37, 21026.68, 5701.84, 8893.12, 605.83, 12512.3, 5020.37, 1670.44, 2102.21, 6610.05],
         2020: [14113.58, 9224.46, 20394.26, 9200.86, 11672, 18457.27, 8667.58, 10368.6, 17165.98, 41425.48, 27722.31, 12359.33, 14737.12, 9451.26, 39169.92, 23092.36, 15967.61, 16037.96, 46013.06, 9569.85, 2064.5, 7925.58, 17185.48, 4602.16, 7224.18, 507.46, 10123.48, 4120.75, 1350.43, 1689.65, 5437.47],
@@ -84,42 +84,72 @@
         2013: [5007.21, 2578.03, 6921.29, 2855.23, 2388.38, 6002.54, 2662.08, 4057.4, 6694.23, 12442.87, 9705.02, 3923.11, 4983.67, 2807.41, 12078.15, 6867.7, 4757.45, 4659.99, 15844.64, 2821.11, 713.96, 2555.72, 5333.09, 1426.34, 2556.02, 185.09, 2587.72, 1399.83, 390.2, 445.36, 1886.35],
         2012: [4315, 2150.76, 6018.28, 2324.8, 1940.94, 5458.22, 2348.54, 3637.2, 5741.03, 10606.85, 8003.67, 3519.72, 4467.55, 2450.48, 10275.5, 6035.48, 4212.82, 4151.54, 13502.42, 2523.73, 642.73, 2232.86, 4725.01, 1243.43, 2312.82, 162.04, 2253.39, 1232.03, 340.65, 377.16, 1612.6]
     });
-      var list 
-      list = {
-        2021: [],2020: [],2019: [],2018: [],2017: [],2016: [],2015: [],2014: [],2013: [],2012: []
-      }
-      var minFlow = await getMinFlowData()
-      minFlow.sort(function(value1,value2){return value1 - value2;})
-      var ind = 0
-      for (var year = 2012; year <= 2021; year++) {
-        for(var i = 0; i <= 30 ; i++)
-          list[year].push(minFlow[ind++])
-      }
-      dataMap.dataPI = dataFormatter(list)
-      list = {
-        2021: [],2020: [],2019: [],2018: [],2017: [],2016: [],2015: [],2014: [],2013: [],2012: []
-      }
-      var maxFlow = await getMaxFlowData()
-      maxFlow.sort(function(value1,value2){return value1 - value2;})
-      var ind = 30
-      for (var year = 2012; year <= 2021; year++) {
-        for(var i = 0; i <= 30 ; i++)
-          list[year].push(maxFlow[ind++])
-      }
-      dataMap.dataSI = dataFormatter(list)
-      list = {
-        2021: [],2020: [],2019: [],2018: [],2017: [],2016: [],2015: [],2014: [],2013: [],2012: []
-      }
-      var avgFlow = await getAvgFlowData()
-      avgFlow.sort(function(value1,value2){return value1 - value2;})
-      var ind = 30
-      for (var year = 2012; year <= 2021; year++) {
-        for(var i = 0; i <= 30 ; i++)
-          list[year].push(avgFlow[ind++])
-      }
-      dataMap.dataTI = dataFormatter(list)
-      // prettier-ignore
-      dataMap.dataEstate = dataFormatter({
+        var list
+        list = {
+          2021: [],
+          2020: [],
+          2019: [],
+          2018: [],
+          2017: [],
+          2016: [],
+          2015: [],
+          2014: [],
+          2013: [],
+          2012: [],
+        }
+        var minFlow = await getMinFlowData()
+        minFlow.sort(function (value1, value2) {
+          return value1 - value2
+        })
+        var ind = 0
+        for (var year = 2012; year <= 2021; year++) {
+          for (var i = 0; i <= 30; i++) list[year].push(minFlow[ind++])
+        }
+        dataMap.dataPI = dataFormatter(list)
+        list = {
+          2021: [],
+          2020: [],
+          2019: [],
+          2018: [],
+          2017: [],
+          2016: [],
+          2015: [],
+          2014: [],
+          2013: [],
+          2012: [],
+        }
+        var maxFlow = await getMaxFlowData()
+        maxFlow.sort(function (value1, value2) {
+          return value1 - value2
+        })
+        var ind = 30
+        for (var year = 2012; year <= 2021; year++) {
+          for (var i = 0; i <= 30; i++) list[year].push(maxFlow[ind++])
+        }
+        dataMap.dataSI = dataFormatter(list)
+        list = {
+          2021: [],
+          2020: [],
+          2019: [],
+          2018: [],
+          2017: [],
+          2016: [],
+          2015: [],
+          2014: [],
+          2013: [],
+          2012: [],
+        }
+        var avgFlow = await getAvgFlowData()
+        avgFlow.sort(function (value1, value2) {
+          return value1 - value2
+        })
+        var ind = 30
+        for (var year = 2012; year <= 2021; year++) {
+          for (var i = 0; i <= 30; i++) list[year].push(avgFlow[ind++])
+        }
+        dataMap.dataTI = dataFormatter(list)
+        // prettier-ignore
+        dataMap.dataEstate = dataFormatter({
         //max : 3600,
         2021: [1074.93, 411.46, 918.02, 224.91, 384.76, 876.12, 238.61, 492.1, 1019.68, 2747.89, 1677.13, 634.92, 911.16, 402.51, 1838.14, 987, 634.67, 518.04, 3321.31, 465.68, 208.71, 396.28, 620.62, 160.3, 222.31, 17.44, 398.03, 134.25, 29.05, 79.01, 176.22],
         2020: [1006.52, 377.59, 697.79, 192, 309.25, 733.37, 212.32, 391.89, 1002.5, 2600.95, 1618.17, 532.17, 679.03, 340.56, 1622.15, 773.23, 564.41, 464.21, 2813.95, 405.79, 188.33, 266.38, 558.56, 139.64, 223.45, 14.54, 315.95, 110.02, 25.41, 60.53, 143.44],
@@ -132,8 +162,8 @@
         2013: [341.88, 92.31, 185.19, 78.73, 61.05, 188.49, 91.99, 127.2, 487.82, 447.47, 473.16, 162.63, 215.84, 138.02, 418.21, 217.58, 176.8, 186.49, 955.66, 100.93, 25.14, 113.69, 231.72, 59.86, 103.79, 4.35, 83.9, 48.09, 11.41, 16.85, 47.84],
         2012: [298.02, 73.04, 140.89, 65.83, 51.48, 130.94, 76.11, 118.7, 384.86, 371.09, 360.63, 139.18, 188.09, 125.27, 371.13, 199.31, 145.17, 165.29, 808.16, 82.83, 21.45, 90.48, 210.82, 53.49, 95.68, 3.42, 77.68, 41.52, 9.74, 13.46, 43.04]
     });
-      // prettier-ignore
-      dataMap.dataFinancial = dataFormatter({
+        // prettier-ignore
+        dataMap.dataFinancial = dataFormatter({
         //max : 3200,
         2021: [2215.41, 756.5, 746.01, 519.32, 447.46, 755.57, 207.65, 370.78, 2277.4, 2600.11, 2730.29, 503.85, 862.41, 357.44, 1640.41, 868.2, 674.57, 501.09, 2916.13, 445.37, 105.24, 704.66, 868.15, 297.27, 456.23, 31.7, 432.11, 145.05, 62.56, 134.18, 288.77],
         2020: [1863.61, 572.99, 615.42, 448.3, 346.44, 639.27, 190.12, 304.59, 1950.96, 2105.92, 2326.58, 396.17, 767.58, 241.49, 1361.45, 697.68, 561.27, 463.16, 2658.76, 384.53, 78.12, 496.56, 654.7, 231.51, 375.08, 27.08, 384.75, 100.54, 54.53, 97.87, 225.2],

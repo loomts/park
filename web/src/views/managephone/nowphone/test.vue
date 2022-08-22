@@ -130,23 +130,23 @@
       this.fetchData()
     },
     methods: {
-      async getNowUser(queryForm){
-        var startNo = (queryForm.pageNo-1)*queryForm.pageSize
+      async getNowUser(queryForm) {
+        var startNo = (queryForm.pageNo - 1) * queryForm.pageSize
         var endNo = startNo + queryForm.pageSize
         let data = []
         var jsonObj = await allApi.getDeviceDetailByName(queryForm.title)
-        for (var i = startNo ; i < jsonObj.length && i < endNo ; i++) {
-            data.push({
-              name: jsonObj[i].name,
-              gisLon: jsonObj[i].gisLon,
-              gisLat: jsonObj[i].gisLat,
-              traffic: jsonObj[i].traffic,
-              upwardSpeed: jsonObj[i].upwardSpeed,
-              downwardSpeed: jsonObj[i].downwardSpeed,
-              cpuRate: jsonObj[i].cpuRate,
-            })
+        for (var i = startNo; i < jsonObj.length && i < endNo; i++) {
+          data.push({
+            name: jsonObj[i].name,
+            gisLon: jsonObj[i].gisLon,
+            gisLat: jsonObj[i].gisLat,
+            traffic: jsonObj[i].traffic,
+            upwardSpeed: jsonObj[i].upwardSpeed,
+            downwardSpeed: jsonObj[i].downwardSpeed,
+            cpuRate: jsonObj[i].cpuRate,
+          })
         }
-        return [data,jsonObj.length];
+        return [data, jsonObj.length]
       },
       handleSizeChange(val) {
         this.queryForm.pageSize = val
