@@ -7,6 +7,10 @@ import '@/layouts/export'
 // 引入Echarts
 import * as echarts from 'echarts'
 Vue.prototype.$echarts = echarts
+// 引入video
+import VueCoreVideoPlayer from 'vue-core-video-player'
+
+Vue.use(VueCoreVideoPlayer)
 
 /**
  * @author https://gitee.com/chu1204505056/vue-admin-better （不想保留author可删除）

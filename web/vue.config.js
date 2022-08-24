@@ -45,7 +45,7 @@ module.exports = {
   assetsDir,
   outputDir,
   // lintOnSave:false,
-
+  
   transpileDependencies,
   devServer: {
     hot: true,
@@ -58,6 +58,7 @@ module.exports = {
     },
     after: mockServer(),
   },
+
   configureWebpack() {
     return {
       resolve: {
@@ -84,6 +85,13 @@ module.exports = {
       .exclude.add(resolve('src/remixIcon'))
       .add(resolve('src/colorfulIcon'))
       .end()
+
+
+    // config.module
+    //   .rule("html")
+    //   .test(/\.html$/)
+    //   .use("html-loader")
+    //   .loader("html-loader")
 
     config.module
       .rule('remixIcon')
