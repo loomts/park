@@ -53,23 +53,6 @@ export const asyncRoutes = [
       },
     ],
   },
-  /* {
-          path: "/test",
-          component: Layout,
-          redirect: "noRedirect",
-          children: [
-            {
-              path: "test",
-              name: "Test",
-              component: () => import("@/views/test/index"),
-              meta: {
-                title: "test",
-                icon: "marker",
-                permissions: ["admin"],
-              },
-            },
-          ],
-        }, */
 
   {
     path: '/manage',
@@ -194,6 +177,12 @@ export const asyncRoutes = [
         name: 'Nowlog',
         component: () => import('@/views/logg/nowlog/index'),
         meta: { title: '日志', permissions: ['admin'] },
+      },
+      {
+        path: 'portal',
+        name: 'portal',
+        component: () => import('@/views/portal/index'),
+        meta: { title: '认证管理页面', permissions: ['admin'] },
       },
     ],
   },
