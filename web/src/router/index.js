@@ -156,6 +156,12 @@ export const asyncRoutes = [
         meta: { title: '密接查询', permissions: ['admin'] },
       },
       {
+        path: 'query',
+        name: 'Query',
+        component: () => import('@/views/control/query/index'),
+        meta: { title: '防控查询', permissions: ['admin'] },
+      },
+      {
         path: 'queryscreen',
         name: 'Queryscreen',
         component: () => import('@/views/control/queryscreen/index'),

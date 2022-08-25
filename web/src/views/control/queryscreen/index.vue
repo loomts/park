@@ -101,38 +101,44 @@
 </template>
 
 <script>
-import { BmlHeatmap } from 'vue-baidu-map'
+  import { BmlHeatmap } from 'vue-baidu-map'
 
-export default {
-  components: {
-    BmlHeatmap,
-  },
-  data() {
-    return {
-      polylinePath: [
-        { lng: 116.404, lat: 39.915 },
-        { lng: 116.405, lat: 39.92 },
-        { lng: 116.423493, lat: 39.907445 },
-      ],
-      heartData: [
-        { lng: 121.667034, lat: 31.148808, count: 40 },
-        { lng: 121.663665, lat: 31.147549, count: 60 },
-        { lng: 121.668408, lat: 31.151335, count: 70 },
-        { lng: 121.663243, lat: 31.149693, count: 300 },
-        { lng: 121.666127, lat: 31.149635, count: 300 },
-        { lng: 121.669513, lat: 31.149366, count: 270 },
-        { lng: 121.665073, lat: 31.14947, count: 230 },
-        { lng: 121.666965, lat: 31.150738, count: 120 },
-        { lng: 121.663231, lat: 31.146555, count: 135 },
-        // ...此处添加更多的数据集
-      ],
-    }
-  },
-}
+  export default {
+    components: {
+      BmlHeatmap,
+    },
+    data() {
+      return {
+        polylinePath: [
+          { lng: 121.667027, lat: 31.148817 },
+          { lng: 121.66629, lat: 31.148254 },
+          { lng: 121.664107, lat: 31.148385 },
+          { lng: 121.663703, lat: 31.147597 },
+          { lng: 121.663689, lat: 31.149096 },
+          { lng: 121.663276, lat: 31.149633 },
+          { lng: 121.664084, lat: 31.150282 },
+          { lng: 121.664875, lat: 31.151055 },
+          { lng: 121.664875, lat: 31.151055 },
+        ],
+        heartData: [
+          { lng: 121.667034, lat: 31.148808, count: 40 },
+          { lng: 121.663665, lat: 31.147549, count: 60 },
+          { lng: 121.668408, lat: 31.151335, count: 70 },
+          { lng: 121.663243, lat: 31.149693, count: 300 },
+          { lng: 121.666127, lat: 31.149635, count: 300 },
+          { lng: 121.669513, lat: 31.149366, count: 270 },
+          { lng: 121.665073, lat: 31.14947, count: 230 },
+          { lng: 121.666965, lat: 31.150738, count: 120 },
+          { lng: 121.663231, lat: 31.146555, count: 135 },
+          // ...此处添加更多的数据集
+        ],
+      }
+    },
+  }
 </script>
 <style>
-.map {
-  width: auto;
-  height: 800px;
-}
+  .map {
+    width: auto;
+    height: 800px;
+  }
 </style>
