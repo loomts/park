@@ -1,110 +1,246 @@
 <template>
   <div id="whole">
     <!-- 人流预警 -->
-    <div class="warning" style="margin-left: 60px">
-      <span>人 流 预 警</span>
-    </div>
-    <center style="margin-top: 20px">
-      <el-container class="cot">
-        <el-main>
-          <el-table
-            :data="tableData_1"
-            :header-cell-style="{ background: '#DCD6F7', color: '#ffffff' }"
+    <template>
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="异常管理" name="first">
+          <div
+            class="disinfect2"
+            style="margin-left: 130px; margin-top: 50px; margin-bottom: 20px"
           >
-            <el-table-column
-              prop="date"
-              label="日期"
-              width="160"
-            ></el-table-column>
+            <!-- <vab-colorful-icon icon-class="expired" /> -->
+            <span>园 区 异 常</span>
+          </div>
+          <center style="margin-top: 20px; margin-bottom: 100px">
+            <el-container class="cot" style="width: 1000px">
+              <el-main>
+                <el-table
+                  :data="tableData_2"
+                  :header-cell-style="{
+                    background: '#DCD6F7',
+                    color: '#ffffff',
+                  }"
+                >
+                  <el-table-column
+                    prop="people"
+                    label="处理优先级"
+                    width="100"
+                  ></el-table-column>
 
-            <el-table-column
-              prop="time"
-              label="时间"
-              width="160"
-            ></el-table-column>
+                  <el-table-column
+                    prop="date"
+                    label="日期"
+                    width="150"
+                  ></el-table-column>
 
-            <el-table-column
-              prop="address"
-              label="地点"
-              width="200"
-            ></el-table-column>
+                  <el-table-column
+                    prop="time"
+                    label="时间"
+                    width="150"
+                  ></el-table-column>
 
-            <el-table-column
-              prop="count"
-              label="瞬时设备接入数"
-              width="250"
-            ></el-table-column>
+                  <el-table-column
+                    prop="place"
+                    label="发生地点"
+                    width="180"
+                  ></el-table-column>
 
-            <el-table-column
-              prop="state"
-              label="当前状态"
-              width="200"
-            ></el-table-column>
+                  <el-table-column
+                    prop="way"
+                    label="事件类型"
+                    width="180"
+                  ></el-table-column>
 
-            <!-- <el-table-column 
-			  prop="check" 
-			  label="具体详情" 
-			  width="50">
-              <template slot-scope="scope">
-                <a :href="scope.row.url" target="_blank">{{ scope.row.url }}</a>
-              </template>
-            </el-table-column> -->
-          </el-table>
-        </el-main>
-      </el-container>
-    </center>
+                  <el-table-column
+                    prop="people"
+                    label="异常原因"
+                    width="180"
+                  ></el-table-column>
+                </el-table>
+              </el-main>
+            </el-container>
+          </center>
+        </el-tab-pane>
 
-    <!-- 到点消毒 -->
-    <div class="disinfect" style="margin-left: 60px; margin-top: 50px">
-      <!-- <vab-colorful-icon icon-class="expired" /> -->
-      <span>消 毒 信 息</span>
-    </div>
-    <center style="margin-top: 20px; margin-bottom: 100px">
-      <el-container class="cot">
-        <el-main>
-          <el-table
-            :data="tableData_2"
-            :header-cell-style="{ background: '#DCD6F7', color: '#ffffff' }"
+        <el-tab-pane label="消毒信息" name="second">
+          <!-- 到点消毒 -->
+          <div
+            class="disinfect"
+            style="margin-left: 130px; margin-top: 50px; margin-bottom: 20px"
           >
-            <el-table-column
-              prop="date"
-              label="日期"
-              width="150"
-            ></el-table-column>
+            <!-- <vab-colorful-icon icon-class="expired" /> -->
+            <span>消 毒 信 息</span>
+          </div>
+          <center style="margin-top: 20px; margin-bottom: 100px">
+            <el-container class="cot" style="width: 1000px">
+              <el-main>
+                <el-table
+                  :data="tableData_2"
+                  :header-cell-style="{
+                    background: '#DCD6F7',
+                    color: '#ffffff',
+                  }"
+                >
+                  <el-table-column
+                    prop="date"
+                    label="日期"
+                    width="150"
+                  ></el-table-column>
 
-            <el-table-column
-              prop="time"
-              label="时间"
-              width="150"
-            ></el-table-column>
+                  <el-table-column
+                    prop="time"
+                    label="时间"
+                    width="150"
+                  ></el-table-column>
 
-            <el-table-column
-              prop="place"
-              label="消毒地点"
-              width="180"
-            ></el-table-column>
+                  <el-table-column
+                    prop="place"
+                    label="消毒地点"
+                    width="180"
+                  ></el-table-column>
 
-            <el-table-column
-              prop="way"
-              label="消毒方式"
-              width="180"
-            ></el-table-column>
+                  <el-table-column
+                    prop="way"
+                    label="消毒方式"
+                    width="180"
+                  ></el-table-column>
 
-            <el-table-column
-              prop="people"
-              label="操作人员"
-              width="180"
-            ></el-table-column>
+                  <el-table-column
+                    prop="people"
+                    label="操作人员"
+                    width="180"
+                  ></el-table-column>
 
-            <el-table-column
-              prop="result"
-              label="操作结果"
-              width="100"
-            ></el-table-column>
-          </el-table>
-        </el-main>
-      </el-container>
-    </center>
+                  <el-table-column
+                    prop="result"
+                    label="操作结果"
+                    width="100"
+                  ></el-table-column>
+                </el-table>
+              </el-main>
+            </el-container>
+          </center>
+        </el-tab-pane>
+
+        <el-tab-pane label="人流预警" name="third">
+          <div
+            class="warning"
+            style="margin-left: 130px; margin-top: 50px; margin-bottom: 20px"
+          >
+            <!-- <vab-colorful-icon icon-class="expired" /> -->
+            <span>人 流 预 警</span>
+          </div>
+          <center style="margin-top: 20px; margin-bottom: 100px">
+            <el-container class="cot" style="width: 1100px">
+              <el-main>
+                <el-table
+                  :data="tableData_2"
+                  :header-cell-style="{
+                    background: '#DCD6F7',
+                    color: '#ffffff',
+                  }"
+                >
+                  <el-table-column
+                    prop="people"
+                    label="处理优先级"
+                    width="180"
+                  ></el-table-column>
+
+                  <el-table-column
+                    prop="date"
+                    label="日期"
+                    width="150"
+                  ></el-table-column>
+
+                  <el-table-column
+                    prop="time"
+                    label="时间"
+                    width="150"
+                  ></el-table-column>
+
+                  <el-table-column
+                    prop="place"
+                    label="地点"
+                    width="180"
+                  ></el-table-column>
+
+                  <el-table-column
+                    prop="way"
+                    label="瞬时设备接入数"
+                    width="180"
+                  ></el-table-column>
+
+                  <el-table-column
+                    prop="people"
+                    label="预警原因"
+                    width="180"
+                  ></el-table-column>
+                </el-table>
+              </el-main>
+            </el-container>
+          </center>
+        </el-tab-pane>
+
+        <el-tab-pane label="AP故障" name="fourth">
+          <div
+            class="disinfect1"
+            style="margin-left: 130px; margin-top: 50px; margin-bottom: 20px"
+          >
+            <!-- <vab-colorful-icon icon-class="expired" /> -->
+            <span>A P 故 障</span>
+          </div>
+          <center style="margin-top: 20px; margin-bottom: 100px">
+            <el-container class="cot" style="width: 1100px">
+              <el-main>
+                <el-table
+                  :data="tableData_2"
+                  :header-cell-style="{
+                    background: '#DCD6F7',
+                    color: '#ffffff',
+                  }"
+                >
+                  <el-table-column
+                    prop="people"
+                    label="处理优先级"
+                    width="180"
+                  ></el-table-column>
+
+                  <el-table-column
+                    prop="date"
+                    label="日期"
+                    width="150"
+                  ></el-table-column>
+
+                  <el-table-column
+                    prop="time"
+                    label="时间"
+                    width="150"
+                  ></el-table-column>
+
+                  <el-table-column
+                    prop="place"
+                    label="问题类型"
+                    width="200"
+                  ></el-table-column>
+
+                  <el-table-column
+                    prop="way"
+                    label="设备ID"
+                    width="180"
+                  ></el-table-column>
+
+                  <el-table-column
+                    prop="people"
+                    label="站点区域"
+                    width="180"
+                  ></el-table-column>
+                </el-table>
+              </el-main>
+            </el-container>
+          </center>
+        </el-tab-pane>
+      </el-tabs>
+    </template>
   </div>
 </template>
 
@@ -130,6 +266,7 @@
       return {
         tableData_1: Array(8).fill(item_1),
         tableData_2: Array(8).fill(item_2),
+        activeName: 'first',
       }
     },
   }
@@ -171,6 +308,50 @@
     white-space: nowrap;
     cursor: pointer;
     background: #dcedc1;
+    color: #000000;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    font-weight: 500;
+    /* -moz-user-select: none; */
+    /* -webkit-user-select: none; */
+    /* -ms-user-select: none; */
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 50px;
+  }
+  .disinfect1 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 0.15s ease;
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #c1e0ed;
+    color: #000000;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    font-weight: 500;
+    /* -moz-user-select: none; */
+    /* -webkit-user-select: none; */
+    /* -ms-user-select: none; */
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 50px;
+  }
+  .disinfect2 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 0.15s ease;
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #c186ee;
     color: #000000;
     -webkit-appearance: none;
     text-align: center;
