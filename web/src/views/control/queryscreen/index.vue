@@ -2,10 +2,10 @@
   <baidu-map
     class="map"
     :center="{ lng: 121.6675, lat: 31.1488 }"
-    :zoom="18"
+    :zoom="19"
     :scroll-wheel-zoom="true"
   >
-    <bml-heatmap :data="heartData" :max="100" :radius="20"></bml-heatmap>
+    <bml-heatmap :data="heartData" :max="300" :radius="60"></bml-heatmap>
     <bm-marker
       :position="{ lng: 121.669562, lat: 31.146555 }"
       :dragging="true"
@@ -83,14 +83,13 @@
         :offset="{ width: -35, height: 30 }"
       />
     </bm-marker>
-    <bm-polyline
-      :path="polylinePath"
-      stroke-color="blue"
-      :stroke-opacity="0.5"
-      :stroke-weight="2"
-      :editing="true"
-      @lineupdate="updatePolylinePath"
-    ></bm-polyline>
+    <bm-view class="map"></bm-view>
+    <bm-walking
+      start="迪士尼梦幻世界"
+      end="迪士尼·皮克斯玩具总动员"
+      :auto-viewport="true"
+      location="上海"
+    ></bm-walking>
   </baidu-map>
 </template>
 
@@ -103,32 +102,25 @@
     },
     data() {
       return {
-        polylinePath: [
-          { lng: 121.669473, lat: 31.14947 },
-          { lng: 121.666965, lat: 31.150738 },
-          { lng: 121.663231, lat: 31.146555 },
-        ],
         heartData: [
-          { lng: 121.669473, lat: 31.14947, count: 50 },
-          { lng: 121.666965, lat: 31.150738, count: 51 },
-          { lng: 121.663231, lat: 31.146555, count: 15 },
+          { lng: 121.667034, lat: 31.148808, count: 40 },
+          { lng: 121.663665, lat: 31.147549, count: 60 },
+          { lng: 121.668408, lat: 31.151335, count: 70 },
+          { lng: 121.663243, lat: 31.149693, count: 300 },
+          { lng: 121.666127, lat: 31.149635, count: 300 },
+          { lng: 121.669513, lat: 31.149366, count: 270 },
+          { lng: 121.665073, lat: 31.14947, count: 230 },
+          { lng: 121.666965, lat: 31.150738, count: 120 },
+          { lng: 121.663231, lat: 31.146555, count: 135 },
           // ...此处添加更多的数据集
         ],
       }
-    },
-    methods: {
-      updatePolylinePath(e) {
-        this.polylinePath = e.target.getPath()
-      },
-      addPolylinePoint() {
-        this.polylinePath.push({ lng: 121.404, lat: 31.915 })
-      },
     },
   }
 </script>
 <style>
   .map {
     width: auto;
-    height: 600px;
+    height: 800px;
   }
 </style>
