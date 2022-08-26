@@ -4,6 +4,7 @@
 
 <script>
   import * as echarts from 'echarts'
+  import { htmlWhitespaceSensitivity } from '../../../../prettier.config'
   export default {
     name: 'Echart1',
     data() {
@@ -25,9 +26,33 @@
           xAxis: {
             type: 'category',
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            axisLine: {
+              lineStyle: {
+                type: 'solid',
+                color: '#fff', //左边线的颜色
+                width: '2', //坐标线的宽度
+              },
+            },
+            axisLabel: {
+              textStyle: {
+                color: '#fff', //坐标值得具体的颜色
+              },
+            },
           },
           yAxis: {
             type: 'value',
+            axisLine: {
+              lineStyle: {
+                type: 'solid',
+                color: '#fff', //左边线的颜色
+                width: '2', //坐标线的宽度
+              },
+            },
+            axisLabel: {
+              textStyle: {
+                color: '#fff', //坐标值得具体的颜色
+              },
+            },
           },
           series: [
             {
@@ -36,7 +61,7 @@
               label: {
                 show: true,
                 // position: 'up',
-                valueAnimation: true,
+                // valueAnimation:true
               },
               showBackground: true,
               backgroundStyle: {

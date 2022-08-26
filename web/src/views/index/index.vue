@@ -15,12 +15,14 @@
     <div class="boxall" style="height: 475px">
       <div class="alltitle1">游客数量</div>
       <echarts4Vue class="echart1"></echarts4Vue>
+      <div class="foot1"></div>
     </div>
 
     <!-- <div></div> -->
-    <div class="boxall" style="height: 475px">
+    <div class="boxall2" style="height: 470px">
       <div class="alltitle2">停车场使用情况</div>
       <echarts2Vue class="echart2"></echarts2Vue>
+      <div class="foot2"></div>
     </div>
 
     <div class="boxtitle">
@@ -28,41 +30,57 @@
       <div class="bar">
         <div class="barbox">
           <ul class="clearfix">
-            <li class="pulll_left counter">12581189</li>
-            <li class="pulll_left counter">3912410</li>
+            <li class="pulll_left counter">125811</li>
+            <li class="pulll_left counter">39124</li>
           </ul>
         </div>
         <div class="barbox2">
           <ul class="clearfix">
-            <li class="pulll_left">2022年总收入情况</li>
-            <li class="pulll_left">2022年总游客数量</li>
+            <li class="pulll_left">今日收入情况</li>
+            <li class="pulll_left">今日游客数量</li>
           </ul>
         </div>
       </div>
+      <div class="foot"></div>
     </div>
 
     <div class="boxall3" style="height:700px, width: 700px;">
       <echarts3Vue class="echart3"></echarts3Vue>
+      <div class="foot3"></div>
     </div>
 
     <div class="boxall4" style="height: 400px">
       <div class="alltitle4">上周收益情况</div>
       <echarts1Vue class="echart4"></echarts1Vue>
+      <div class="foot4"></div>
     </div>
 
     <!-- :header-cell-style="{ background: '#DCD6F7', color: '#ffffff' }" -->
     <div class="boxall5" style="height: 350px">
-      <div class="alltitle5">站点情况一览</div>
+      <div class="alltitle5">站点健康度</div>
       <echarts5Vue class="echart5"></echarts5Vue>
 
-      <el-container class="cot">
-        <el-main>
-          <el-table :data="tableData_1">
+      <img :src="backgroundImgUrl" class="indeximg" />
+      <!-- <div class="cot">
+          <el-table
+            :data="tableData_1"
+            :cell-style="CellStyle"
+      :header-cell-style="{
+        background: '#04155f',
+        color: '#606266',
+        // fontWeight: '600',
+        // fontSize: '14px',
+      }"
+    
+          >
+
             <el-table-column
+            
               prop="time"
               label="时间"
               width="160"
-            ></el-table-column>
+            >
+            </el-table-column>
 
             <el-table-column
               prop="address"
@@ -75,9 +93,11 @@
               label="瞬时设备接入数"
               width="250"
             ></el-table-column>
+
+
           </el-table>
-        </el-main>
-      </el-container>
+      </div> -->
+      <div class="foot5"></div>
     </div>
   </div>
 </template>
@@ -109,28 +129,478 @@
         count: '2514',
       }
       return {
-        tableData_1: Array(5).fill(item_1),
+        backgroundImgUrl: require('@/assets/imgbg.png'),
+        tableData_1: [
+          {
+            time: '06:22',
+            address: '探险岛',
+            count: '2514',
+          },
+          {
+            time: '06:22',
+            address: '探险岛',
+            count: '2514',
+          },
+          {
+            time: '06:22',
+            address: '探险岛',
+            count: '2514',
+          },
+          {
+            time: '06:22',
+            address: '探险岛',
+            count: '2514',
+          },
+          {
+            time: '06:22',
+            address: '探险岛',
+            count: '2514',
+          },
+        ],
       }
     },
-    created() {
-      //  document.getElementById('tempHtml').contentDocument.documentElement.innerHTML = this.ifeData
+
+    methods: {
+      //  cellStyle(row, column, rowIndex, columnIndex) {
+      //     console.log(rowIndex)
+      //     if (row.colunm.label === "地点") return 'color : red'
+      //   }
     },
-    beforeDestroy() {},
-    mounted() {},
-    methods: {},
   }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+  /* .el-card ::v-deep .el-card__header {
+    color: #fff;
+  }
+  .el-card ::v-deep .el-card__body {
+    color: #fff;
+  } */
+  ::v-deep .cell {
+    color: #fff;
+    padding: 0;
+  }
+  ::v-deep .el-table__header th {
+    padding: 0;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+  }
+  ::v-deep .el-table__body tr,
+  ::v-deep.el-table__body td {
+    padding: 0;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+  }
+</style>
+
+<style lang="scss">
+  .indeximg {
+    // width: 650px;
+    float: left;
+    margin-left: 450px;
+    margin-top: -255px;
+  }
+  .cell {
+    // background-color: #02a6b5,
+    color: #fff;
+  }
+
+  .el-table,
+  .el-table__expanded-cell {
+    background-color: transparent;
+    color: white;
+  }
   .cot {
+    background-color: #04155f;
+    background: #04155f;
+    color: white;
+  }
+  el-table-column {
+    background-color: #04155f;
+    color: white;
+  }
+  .el-table th,
+  .el-table tr {
+    background-color: #04155f;
+    color: white;
+  }
+
+  .boxall li,
+  .boxall li {
+    width: 50%;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+  }
+  .boxall:before,
+  .boxall:after {
+    position: absolute;
+    width: 0.3rem;
+    height: 0.1rem;
+    content: '';
+  }
+  .boxall:before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #02a6b5;
+    border-top: 2px solid #02a6b5;
+    content: '';
+  }
+  .boxall:after {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #02a6b5;
+    border-top: 2px solid #02a6b5;
+    content: '';
+  }
+  .foot1:before {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #02a6b5;
+    border-bottom: 2px solid #02a6b5;
+    content: '';
+  }
+  .foot1:after {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #02a6b5;
+    border-bottom: 2px solid #02a6b5;
+    content: '';
+  }
+  .boxall {
+    border: 2rem solid #02a6b5;
+  }
+  .boxall li:first-child:before {
+    position: absolute;
+    content: '';
+    height: 50%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    right: 0;
+    top: 25%;
+  }
+
+  .boxall {
+    border: 1px solid rgba(25, 186, 139, 0.7);
+    position: relative;
+  }
+  .boxall li {
+    font-size: 40px;
+    color: #ffeb7b;
+    padding: 0.05rem 0;
+    font-family: electronicFont;
+    font-weight: bold;
+  }
+  .boxall li {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: 0.1rem;
+  }
+
+  //2
+  .boxall2 li,
+  .boxall2 li {
+    width: 50%;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+  }
+  .boxall2:before,
+  .boxall2:after {
+    position: absolute;
+    width: 0.3rem;
+    height: 0.1rem;
+    content: '';
+  }
+  .boxall2:before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #02a6b5;
+    border-top: 2px solid #02a6b5;
+    content: '';
+  }
+  .boxall2:after {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #02a6b5;
+    border-top: 2px solid #02a6b5;
+    content: '';
+  }
+  .foot2:before {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #02a6b5;
+    border-bottom: 2px solid #02a6b5;
+    content: '';
+  }
+  .foot2:after {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #02a6b5;
+    border-bottom: 2px solid #02a6b5;
+    content: '';
+  }
+  .boxall2 {
+    border: 2rem solid #02a6b5;
+  }
+  .boxall2 li:first-child:before {
+    position: absolute;
+    content: '';
+    height: 50%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    right: 0;
+    top: 25%;
+  }
+
+  .boxall2 {
+    border: 1px solid rgba(25, 186, 139, 0.7);
+    position: relative;
+  }
+  .boxall2 li {
+    font-size: 40px;
+    color: #ffeb7b;
+    padding: 0.05rem 0;
+    font-family: electronicFont;
+    font-weight: bold;
+  }
+  .boxall2 li {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: 0.1rem;
+  }
+
+  // 4
+  .boxall4 li,
+  .boxall4 li {
+    width: 50%;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+  }
+  .boxall4:before,
+  .boxall4:after {
+    position: absolute;
+    width: 0.3rem;
+    height: 0.1rem;
+    content: '';
+  }
+  .boxall4:before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #02a6b5;
+    border-top: 2px solid #02a6b5;
+    content: '';
+  }
+  .boxall4:after {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #02a6b5;
+    border-top: 2px solid #02a6b5;
+    content: '';
+  }
+  .foot4:before {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #02a6b5;
+    border-bottom: 2px solid #02a6b5;
+    content: '';
+  }
+  .foot4:after {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #02a6b5;
+    border-bottom: 2px solid #02a6b5;
+    content: '';
+  }
+  .boxall4 {
+    border: 2rem solid #02a6b5;
+  }
+  .boxall4 li:first-child:before {
+    position: absolute;
+    content: '';
+    height: 50%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    right: 0;
+    top: 25%;
+  }
+
+  .boxall4 {
+    border: 1px solid rgba(25, 186, 139, 0.7);
+    position: relative;
+  }
+  .boxall4 li {
+    font-size: 40px;
+    color: #ffeb7b;
+    padding: 0.05rem 0;
+    font-family: electronicFont;
+    font-weight: bold;
+  }
+  .boxall4 li {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: 0.1rem;
+  }
+
+  // 5
+  .boxall5 li,
+  .boxall5 li {
+    width: 50%;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+  }
+  .boxall5:before,
+  .boxall5:after {
+    position: absolute;
+    width: 0.3rem;
+    height: 0.1rem;
+    content: '';
+  }
+  .boxall5:before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #02a6b5;
+    border-top: 2px solid #02a6b5;
+    content: '';
+  }
+  .boxall5:after {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #02a6b5;
+    border-top: 2px solid #02a6b5;
+    content: '';
+  }
+  .foot5:before {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #02a6b5;
+    border-bottom: 2px solid #02a6b5;
+    content: '';
+  }
+  .foot5:after {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #02a6b5;
+    border-bottom: 2px solid #02a6b5;
+    content: '';
+  }
+  .boxall5 {
+    border: 2rem solid #02a6b5;
+  }
+  .boxall5 li:first-child:before {
+    position: absolute;
+    content: '';
+    height: 50%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    right: 0;
+    top: 25%;
+  }
+
+  .boxall5 {
+    border: 1px solid rgba(25, 186, 139, 0.7);
+    position: relative;
+  }
+  .boxall5 li {
+    font-size: 40px;
+    color: #ffeb7b;
+    padding: 0.05rem 0;
+    font-family: electronicFont;
+    font-weight: bold;
+  }
+  .boxall5 li {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: 0.1rem;
+  }
+
+  .cot {
+    // background-color: transparent;
+    // background: rgb(123, 255, 255);
     // width: 350px;
     margin-top: -280px;
     margin-left: 380px;
-    z-index: 20;
+    // z-index: 20;
     font-family: 'Georgia', 'Lucida Sans', '微软雅黑', 'sans-serif',
       'Lucida Grande', 'Lucida Sans';
     // color: black;
   }
+
+  .cot .el-table--fit {
+    padding: 20px;
+  }
+  .cot .el-table,
+  .el-table__expanded-cell {
+    background-color: transparent;
+  }
+
+  .cot .el-table tr {
+    background-color: transparent !important;
+  }
+  .cot .el-table--enable-row-transition .el-table__body td,
+  .el-table .cell {
+    background-color: transparent;
+  }
+  .el-table::before {
+    //去除底部白线
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0px;
+  }
+
   .boxall6 {
     // width:35%;
     // // border: 1px solid rgba(25,186,139,.17);
@@ -145,27 +615,20 @@
     float: left;
   }
   #index-container {
-    background-color: rgba(81, 18, 18, 0.381);
-    // background: url("../../assets/bg2.jpg");
-    // width: 100%;
-    // height: 100%;
+    // background: 		#04155f;
+    // top:0;
+    // left: 0;
     // position: fixed;
-    // background-size: 100% 100%;
-    // padding:0.2rem .4rem .15rem;
-    // background: rgba(255,255,255,.04) url('../../assets/bg2.jpg');
-    // background-size: 100% auto;
-    // // position: relative;
-    //  margin-bottom: .15rem;
-    // z-index: -10;
-    // // margin-top: -650px;
-    // margin-left: 1180px;
-    // float: left;
+    background: rgb(4, 20, 93);
+    width: 100%;
+    height: 100%;
+    float: left;
   }
   .boxall5 {
     width: 65%;
     // border: 1px solid rgba(25,186,139,.17);
     padding: 0.2rem 0.4rem 0.15rem;
-    // background: rgba(255, 255, 255, 0.04) url('../../assets/line2.jpg');
+    // background: rgba(255,255,255,.04) url('../../assets/line2.jpg');
     background-size: 100% auto;
     position: relative;
     margin-bottom: 0.15rem;
@@ -176,6 +639,7 @@
   }
   .alltitle5 {
     font-size: 26px;
+    color: white;
     font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
       'Microsoft YaHei', '微软雅黑';
     text-align: center;
@@ -183,11 +647,12 @@
   }
   .alltitle1 {
     font-size: 26px;
+    color: white;
     font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
       'Microsoft YaHei', '微软雅黑';
     text-align: center;
     // padding-left: 100px;
-    padding-top: 15px;
+    padding-top: 25px;
   }
   .echart2 {
     margin-top: -80px;
@@ -195,6 +660,7 @@
   }
   .alltitle2 {
     font-size: 26px;
+    color: white;
     font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
       'Microsoft YaHei', '微软雅黑';
     text-align: center;
@@ -202,6 +668,7 @@
     padding-top: 30px;
   }
   .echart5 {
+    margin-top: -20px;
     padding-left: 30px;
   }
   .echart4 {
@@ -209,16 +676,17 @@
   }
   .alltitle4 {
     font-size: 26px;
+    color: white;
     font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
       'Microsoft YaHei', '微软雅黑';
     text-align: center;
     padding-top: 15px;
   }
   .boxall4 {
-    width: 26%;
+    width: 25%;
     // border: 1px solid rgba(25,186,139,.17);
     padding: 0.2rem 0.4rem 0.15rem;
-    background: rgba(255, 255, 255, 0.04) url('../../assets/line2.jpg');
+    // background: rgba(255,255,255,.04) url('../../assets/line2.jpg');
     background-size: 100% auto;
     position: relative;
     margin-bottom: 0.15rem;
@@ -247,8 +715,8 @@
     float: right;
   }
   .bar {
-    // background:rgba(101,132,226,.1);
-    background: cadetblue;
+    background: rgba(101, 132, 226, 0.1);
+    // background: cadetblue;
     padding: 0.15rem;
   }
   .barbox li,
@@ -304,6 +772,23 @@
     padding-top: 0.1rem;
   }
 
+  // .foot:before{position: absolute;
+  //   bottom: 0px;
+  //   right: 0px;
+  //   width: 10px;
+  //   height: 10px;
+  //   border-right: 2px solid #02a6b5;
+  //   border-bottom: 2px solid #02a6b5;
+  //   content: ""; }
+  // .foot:after{position: absolute;
+  //   bottom: 0px;
+  //   left: 0px;
+  //   width: 10px;
+  //   height: 10px;
+  //   border-left: 2px solid #02a6b5;
+  //   border-bottom: 2px solid #02a6b5;
+  //   content: ""; }
+
   .boxall3 {
     width: 100%;
     margin-top: 170px;
@@ -317,17 +802,34 @@
     // background:rgba(255,255,255,.04) url('../../assets/line3.jpg');
     float: left;
   }
-
-  .boxall {
+  .boxall2 {
     width: 31%;
     // border: 1px solid rgba(25,186,139,.17);
     padding: 0.2rem 0.4rem 0.15rem;
-    background: rgba(255, 255, 255, 0.04) url('../../assets/line2.jpg');
+
+    // background: rgba(255,255,255,.04) url('../../assets/nline1.png');
     background-size: 100% auto;
     position: relative;
     margin-bottom: 0.15rem;
     z-index: 10;
     margin-top: 10px;
+    margin-left: 5px;
+    margin-top: 20px;
+    // padding-bottom: -10px;
+    // float: left;
+  }
+
+  .boxall {
+    width: 31%;
+    // border: 1px solid rgba(25,186,139,.17);
+    padding: 0.2rem 0.4rem 0.15rem;
+    // background: rgba(255,255,255,.04) url('../../assets/nline1.png');
+    background-size: 100% auto;
+    position: relative;
+    margin-bottom: 0.15rem;
+    z-index: 10;
+    margin-top: 20px;
+    margin-left: 5px;
   }
   .echart2 {
     padding-top: 100px;

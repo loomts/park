@@ -66,6 +66,18 @@
           },
           xAxis: {
             type: 'time',
+            axisLine: {
+              lineStyle: {
+                type: 'solid',
+                color: '#fff', //左边线的颜色
+                width: '2', //坐标线的宽度
+              },
+            },
+            axisLabel: {
+              textStyle: {
+                color: '#fff', //坐标值得具体的颜色
+              },
+            },
             splitLine: {
               show: false,
             },
@@ -73,6 +85,18 @@
           yAxis: {
             type: 'value',
             boundaryGap: [0, '100%'],
+            axisLine: {
+              lineStyle: {
+                type: 'solid',
+                color: '#fff', //左边线的颜色
+                width: '2', //坐标线的宽度
+              },
+            },
+            axisLabel: {
+              textStyle: {
+                color: '#fff', //坐标值得具体的颜色
+              },
+            },
             splitLine: {
               show: false,
             },

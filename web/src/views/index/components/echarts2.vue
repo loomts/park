@@ -49,10 +49,15 @@
           tooltip: {
             show: true,
             trigger: 'item',
-            formatter: '{a}<br/>{b}:{c} ({d}%)',
+            formatter: '{a}<br/>{b}: {c} ({d}%)',
           },
           legend: {
             top: '5%',
+            textStyle: {
+              //图例文字的样式
+              color: '#fff',
+              fontSize: 16,
+            },
             left: 'center',
           },
           series: [
@@ -64,9 +69,12 @@
               label: {
                 show: false,
                 position: 'center',
+                // color:  '#fff'
               },
+
               emphasis: {
                 label: {
+                  // color:  '#fff' ,
                   show: true,
                   fontSize: '20',
                   fontWeight: 'bold',
@@ -102,6 +110,11 @@
           legend: {
             top: '5%',
             left: 'center',
+            textStyle: {
+              //图例文字的样式
+              color: '#fff',
+              fontSize: 16,
+            },
           },
           series: [
             {
@@ -112,6 +125,11 @@
               label: {
                 show: false,
                 position: 'center',
+                textStyle: {
+                  //图例文字的样式
+                  color: '#fff',
+                  fontSize: 16,
+                },
               },
               emphasis: {
                 label: {
@@ -152,6 +170,11 @@
           legend: {
             top: '5%',
             left: 'center',
+            textStyle: {
+              //图例文字的样式
+              color: '#fff',
+              fontSize: 16,
+            },
           },
           series: [
             {
@@ -165,6 +188,7 @@
               },
               emphasis: {
                 label: {
+                  // color:white,
                   show: true,
                   fontSize: '20',
                   fontWeight: 'bold',
@@ -194,19 +218,39 @@
 </script>
 
 <style lang="scss">
-  // button {
-  //   border: none;
-  //   padding: 15px 30px;
-  //   font-size: 16px;
-  //   font-family: Arial, 微软雅黑;
-  //   color: white;
-  //   background: #447aa8;
-  //   border-radius: 3px;
-  // }
-  //  el-tabs{
-  // padding-top: 100px;
-  // }
   el-tabs el-tab-pane div {
     margin-left: -200px;
+  }
+
+  .labelcolor {
+    color: white;
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+  }
+  .el-tabs__item {
+    height: 50px;
+    color: white;
+    font-size: 15px;
+  }
+  .notices {
+    color: #c0c4cc;
+    font-size: 14px;
+    height: 100px;
+    line-height: 100px;
+    display: inline-block;
+  }
+  #main21 {
+    margin-top: 40px;
+    margin-left: -10px;
+  }
+  #main22 {
+    margin-top: 40px;
+    margin-left: -10px;
+  }
+  #main23 {
+    margin-top: 40px;
+    margin-left: -10px;
   }
 </style>

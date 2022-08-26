@@ -40,8 +40,20 @@
         this.chart.setOption({
           title: {
             text: '游客来源地',
-            left: 20,
-            top: 20,
+            textStyle: {
+              //文字颜色
+              color: '#ccc',
+              //字体风格,'normal','italic','oblique'
+              fontStyle: 'normal',
+              //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+              fontWeight: 'bold',
+              //字体系列
+              fontFamily: 'sans-serif',
+              //字体大小
+              fontSize: 18,
+            },
+            left: 40,
+            top: 40,
           },
           geo: {
             type: 'map', // 类型

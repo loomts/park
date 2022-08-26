@@ -53,10 +53,34 @@
           },
           xAxis: {
             type: 'time',
+            axisLine: {
+              lineStyle: {
+                type: 'solid',
+                color: '#fff', //左边线的颜色
+                width: '2', //坐标线的宽度
+              },
+            },
+            axisLabel: {
+              textStyle: {
+                color: '#fff', //坐标值得具体的颜色
+              },
+            },
             boundaryGap: false,
           },
           yAxis: {
             type: 'value',
+            axisLine: {
+              lineStyle: {
+                type: 'solid',
+                color: '#fff', //左边线的颜色
+                width: '2', //坐标线的宽度
+              },
+            },
+            axisLabel: {
+              textStyle: {
+                color: '#fff', //坐标值得具体的颜色
+              },
+            },
             boundaryGap: [0, '100%'],
           },
           dataZoom: [
