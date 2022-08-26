@@ -202,20 +202,20 @@ export const asyncRoutes = [{
         redirect: 'noRedirect',
         name: 'Logg',
         alwaysShow: true,
-        meta: { title: '日志', icon: 'box-open' },
+        meta: { title: '日常管理', icon: 'box-open' },
         children: [{
                 path: 'nowlog',
                 name: 'Nowlog',
                 component: () =>
                     import ('@/views/logg/nowlog/index'),
-                meta: { title: '日志', permissions: ['admin'] },
+                meta: { title: '日志详情', permissions: ['admin'] },
             },
             {
                 path: 'portal',
                 name: 'portal',
                 component: () =>
                     import ('@/views/portal/index'),
-                meta: { title: '认证管理页面', permissions: ['admin'] },
+                meta: { title: '认证详情', permissions: ['admin'] },
             },
         ],
     },
