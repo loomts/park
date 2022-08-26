@@ -1,108 +1,119 @@
 <template>
   <div id="whole">
     <!-- 人流预警 -->
-    <div class="disinfect" style="margin-left: 60px">
-      <span>认 证 旅 客</span>
-    </div>
-    <center style="margin-top: 20px">
-      <el-container class="cot">
-        <el-main>
-          <el-table
-            :data="tableData_1"
-            :header-cell-style="{ background: '#DCD6F7', color: '#ffffff' }"
-          >
-            <el-table-column
-              prop="id"
-              label="序号"
-              width="100"
-            ></el-table-column>
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="认证旅客" name="first">
+        <div
+          class="disinfect"
+          style="margin-left: 130px; margin-top: 50px; margin-bottom: 20px"
+        >
+          <span>认 证 旅 客</span>
+        </div>
+        <center style="margin-top: 20px; margin-bottom: 100px">
+          <el-container class="cot" style="width: 1000px">
+            <el-main>
+              <el-table
+                :data="tableData_1"
+                :header-cell-style="{ background: '#DCD6F7', color: '#ffffff' }"
+              >
+                <el-table-column
+                  prop="id"
+                  label="序号"
+                  width="100"
+                ></el-table-column>
 
-            <el-table-column
-              prop="IPAddress"
-              label="IP地址"
-              width="210"
-            ></el-table-column>
+                <el-table-column
+                  prop="IPAddress"
+                  label="IP地址"
+                  width="210"
+                ></el-table-column>
 
-            <el-table-column
-              prop="userGroup"
-              label="用户组"
-              width="230"
-            ></el-table-column>
+                <el-table-column
+                  prop="userGroup"
+                  label="用户组"
+                  width="230"
+                ></el-table-column>
 
-            <el-table-column
-              prop="ifPortal"
-              label="是否认证"
-              width="200"
-            ></el-table-column>
+                <el-table-column
+                  prop="ifPortal"
+                  label="是否认证"
+                  width="200"
+                ></el-table-column>
 
-            <el-table-column
-              prop="visitTime"
-              label="访问时间"
-              width="200"
-            ></el-table-column>
+                <el-table-column
+                  prop="visitTime"
+                  label="访问时间"
+                  width="200"
+                ></el-table-column>
 
-            <!-- <el-table-column 
-			  prop="check" 
-			  label="具体详情" 
-			  width="50">
-              <template slot-scope="scope">
-                <a :href="scope.row.url" target="_blank">{{ scope.row.url }}</a>
-              </template>
-            </el-table-column> -->
-          </el-table>
-        </el-main>
-      </el-container>
-    </center>
+                <!-- <el-table-column 
+            prop="check" 
+            label="具体详情" 
+            width="50">
+                  <template slot-scope="scope">
+                    <a :href="scope.row.url" target="_blank">{{ scope.row.url }}</a>
+                  </template>
+                </el-table-column> -->
+              </el-table>
+            </el-main>
+          </el-container>
+        </center>
+      </el-tab-pane>
+      <el-tab-pane label="未认证旅客" name="second">
+        <div
+          class="warning"
+          style="margin-left: 130px; margin-top: 50px; margin-bottom: 20px"
+        >
+        <!-- <vab-colorful-icon icon-class="expired" /> -->
+          <span>未 认 证 旅 客</span>
+        </div>
+        <center style="margin-top: 20px; margin-bottom: 100px">
+          <el-container class="cot" style="width: 1000px">
+            <el-main>
+              <el-table
+                :data="tableData_2"
+                :header-cell-style="{ background: '#DCD6F7', color: '#ffffff' }"
+              >
+                <el-table-column
+                  prop="id"
+                  label="序号"
+                  width="100"
+                ></el-table-column>
 
-    <!-- 到点消毒 -->
-    <div class="warning" style="margin-left: 60px; margin-top: 50px">
-      <!-- <vab-colorful-icon icon-class="expired" /> -->
-      <span>未 认 证 旅 客</span>
-    </div>
-    <center style="margin-top: 20px; margin-bottom: 100px">
-      <el-container class="cot">
-        <el-main>
-          <el-table
-            :data="tableData_2"
-            :header-cell-style="{ background: '#DCD6F7', color: '#ffffff' }"
-          >
-            <el-table-column
-              prop="id"
-              label="序号"
-              width="100"
-            ></el-table-column>
+                <el-table-column
+                  prop="IPAddress"
+                  label="IP地址"
+                  width="210"
+                ></el-table-column>
 
-            <el-table-column
-              prop="IPAddress"
-              label="IP地址"
-              width="210"
-            ></el-table-column>
+                <el-table-column
+                  prop="userGroup"
+                  label="用户组"
+                  width="230"
+                ></el-table-column>
 
-            <el-table-column
-              prop="userGroup"
-              label="用户组"
-              width="230"
-            ></el-table-column>
+                <el-table-column
+                  prop="ifPortal"
+                  label="是否认证"
+                  width="200"
+                ></el-table-column>
 
-            <el-table-column
-              prop="ifPortal"
-              label="是否认证"
-              width="200"
-            ></el-table-column>
-
-            <el-table-column
-              prop="visitTime"
-              label="访问时间"
-              width="200"
-            ></el-table-column>
-          </el-table>
-        </el-main>
-      </el-container>
-    </center>
+                <el-table-column
+                  prop="visitTime"
+                  label="访问时间"
+                  width="200"
+                ></el-table-column>
+              </el-table>
+            </el-main>
+          </el-container>
+        </center>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
 <script>
+  import * as allApi from '../../../api.js'
   export default {
     data() {
       const item_1 = [
@@ -225,8 +236,19 @@
       return {
         tableData_1: item_1,
         tableData_2: item_2,
+        activeName: 'first',
       }
     },
+    methods: {
+      async getData() {
+        let list = []
+        var jsonObj = await allApi.getUnportalTraveller()
+        for (var i = 0; i < jsonObj.length && list.length < 50; i++) {
+          if (jsonObj[i].humanFlow < 50000) list.push(jsonObj[i].humanFlow)
+        }
+        return list
+      },
+    }
   }
 </script>
 

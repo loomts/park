@@ -2,6 +2,18 @@ import axios from 'axios'
 export async function hello() {
   return 'hello'
 }
+export async function getUnportalTraveller() {
+  var responseJson = ''
+  await axios.post('http://localhost:2333/unportalTraveller', '').then(
+    (response) => {
+      responseJson = response.data
+    },
+    (error) => {
+      console.log('请求失败了', error.message)
+    }
+  )
+  return responseJson
+}
 export async function getDeviceDetail() {
   var responseJson = ''
   await axios.post('http://localhost:2333/deviceDetail', '').then(
