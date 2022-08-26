@@ -148,20 +148,21 @@ export const asyncRoutes = [{
         name: 'Control',
         alwaysShow: true,
         meta: { title: '疫情防控', icon: 'box-open' },
-        children: [{
-                path: 'queryway',
-                name: 'Queryway',
-                component: () =>
-                    import ('@/views/control/queryway/index'),
-                meta: { title: '查询路径', permissions: ['admin'] },
-            },
-            {
-                path: 'querycontact',
-                name: 'Querycontact',
-                component: () =>
-                    import ('@/views/control/querycloser/index'),
-                meta: { title: '密接查询', permissions: ['admin'] },
-            },
+        children: [
+        //{
+        //        path: 'queryway',
+        //        name: 'Queryway',
+        //        component: () =>
+        //            import ('@/views/control/queryway/index'),
+        //        meta: { title: '查询路径', permissions: ['admin'] },
+        //    },
+        //    {
+        //        path: 'querycontact',
+        //        name: 'Querycontact',
+        //        component: () =>
+        //            import ('@/views/control/querycloser/index'),
+        //        meta: { title: '密接查询', permissions: ['admin'] },
+        //    },
             {
                 path: 'query',
                 name: 'Query',
