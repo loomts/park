@@ -13,8 +13,6 @@
       </span>
     </div>
 
-    <!--  <div id="map" ref="map" class="map"></div> -->
-    <!-- </div> -->
 
     <el-row :gutter="20">
       <!--  <div v-show="show"> -->
@@ -241,13 +239,15 @@
     </el-row>
   </div>
 </template>
-
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=zIqWyMZvUlRW8IMU9djlFeTBhGytYp1Q"></script>
 <script>
 /* eslint-disable */
 import * as echarts from 'echarts'
 import { dependencies, devDependencies } from '../../../../package.json'
 import { getList } from '@/api/changeLog'
 import { getNoticeList } from '@/api/notice'
+require('echarts/extension/bmap/bmap');
+
  
 
 export default {
@@ -713,11 +713,32 @@ export default {
     };
   },
   mounted() {
-    this.initMap();
-    this.goAnchor();
+    this.$nextTick(() => {
+      this.loadBMap("zIqWyMZvUlRW8IMU9djlFeTBhGytYp1Q").then(() => {
+        this.initMap();
+        this.goAnchor();
+      })
+    })
   },
   methods: {
     // 页面锚点:锚点定位+滚动条滚动 效果实现
+    loadBMap(ak) {
+      return new Promise(function(resolve, reject) {
+          if (typeof BMap !== 'undefined') {
+              resolve(BMap)
+              return true
+          }
+          window.onBMapCallback = function() {
+              resolve(BMap)
+          }
+          let script = document.createElement('script')
+          script.type = 'text/javascript'
+          script.src =
+              'http://api.map.baidu.com/api?v=2.0&ak='+ ak +'&__ec_v__=20190126&callback=onBMapCallback'
+          script.onerror = reject
+          document.head.appendChild(script)
+      })
+    },
     goAnchor(idNum){
       document.querySelector('#'+idNum).scrollIntoView(false)
       
@@ -731,7 +752,6 @@ export default {
           orient: "vertical",
           top: 10,
           left: 10,
-          // data: linesData.map(v => v.name),
           textStyle: {
             color: "#FFFFFF"
           },

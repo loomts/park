@@ -9,7 +9,6 @@ import * as echarts from 'echarts'
 import BaiduMap from 'vue-baidu-map'
 // 引入video
 import VueCoreVideoPlayer from 'vue-core-video-player'
-
 Vue.use(VueCoreVideoPlayer)
 Vue.prototype.$echarts = echarts
 Vue.use(BaiduMap, {
