@@ -145,6 +145,7 @@
     float: left;
   }
   #index-container {
+    background-color: rgba(81, 18, 18, 0.381);
     // background: url("../../assets/bg2.jpg");
     // width: 100%;
     // height: 100%;
@@ -164,7 +165,7 @@
     width: 65%;
     // border: 1px solid rgba(25,186,139,.17);
     padding: 0.2rem 0.4rem 0.15rem;
-    background: rgba(255, 255, 255, 0.04) url('../../assets/line2.jpg');
+    // background: rgba(255, 255, 255, 0.04) url('../../assets/line2.jpg');
     background-size: 100% auto;
     position: relative;
     margin-bottom: 0.15rem;
