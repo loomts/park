@@ -161,9 +161,7 @@
 </template>
 
 <script>
-  import { BmlHeatmap, BmlCurveLine } from 'vue-baidu-map'
-
-<<<<<<< HEAD
+import { BmlHeatmap, BmlCurveLine } from 'vue-baidu-map'
 export default {
   components: {
     BmlHeatmap,
@@ -176,7 +174,6 @@ export default {
         { lng: 121.66629, lat: 31.148254 },
         { lng: 121.664107, lat: 31.148385 },
         { lng: 121.663703, lat: 31.147597 },
-        { lng: 121.664107, lat: 31.148385 },
         { lng: 121.663818, lat: 31.149092 },
         { lng: 121.66331, lat: 31.149625 },
         { lng: 121.664114, lat: 31.150259 },
@@ -264,116 +261,15 @@ function distance(lng1, lat1, lng2, lat2) {
     s = '>99km'
   } else {
     s = Math.round(s) + 'm'
-=======
-  export default {
-    components: {
-      BmlHeatmap,
-      BmlCurveLine,
-    },
-    data() {
-      return {
-        polylinePath: [
-          { lng: 121.667027, lat: 31.148817 },
-          { lng: 121.66629, lat: 31.148254 },
-          { lng: 121.664107, lat: 31.148385 },
-          { lng: 121.663703, lat: 31.147597 },
-          { lng: 121.663818, lat: 31.149092 },
-          { lng: 121.66331, lat: 31.149625 },
-          { lng: 121.664114, lat: 31.150259 },
-          { lng: 121.66486, lat: 31.151314 },
-          { lng: 121.666225, lat: 31.150908 },
-          { lng: 121.667941, lat: 31.150595 },
-          { lng: 121.668111, lat: 31.15126 },
-          { lng: 121.669454, lat: 31.15141 },
-          { lng: 121.670231, lat: 31.150703 },
-          { lng: 121.669486, lat: 31.149355 },
-          { lng: 121.668511, lat: 31.149726 },
-          { lng: 121.66795, lat: 31.149231 },
-          { lng: 121.667027, lat: 31.148817 },
-        ],
-        arcPoints: [
-          { lng: 121.66629, lat: 31.148254 },
-          { lng: 121.66614, lat: 31.149652 },
-          { lng: 121.66795, lat: 31.149231 },
-          { lng: 121.667846, lat: 31.148123 },
-          { lng: 121.66629, lat: 31.148254 },
-        ],
-        arcPoints1: [
-          // {lng:}
-        ],
-        heartData: [
-          // { lng: 121.667034, lat: 31.148808, count: 40 },
-          // { lng: 121.663665, lat: 31.147549, count: 60 },
-          // { lng: 121.668408, lat: 31.151335, count: 70 },
-          // { lng: 121.663243, lat: 31.149693, count: 300 },
-          // { lng: 121.666127, lat: 31.149635, count: 300 },
-          // { lng: 121.669513, lat: 31.149366, count: 270 },
-          // { lng: 121.665073, lat: 31.14947, count: 230 },
-          // { lng: 121.666965, lat: 31.150738, count: 120 },
-          // { lng: 121.663231, lat: 31.146555, count: 135 },
-          // ...此处添加更多的数据集
-        ],
-      }
-    },
   }
-
-  /**
-   * 转换弧度
-   * @param d
-   * @returns {number}
-   */
-  function getRad(d) {
-    var PI = Math.PI
-    return (d * PI) / 180.0
-  }
-
-  /**
-   * 根据经纬度计算两点间距离
-   * @param lng1
-   * @param lat1
-   * @param lng2
-   * @param lat2
-   * @returns {number|*}
-   * @constructor
-   */
-  function distance(lng1, lat1, lng2, lat2) {
-    var f = getRad((lat1 + lat2) / 2)
-    var g = getRad((lat1 - lat2) / 2)
-    var l = getRad((lng1 - lng2) / 2)
-    var sg = Math.sin(g)
-    var sl = Math.sin(l)
-    var sf = Math.sin(f)
-    var s, c, w, r, d, h1, h2
-    var a = 6378137.0 //The Radius of eath in meter.
-    var fl = 1 / 298.257
-    sg = sg * sg
-    sl = sl * sl
-    sf = sf * sf
-    s = sg * (1 - sl) + (1 - sf) * sl
-    c = (1 - sg) * (1 - sl) + sf * sl
-    w = Math.atan(Math.sqrt(s / c))
-    r = Math.sqrt(s * c) / w
-    d = 2 * w * a
-    h1 = (3 * r - 1) / 2 / c
-    h2 = (3 * r + 1) / 2 / s
-    s = d * (1 + fl * (h1 * sf * (1 - sg) - h2 * (1 - sf) * sg))
-    if (s >= 1000 && s <= 99000) {
-      var kilometer = s / 1000
-      s = kilometer.toFixed(1) + 'km'
-    } else if (s > 99000) {
-      s = '>99km'
-    } else {
-      s = Math.round(s) + 'm'
-    }
-    // s = s/1000;
-    // s = s.toFixed(2);//指定小数点后的位数。
-    return s
->>>>>>> 050468601e4e082558f000da6dff47997dfdf940
-  }
+  // s = s/1000;
+  // s = s.toFixed(2);//指定小数点后的位数。
+  return s
+}
 </script>
 <style>
-  .map {
-    width: auto;
-    height: 800px;
-  }
+.map {
+  width: auto;
+  height: 800px;
+}
 </style>
