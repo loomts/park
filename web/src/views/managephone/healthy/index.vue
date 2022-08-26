@@ -8,7 +8,6 @@
         <div :id="'Access' + index" class="pic"></div>
       </el-card>
     </div>
-    
   </div>
 </template>
 
