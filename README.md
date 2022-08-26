@@ -1,22 +1,13 @@
 ## 后端
 
-### service app 
-├─src</br>
-│  └─main</br>
-│      ├─dataMaker</br>
-│      ├─in</br>
-│      ├─java</br>
-│      │  ├─database 数据库相关</br>
-│      │  └─service 启动即可测试api（记得导入包）</br>
-│      ├─out</br>
-│      └─resources</br>
-└─target</br>
-├─classes</br>
-│  ├─database</br>
-│  └─service</br>
-└─generated-sources</br>
-└─annotations</br>
-
+1. 用mysql建`database EP1`
+2. 导入 /service/mysql/EP1.sql
+3. 改 src/main/java/database/Conn.java 的mysql账号密码
+4. 开 /service/app/src/main/java/service/controller.java 的服务
+5. `cd web`
+6. `npm i` || `npx -p npm@6 npm install --legacy-peer-deps`
+7. `npm run lint --fix`
+8. `npm run serve`
 
 
 
