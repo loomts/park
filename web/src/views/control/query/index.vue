@@ -18,15 +18,15 @@
       <el-col :span="20" style="margin: 50px">
         <el-card class="card" shadow="always">
           <div slot="header">
-            <span style="font-size: 20px; color: #909399">MAC查询</span>
+            <span style="font-size: 20px; color: #909399">IP查询</span>
           </div>
           <div>
             <el-input
               v-model="input"
-              placeholder="输入查询用户的MAC地址"
+              placeholder="输入查询用户的IP地址"
               clearable
             ></el-input>
-            <!-- <el-input v-model="input" placeholder="输入查询用户的MAC地址"></el-input> -->
+            <!-- <el-input v-model="input" placeholder="输入查询用户的IP地址"></el-input> -->
           </div>
           <div style="margin: 20px; float: right">
             <el-button
@@ -88,7 +88,7 @@
                     <el-table :data="tableData" style="width: 100%">
                       <el-table-column
                         prop="way"
-                        label="MAC地址"
+                        label="IP地址"
                         width="180"
                         align="center"
                       ></el-table-column>
@@ -139,7 +139,7 @@
                     <el-table :data="tableData1" style="width: 100%">
                       <el-table-column
                         prop="way"
-                        label="MAC地址"
+                        label="IP地址"
                         width="180"
                         align="center"
                       ></el-table-column>
@@ -190,7 +190,7 @@
                     <el-table :data="tableData2" style="width: 100%">
                       <el-table-column
                         prop="way"
-                        label="MAC地址"
+                        label="IP地址"
                         width="180"
                         align="center"
                       ></el-table-column>
@@ -543,42 +543,42 @@
         devDependencies: devDependencies,
         tableData: [
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.105',
             time: '08:50:34',
             address: '园区入口',
             long: '50min',
             tag: '3.15',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.105',
             time: '09:45:32',
             address: '奇想花园',
             long: '22min',
             tag: '10.27',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.105',
             time: '10:12:27',
             address: '皮克斯玩具总动员',
             long: '43min',
             tag: '12.54',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.105',
             time: '12:50:34',
             address: '皮克斯玩具总动员',
             long: '23min',
             tag: '30.01',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.105',
             time: '13:10:55',
             address: '皮克斯玩具总动员',
             long: '22min',
             tag: '44.5',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.105',
             time: '14:00:27',
             address: '奇想花园',
             long: '43min',
@@ -586,28 +586,28 @@
           },
           ,
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.105',
             time: '14:43:34',
             address: '探险岛',
             long: '35min',
             tag: '20.25',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.105',
             time: '15:30:55',
             address: '探险岛',
             long: '22min',
             tag: '10.12',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.105',
             time: '16:00:27',
             address: '奇想花园',
             long: '72min',
             tag: '60.24',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.105',
             time: '18:10:58',
             address: '奇想花园',
             long: '32min',
@@ -616,42 +616,42 @@
         ],
         tableData1: [
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.1.108',
             time: '10:50:58',
             address: '园区入口',
             long: '32min',
             tag: '20.14',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.1.108',
             time: '11:22:55',
             address: '奇想花园',
             long: '22min',
             tag: '10.15',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.1.108',
             time: '11:44:27',
             address: '探险岛',
             long: '43min',
             tag: '3.24',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.1.108',
             time: '12:50:34',
             address: '探险岛',
             long: '50min',
             tag: '100.00',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.1.108',
             time: '13:45:55',
             address: '宝藏湾',
             long: '22min',
             tag: '88.64',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.1.108',
             time: '14:32:27',
             address: '奇想花园',
             long: '43min',
@@ -660,35 +660,35 @@
         ],
         tableData2: [
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.35',
             time: '10:50:34',
             address: '园区入口',
             long: '50min',
             tag: '2.34',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.35',
             time: '11:45:32',
             address: '奇想花园',
             long: '22min',
             tag: '8.89',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.35',
             time: '12:50:34',
             address: '梦幻世界',
             long: '23min',
             tag: '200.63',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.35',
             time: '14:10:55',
             address: '皮克斯玩具总动员',
             long: '22min',
             tag: '70.11',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.35',
             time: '15:00:27',
             address: '明日世界',
             long: '43min',
@@ -696,14 +696,14 @@
           },
           ,
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.35',
             time: '16:43:34',
             address: '明日世界',
             long: '35min',
             tag: '35.60',
           },
           {
-            way: '80-30-49-31-FA-65',
+            way: '192.168.2.35',
             time: '17:30:55',
             address: '奇想花园',
             long: '22min',
