@@ -15,14 +15,14 @@
             <el-container class="cot" style="width: 1000px">
               <el-main>
                 <el-table
-                  :data="tableData_2"
+                  :data="tableData_1"
                   :header-cell-style="{
                     background: '#DCD6F7',
                     color: '#ffffff',
                   }"
                 >
                   <el-table-column
-                    prop="people"
+                    prop="priority"
                     label="处理优先级"
                     width="100"
                   ></el-table-column>
@@ -52,7 +52,7 @@
                   ></el-table-column>
 
                   <el-table-column
-                    prop="people"
+                    prop="reason"
                     label="异常原因"
                     width="180"
                   ></el-table-column>
@@ -134,14 +134,14 @@
             <el-container class="cot" style="width: 1100px">
               <el-main>
                 <el-table
-                  :data="tableData_2"
+                  :data="tableData_3"
                   :header-cell-style="{
                     background: '#DCD6F7',
                     color: '#ffffff',
                   }"
                 >
                   <el-table-column
-                    prop="people"
+                    prop="priority"
                     label="处理优先级"
                     width="180"
                   ></el-table-column>
@@ -165,13 +165,13 @@
                   ></el-table-column>
 
                   <el-table-column
-                    prop="way"
+                    prop="number"
                     label="瞬时设备接入数"
                     width="180"
                   ></el-table-column>
 
                   <el-table-column
-                    prop="people"
+                    prop="reason"
                     label="预警原因"
                     width="180"
                   ></el-table-column>
@@ -193,14 +193,14 @@
             <el-container class="cot" style="width: 1100px">
               <el-main>
                 <el-table
-                  :data="tableData_2"
+                  :data="tableData_4"
                   :header-cell-style="{
                     background: '#DCD6F7',
                     color: '#ffffff',
                   }"
                 >
                   <el-table-column
-                    prop="people"
+                    prop="priority"
                     label="处理优先级"
                     width="180"
                   ></el-table-column>
@@ -218,19 +218,19 @@
                   ></el-table-column>
 
                   <el-table-column
-                    prop="place"
+                    prop="way"
                     label="问题类型"
                     width="200"
                   ></el-table-column>
 
                   <el-table-column
-                    prop="way"
+                    prop="id"
                     label="设备ID"
                     width="180"
                   ></el-table-column>
 
                   <el-table-column
-                    prop="people"
+                    prop="area"
                     label="站点区域"
                     width="180"
                   ></el-table-column>
@@ -247,25 +247,236 @@
 <script>
   export default {
     data() {
-      const item_1 = {
-        date: '2022-07-02',
-        time: '06:22',
-        address: '探险岛',
-        count: '2514',
-        state: '人流适中',
-      }
-      const item_2 = {
-        date: '2022-07-02',
-        time: '06:22',
-        place: '探险岛',
-        way: '喷洒',
-        people: '张三、李四',
-        result: '已消毒',
-      }
+      const item_1 = [
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '06:22',
+          place: '探险岛',
+          way: '3281',
+          reason: '人群过密',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '09:22',
+          place: '明日世界',
+          way: '6341',
+          reason: '人群过密',
+        },
+        {
+          priority: 'P2',
+          date: '2022-07-02',
+          time: '09:25',
+          place: '梦幻世界',
+          way: '1201',
+          reason: '小范围聚集',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '12:22',
+          place: '梦幻世界',
+          way: '5287',
+          reason: '人群过密',
+        },
+        {
+          priority: 'P2',
+          date: '2022-07-02',
+          time: '19:22',
+          place: '奇想花园',
+          way: '6701',
+          reason: '小范围聚集',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '06:22',
+          place: '探险岛',
+          way: '3281',
+          reason: '人群过密',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '09:22',
+          place: '明日世界',
+          way: '6341',
+          reason: '人群过密',
+        },
+        {
+          priority: 'P2',
+          date: '2022-07-02',
+          time: '09:25',
+          place: '梦幻世界',
+          way: '1201',
+          reason: '小范围聚集',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '12:22',
+          place: '梦幻世界',
+          way: '5287',
+          reason: '人群过密',
+        },
+        {
+          priority: 'P2',
+          date: '2022-07-02',
+          time: '19:22',
+          place: '奇想花园',
+          way: '6701',
+          reason: '小范围聚集',
+        },
+      ]
+      const item_2 = [
+        {
+          date: '2022-07-02',
+          time: '...',
+          place: '探险岛',
+          way: '...',
+          people: '...',
+          result: '尚未完成！',
+        },
+        {
+          date: '2022-07-02',
+          time: '17:45',
+          place: '明日世界',
+          way: '喷洒',
+          people: '小张',
+          result: '消毒完成',
+        },
+        {
+          date: '2022-07-02',
+          time: '17:42',
+          place: '奇想花园',
+          way: '喷洒',
+          people: '小黄',
+          result: '消毒完成',
+        },
+        {
+          date: '2022-07-02',
+          time: '17:37',
+          place: '梦幻世界',
+          way: '喷洒',
+          people: '小甘',
+          result: '消毒完成',
+        },
+        {
+          date: '2022-07-02',
+          time: '17:30',
+          place: '皮克斯玩具总动员',
+          way: '喷洒',
+          people: '小郑',
+          result: '消毒完成',
+        },
+        {
+          date: '2022-07-02',
+          time: '17:30',
+          place: '宝藏湾',
+          way: '喷洒',
+          people: '小陆',
+          result: '消毒完成',
+        },
+      ]
+      const item_3 = [
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '16:45',
+          place: '接入耗时过久',
+          number: 'User327',
+          reason: '奇想花园',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '14:42',
+          place: '接入耗时过久',
+          number: 'User109',
+          reason: '奇想花园',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '13:32',
+          place: '漫游达标率过低',
+          number: 'User531',
+          reason: '明日世界',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '10:51',
+          place: 'AP上传速率出现异常',
+          number: 'User017',
+          reason: '探险岛',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '10:05',
+          place: '接入耗时过久',
+          number: 'User629',
+          reason: '奇想花园',
+        },
+      ]
+      const item_4 = [
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '17:45',
+          way: '探险岛',
+          id: '距离不当',
+          area: '疑似盗窃',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '16:45',
+          way: '探险岛',
+          id: '距离不当',
+          area: '疑似盗窃',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '13:22',
+          way: '明日世界',
+          id: '设备故障',
+          area: '极速光轮操纵按键失灵',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '12:41',
+          way: '梦幻世界',
+          id: '设备故障',
+          area: '晶彩奇航受雨暂停营业',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '10:45',
+          way: 'P3停车场',
+          id: '设备故障',
+          area: '升降杆损坏',
+        },
+        {
+          priority: 'P1',
+          date: '2022-07-02',
+          time: '10:25',
+          way: '奇想花园',
+          id: '游客纠纷',
+          area: '游客出现争吵',
+        },
+      ]
 
       return {
-        tableData_1: Array(8).fill(item_1),
-        tableData_2: Array(8).fill(item_2),
+        tableData_1: item_1,
+        tableData_2: item_2,
+        tableData_3: item_3,
+        tableData_4: item_4,
         activeName: 'first',
       }
     },

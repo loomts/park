@@ -1,14 +1,13 @@
 <template>
   <div>
-  
     <div>
       <span
         style="
           font-size: 33px;
-          color: grey;/*#909399*/;
+          color: grey; /*#909399*/
           margin: 45px;
           font-weight: bold;
-          
+
           padding-top: 30px;
           line-height: 100px;
           margin-left: 60px;
@@ -17,174 +16,479 @@
         智慧车位管理
       </span>
     </div>
-<center>
-    <el-row :gutter="20">
-      <div>
-      <!-- 顶部四个标签 -->
-    </div>
-      <el-col :span="20" style="margin-left:80px;margin-top: 10px;">
-        <el-card class="card" shadow="always" style="width: 21.5%; height:115px; margin-left:-10px ; display: inline-block;float: left;">
-          <div class="topBox" >
-            <span style="font-size: 23px; display: inline-block;float: left; margin: 10px 0px; font-weight: bold; color: #909399;">异常<br>状态</span>
-            <div id="topLeft" class="topImg" ><img src="./allert.png"> </div>
-            <span style="font-size: 8px; color: gray /*#ff8b8b*/; margin-left: 3px; font-weight: bold;">车位损坏x3</span>
-          </div>  
-        </el-card>
-        <el-card class="card" shadow="always" style="width: 21.5%; height:115px; margin-left:42px ; display: inline-block;float: left;">
-          <div class="topBox" >
-            <span style="font-size: 23px; display: inline-block;float: left; margin: 10px 0px; font-weight: bold; color: #909399;">今日<br>营收</span>
-            <div id="topLeft" class="topImg" ><img src="./wallet.png"> </div>
-            <span style="font-size: 8px; color: gray /*#ff8b8b*/; margin-left: 3px; font-weight: bold;">合计：5.4w</span>
-          </div>  
-        </el-card>
-        <el-card class="card" shadow="always" style="width: 21.5%; height:115px; margin-left:42px ; display: inline-block;float: left;">
-          <div class="topBox" >
-            <span style="font-size: 23px; display: inline-block;float: left; margin: 10px 0px; font-weight: bold; color: #909399;">空闲<br>车位</span>
-            <div id="topLeft" class="topImg" ><img src="./parkinglot.png"> </div>
-            <span style="font-size: 8px; color: gray /*#ff8b8b*/; margin-left: 3px; font-weight: bold;">剩余：445</span>
-          </div>  
-        </el-card>
-        <el-card class="card" shadow="always" style="width: 21.5%; height:115px; margin-left:42px ; display: inline-block;float: left;">
-          <div class="topBox" >
-            <span style="font-size: 23px; display: inline-block;float: left; margin: 10px 0px; font-weight: bold; color: #909399;">实况<br>查询</span>
-            <div id="topLeft" class="topImg" ><img src="./collect.png"> </div>
-            <span style="font-size: 8px; color: gray /*#ff8b8b*/; margin-left: 3px; font-weight: bold;">点击查询</span>
-          </div>  
-        </el-card>               
-       
-        
-      </el-col>
-        
-    </el-row>
-<!-- 停车场情况 三个标签 -->
- <el-row :gutter="20">
-
-      <el-col :span="20" style="margin-left:80px; margin-top: 3px;">
-        <el-card class="card" shadow="always" style="display: 'inline';float: left ; width: 30%; height:335px; margin-left:-10px ; margin-top: 15px; ">
-          <div>
-            <span style="font-size: 25px; display: block; margin: 10px 15px; font-weight: bold; color: #909399; margin-left: -135px;">停车场P1</span>
-            <span style="font-size: 18px; color: #909399;margin: 0px 15px; margin-left: -165px;">具体情况</span>
-            <div id="Chart1" :style="{ width: '100%', height: '240px', border:'0px solid black', margin:'0px 0px' }" > </div>
-          </div>          
-        </el-card>
-        <el-card class="card" shadow="always" style="display: 'inline';float: left ; width: 30%; height:335px; margin-left:42px ;margin-top: 15px;">
-          <div>
-            <span style="font-size: 25px; display: block; margin: 10px 15px; font-weight: bold; color: #909399;margin-left: -135px;">停车场P2</span>
-            <span style="font-size: 18px; color: #909399; margin: 0px 15px;margin-left: -165px;">具体情况</span>
-            <div id="Chart2" style="width: 100%; height: 215px; border-width:0px; border-style:solid; margin:0px 0px; padding: 0px 0px; 
-            border-color:gainsboro ;border-radius: 8px; " > </div>
-          </div>          
-        </el-card>
-        <el-card class="card" shadow="always" style="display: 'inline';float: left ; width: 30%; height:335px; margin-left:42px ;margin-top: 15px;">
-          <div>
-            <span style="font-size: 25px; display: block; margin: 10px 15px; font-weight: bold; color: #909399;margin-left: -135px;">停车场P3</span>
-            <span style="font-size: 18px; color: #909399;margin: 0px 15px;margin-left: -165px;">具体情况</span>
-            <div id="Chart3" :style="{ width: '100%', height: '240px', border:'0px solid black', margin:'0px 0px' }" > </div>
-          </div>          
-        </el-card>
-      </el-col>
-        
-    </el-row>
-
-<!-- 大图表 -->
-   <el-row :gutter="20">
-
-      <el-col :span="20" style="margin-left:30px; margin-top: 23px;">
-      
-        
-        <el-card class="card" shadow="always" style="display: 'inline';float: left ; width: 98.5%; height:495px; margin-left:40px ;">
-          <div>
-            <div id="Chart4" style="width: 100%; height: 215px; border-width:0px; border-style:solid; margin:0px 0px; padding: 0px 0px; 
-            border-color:gainsboro ;border-radius: 8px; " > </div>
-          </div>          
-        </el-card>
-
-      </el-col>
-        
-    </el-row>
-
-
-<!-- 最底部两个标签 -->
-<el-row :gutter="20" >
-
-      <el-col :span="20" style="margin-left:60px; margin-top:7px;">
-        <el-card class="card" shadow="always" style="display: 'inline';float: left ; width: 49%; height:430px; margin-left:11px ;margin-top: 20px;">
-             <div>
-              <span style="font-size: 20px; display: block; margin: 10px 0px; font-weight: bold; color: #909399;" >进出车次统计</span>
+    <center>
+      <el-row :gutter="20">
+        <div>
+          <!-- 顶部四个标签 -->
+        </div>
+        <el-col :span="20" style="margin-left: 80px; margin-top: 10px">
+          <el-card
+            class="card"
+            shadow="always"
+            style="
+              width: 21.5%;
+              height: 115px;
+              margin-left: -10px;
+              display: inline-block;
+              float: left;
+            "
+          >
+            <div class="topBox">
+              <span
+                style="
+                  font-size: 23px;
+                  display: inline-block;
+                  float: left;
+                  margin: 10px 0px;
+                  font-weight: bold;
+                  color: #909399;
+                "
+              >
+                异常
+                <br />
+                状态
+              </span>
+              <div id="topLeft" class="topImg"><img src="./allert.png" /></div>
+              <span
+                style="
+                  font-size: 8px;
+                  color: gray /*#ff8b8b*/;
+                  margin-left: 3px;
+                  font-weight: bold;
+                "
+              >
+                车位损坏x3
+              </span>
+            </div>
+          </el-card>
+          <el-card
+            class="card"
+            shadow="always"
+            style="
+              width: 21.5%;
+              height: 115px;
+              margin-left: 42px;
+              display: inline-block;
+              float: left;
+            "
+          >
+            <div class="topBox">
+              <span
+                style="
+                  font-size: 23px;
+                  display: inline-block;
+                  float: left;
+                  margin: 10px 0px;
+                  font-weight: bold;
+                  color: #909399;
+                "
+              >
+                今日
+                <br />
+                营收
+              </span>
+              <div id="topLeft" class="topImg"><img src="./wallet.png" /></div>
+              <span
+                style="
+                  font-size: 8px;
+                  color: gray /*#ff8b8b*/;
+                  margin-left: 3px;
+                  font-weight: bold;
+                "
+              >
+                合计：5.4w
+              </span>
+            </div>
+          </el-card>
+          <el-card
+            class="card"
+            shadow="always"
+            style="
+              width: 21.5%;
+              height: 115px;
+              margin-left: 42px;
+              display: inline-block;
+              float: left;
+            "
+          >
+            <div class="topBox">
+              <span
+                style="
+                  font-size: 23px;
+                  display: inline-block;
+                  float: left;
+                  margin: 10px 0px;
+                  font-weight: bold;
+                  color: #909399;
+                "
+              >
+                空闲
+                <br />
+                车位
+              </span>
+              <div id="topLeft" class="topImg">
+                <img src="./parkinglot.png" />
               </div>
-             
-              <el-table :data="tableData" style="width: 100%">
-                      <el-table-column
-                        prop="province"
-                        label="来源地"
-                        width="230"
-                        align="center"
-                      ></el-table-column>
-                      <el-table-column
-                        prop="collect"
-                        label="车辆数"
-                        width="229"
-                        align="center"
-                      ></el-table-column>
-               </el-table>
-          </el-card> 
-          <el-card class="card" shadow="always" style="display: 'inline';float: left ; width: 46%; height:430px; margin-left:35px ;margin-top: 20px;">
+              <span
+                style="
+                  font-size: 8px;
+                  color: gray /*#ff8b8b*/;
+                  margin-left: 3px;
+                  font-weight: bold;
+                "
+              >
+                剩余：445
+              </span>
+            </div>
+          </el-card>
+          <el-card
+            class="card"
+            shadow="always"
+            style="
+              width: 21.5%;
+              height: 115px;
+              margin-left: 42px;
+              display: inline-block;
+              float: left;
+            "
+          >
+            <div class="topBox">
+              <span
+                style="
+                  font-size: 23px;
+                  display: inline-block;
+                  float: left;
+                  margin: 10px 0px;
+                  font-weight: bold;
+                  color: #909399;
+                "
+              >
+                实况
+                <br />
+                查询
+              </span>
+              <div id="topLeft" class="topImg"><img src="./collect.png" /></div>
+              <span
+                style="
+                  font-size: 8px;
+                  color: gray /*#ff8b8b*/;
+                  margin-left: 3px;
+                  font-weight: bold;
+                "
+              >
+                点击查询
+              </span>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+      <!-- 停车场情况 三个标签 -->
+      <el-row :gutter="20">
+        <el-col :span="20" style="margin-left: 80px; margin-top: 3px">
+          <el-card
+            class="card"
+            shadow="always"
+            style="
+              display: 'inline';
+              float: left;
+              width: 30%;
+              height: 335px;
+              margin-left: -10px;
+              margin-top: 15px;
+            "
+          >
             <div>
-            <div id="Chart5" :style="{ width: '100%', height: '150px', border:'0px solid black', margin:'25px 0px' }" style="margin-bottom:5px; border-bottom: 1px solid #909399 ;"> </div>
-            <el-divider></el-divider>
-            <div id="Chart6" :style="{ width: '100%', height: '150px', border:'0px solid black', margin:'20px 0px' }" > </div>
-          </div>             
-        </el-card>      
-      </el-col>       
-    </el-row>
-<br>
-<br>
+              <span
+                style="
+                  font-size: 25px;
+                  display: block;
+                  margin: 10px 15px;
+                  font-weight: bold;
+                  color: #909399;
+                  margin-left: -135px;
+                "
+              >
+                停车场P1
+              </span>
+              <span
+                style="
+                  font-size: 18px;
+                  color: #909399;
+                  margin: 0px 15px;
+                  margin-left: -165px;
+                "
+              >
+                具体情况
+              </span>
+              <div
+                id="Chart1"
+                :style="{
+                  width: '100%',
+                  height: '240px',
+                  border: '0px solid black',
+                  margin: '0px 0px',
+                }"
+              ></div>
+            </div>
+          </el-card>
+          <el-card
+            class="card"
+            shadow="always"
+            style="
+              display: 'inline';
+              float: left;
+              width: 30%;
+              height: 335px;
+              margin-left: 42px;
+              margin-top: 15px;
+            "
+          >
+            <div>
+              <span
+                style="
+                  font-size: 25px;
+                  display: block;
+                  margin: 10px 15px;
+                  font-weight: bold;
+                  color: #909399;
+                  margin-left: -135px;
+                "
+              >
+                停车场P2
+              </span>
+              <span
+                style="
+                  font-size: 18px;
+                  color: #909399;
+                  margin: 0px 15px;
+                  margin-left: -165px;
+                "
+              >
+                具体情况
+              </span>
+              <div
+                id="Chart2"
+                style="
+                  width: 100%;
+                  height: 215px;
+                  border-width: 0px;
+                  border-style: solid;
+                  margin: 0px 0px;
+                  padding: 0px 0px;
+                  border-color: gainsboro;
+                  border-radius: 8px;
+                "
+              ></div>
+            </div>
+          </el-card>
+          <el-card
+            class="card"
+            shadow="always"
+            style="
+              display: 'inline';
+              float: left;
+              width: 30%;
+              height: 335px;
+              margin-left: 42px;
+              margin-top: 15px;
+            "
+          >
+            <div>
+              <span
+                style="
+                  font-size: 25px;
+                  display: block;
+                  margin: 10px 15px;
+                  font-weight: bold;
+                  color: #909399;
+                  margin-left: -135px;
+                "
+              >
+                停车场P3
+              </span>
+              <span
+                style="
+                  font-size: 18px;
+                  color: #909399;
+                  margin: 0px 15px;
+                  margin-left: -165px;
+                "
+              >
+                具体情况
+              </span>
+              <div
+                id="Chart3"
+                :style="{
+                  width: '100%',
+                  height: '240px',
+                  border: '0px solid black',
+                  margin: '0px 0px',
+                }"
+              ></div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
 
-</center>
- </div> 
+      <!-- 大图表 -->
+      <el-row :gutter="20">
+        <el-col :span="20" style="margin-left: 30px; margin-top: 23px">
+          <el-card
+            class="card"
+            shadow="always"
+            style="
+              display: 'inline';
+              float: left;
+              width: 98.5%;
+              height: 495px;
+              margin-left: 40px;
+            "
+          >
+            <div>
+              <div
+                id="Chart4"
+                style="
+                  width: 100%;
+                  height: 215px;
+                  border-width: 0px;
+                  border-style: solid;
+                  margin: 0px 0px;
+                  padding: 0px 0px;
+                  border-color: gainsboro;
+                  border-radius: 8px;
+                "
+              ></div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+
+      <!-- 最底部两个标签 -->
+      <el-row :gutter="20">
+        <el-col :span="20" style="margin-left: 60px; margin-top: 7px">
+          <el-card
+            class="card"
+            shadow="always"
+            style="
+              display: 'inline';
+              float: left;
+              width: 49%;
+              height: 430px;
+              margin-left: 11px;
+              margin-top: 20px;
+            "
+          >
+            <div>
+              <span
+                style="
+                  font-size: 20px;
+                  display: block;
+                  margin: 10px 0px;
+                  font-weight: bold;
+                  color: #909399;
+                "
+              >
+                进出车次统计
+              </span>
+            </div>
+
+            <el-table :data="tableData" style="width: 100%">
+              <el-table-column
+                prop="province"
+                label="来源地"
+                width="230"
+                align="center"
+              ></el-table-column>
+              <el-table-column
+                prop="collect"
+                label="车辆数"
+                width="229"
+                align="center"
+              ></el-table-column>
+            </el-table>
+          </el-card>
+          <el-card
+            class="card"
+            shadow="always"
+            style="
+              display: 'inline';
+              float: left;
+              width: 46%;
+              height: 430px;
+              margin-left: 35px;
+              margin-top: 20px;
+            "
+          >
+            <div>
+              <div
+                id="Chart5"
+                :style="{
+                  width: '100%',
+                  height: '150px',
+                  border: '0px solid black',
+                  margin: '25px 0px',
+                }"
+                style="margin-bottom: 5px; border-bottom: 1px solid #909399"
+              ></div>
+              <el-divider></el-divider>
+              <div
+                id="Chart6"
+                :style="{
+                  width: '100%',
+                  height: '150px',
+                  border: '0px solid black',
+                  margin: '20px 0px',
+                }"
+              ></div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+      <br />
+      <br />
+    </center>
+  </div>
 </template>
 <script>
   export default {
     data() {
-    return {
-      tableData: [
+      return {
+        tableData: [
           {
-            province:'上海',
-            collect:'898'
+            province: '上海',
+            collect: '898',
           },
           {
-            province:'南京',
-            collect:'792'
+            province: '南京',
+            collect: '792',
           },
           {
-            province:'武汉',
-            collect:'545'
+            province: '武汉',
+            collect: '545',
           },
           {
-            province:'合肥',
-            collect:'443'
+            province: '合肥',
+            collect: '443',
           },
           {
-            province:'杭州',
-            collect:'314'
+            province: '杭州',
+            collect: '314',
           },
           {
-            province:'南昌',
-            collect:'252'
+            province: '南昌',
+            collect: '252',
           },
           {
-            province:'北京',
-            collect:'241'
+            province: '北京',
+            collect: '241',
           },
           {
-            province:'其他',
-            collect:'234'
+            province: '其他',
+            collect: '234',
           },
-                   
         ],
-    }
-  },
-
+      }
+    },
 
     mounted() {
       this.drawLine1()
@@ -194,17 +498,12 @@
       // this.drawRight()
     },
 
-    
-
-
-
-
     methods: {
-      drawLine1(){
+      drawLine1() {
         const Chart1 = this.$echarts.init(document.getElementById('Chart1'))
         const Chart2 = this.$echarts.init(document.getElementById('Chart2'))
         const Chart3 = this.$echarts.init(document.getElementById('Chart3'))
-        Chart1.setOption({         
+        Chart1.setOption({
           series: [
             {
               type: 'gauge',
@@ -484,42 +783,62 @@
           ],
         })
       },
-      setLine(){
+      setLine() {
         //const Chart4 = this.$echarts.init(document.getElementById('Chart4'))
-        var Chart4 = this.$echarts.init(document.getElementById('Chart4'), null, {
-          
-          height: 490,
-          width:1000
-        });
-        var option;
-        const axisData = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
-        const data = [0,3503,3216,5148,9218,12643,13921,11198,9820,8764,7740,6500,1530]
+        var Chart4 = this.$echarts.init(
+          document.getElementById('Chart4'),
+          null,
+          {
+            height: 490,
+            width: 1000,
+          }
+        )
+        var option
+        const axisData = [
+          '10:00',
+          '11:00',
+          '12:00',
+          '13:00',
+          '14:00',
+          '15:00',
+          '16:00',
+          '17:00',
+          '18:00',
+          '19:00',
+          '20:00',
+          '21:00',
+          '22:00',
+        ]
+        const data = [
+          0, 3503, 3216, 5148, 9218, 12643, 13921, 11198, 9820, 8764, 7740,
+          6500, 1530,
+        ]
         // = axisData.map(function (item, i) {
-        //   return 
+        //   return
         //   //return Math.round(Math.random() * 1000 * (i + 1));
         // });
         const links = data.map(function (item, i) {
           return {
             source: i,
-            target: i + 1
-          };
-        });
-        links.pop();
+            target: i + 1,
+          }
+        })
+        links.pop()
         option = {
           title: {
             text: '今日营收情况 >> 每小时',
-            textStyle:{
-              color: '#909399'
-            }
+            textStyle: {
+              color: '#909399',
+            },
           },
           tooltip: {},
           xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: axisData
+            data: axisData,
           },
           yAxis: {
-            type: 'value'
+            type: 'value',
           },
           series: [
             {
@@ -528,18 +847,18 @@
               coordinateSystem: 'cartesian2d',
               symbolSize: 40,
               label: {
-                show: true
+                show: true,
               },
               edgeSymbol: ['circle', 'arrow'],
               edgeSymbolSize: [4, 10],
               data: data,
               links: links,
               lineStyle: {
-                color: '#2f4554'
-              }
-            }
-          ]
-        };
+                color: '#2f4554',
+              },
+            },
+          ],
+        }
         // var app = {};
 
         // var chartDom = document.getElementById('main');
@@ -689,145 +1008,140 @@
         //   });
         // }, 2100);
 
-        option && Chart4.setOption(option);
+        option && Chart4.setOption(option)
       },
-      drawIt(){
+      drawIt() {
         const Chart5 = this.$echarts.init(document.getElementById('Chart5'))
-        
-        var option;
+
+        var option
 
         option = {
-          title:{
+          title: {
             text: '驿停车辆统计',
-            textStyle:{
+            textStyle: {
               color: '#909399',
-              fontSize: 16
-            }
+              fontSize: 16,
+            },
           },
           tooltip: {
             trigger: 'axis',
             axisPointer: {
               // Use axis to trigger tooltip
-              type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
-            }
+              type: 'shadow', // 'shadow' as default; can also be 'line' or 'shadow'
+            },
           },
-          legend: {top:30},
+          legend: { top: 30 },
           grid: {
             left: '2%',
             right: '4%',
             bottom: '8%',
             top: '38%',
             containLabel: true,
-
-
           },
           xAxis: {
-            type: 'value'
+            type: 'value',
           },
           yAxis: {
             type: 'category',
-            data: ['22/7/31']
+            data: ['22/7/31'],
           },
           series: [
             {
               name: '今日新增',
-              
+
               type: 'bar',
               stack: 'total',
               label: {
-                show: true
+                show: true,
               },
               emphasis: {
-                focus: 'series'
+                focus: 'series',
               },
-              data: [529]
+              data: [529],
             },
             {
               name: '历史统计',
               type: 'bar',
               stack: 'total',
               label: {
-                show: true
+                show: true,
               },
               emphasis: {
-                focus: 'series'
+                focus: 'series',
               },
-              data: [1271]
-            }
-          ]
-        };
+              data: [1271],
+            },
+          ],
+        }
 
-        option && Chart5.setOption(option);
+        option && Chart5.setOption(option)
       },
-      drawLeft(){
+      drawLeft() {
         const Chart6 = this.$echarts.init(document.getElementById('Chart6'))
-        
 
-        var option;
+        var option
 
         option = {
-          title:{
+          title: {
             text: '微信关注人数',
-            textStyle:{
+            textStyle: {
               color: '#909399',
-              fontSize: 16
-            }
+              fontSize: 16,
+            },
           },
           tooltip: {
             trigger: 'axis',
             axisPointer: {
               // Use axis to trigger tooltip
-              type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
-            }
+              type: 'shadow', // 'shadow' as default; can also be 'line' or 'shadow'
+            },
           },
-          legend: {top:30},
+          legend: { top: 30 },
           grid: {
             left: '2%',
             right: '4%',
             bottom: '8%',
             top: '38%',
             containLabel: true,
-
-
           },
           xAxis: {
-            type: 'value'
+            type: 'value',
           },
           yAxis: {
             type: 'category',
-            data: ['22/7/31']
+            data: ['22/7/31'],
           },
           series: [
             {
               name: '今日新增',
-              
+
               type: 'bar',
               stack: 'total',
               label: {
-                show: true
+                show: true,
               },
               emphasis: {
-                focus: 'series'
+                focus: 'series',
               },
-              data: [418]
+              data: [418],
             },
             {
               name: '历史统计',
               type: 'bar',
               stack: 'total',
               label: {
-                show: true
+                show: true,
               },
               emphasis: {
-                focus: 'series'
+                focus: 'series',
               },
-              data: [1082]
-            }
-          ]
-        };
+              data: [1082],
+            },
+          ],
+        }
 
-        option && Chart6.setOption(option);
-      }
+        option && Chart6.setOption(option)
+      },
       // drawRight(){
       //   const Chart7 = this.$echarts.init(document.getElementById('Chart7'))
       //   var option;
@@ -930,48 +1244,43 @@
       //   option && Chart7.setOption(option);
 
       // }
-      
-      
-
     },
   }
 </script>
 
-
 <style lang="scss" scoped>
+  .topBox {
+    width: 98%;
+    height: 85px;
+    display: inline-block;
+    float: left;
+    margin-left: 20px;
+    border: 0px solid;
+  }
 
-.topBox{
-  width:98%;
-  height:85px;
-  display: inline-block;
-  float: left;
-  margin-left: 20px;
-  border:0px solid;
-}
+  .topImg {
+    padding-left: 45px;
+    padding-top: 5px;
+    border: 0px solid;
+  }
 
-.topImg{
-  padding-left:45px;
-  padding-top:5px;
-  border:0px solid;
-}
+  .fontLeft {
+    font-size: 20px;
+    display: inline-block;
+    float: left;
+    margin: 10px 0px;
+    color: #909399;
+  }
 
-.fontLeft{
-  font-size: 20px; 
-  display: inline-block; 
-  float:left;
-  margin: 10px 0px; 
-  color: #909399;
-}
+  .fontRight {
+    font-size: 20px;
+    display: inline-block;
+    float: right;
+    margin: 10px 10px;
+    color: #909399;
+  }
 
-.fontRight{
-  font-size: 20px; 
-  display: inline-block; 
-  float:right; 
-  margin: 10px 10px;  
-  color: #909399;
-}
-
-.index-container {
+  .index-container {
     padding: 0 !important;
     margin: 0 !important;
     background: #f5f7f8 !important;
@@ -1062,15 +1371,13 @@
         margin: 5px 10px 15px 0;
       }
     }
-    .el-divider--horizontal{
-    margin: 26px 15px !important;
+    .el-divider--horizontal {
+      margin: 26px 15px !important;
 
-      .el-divider__text{
-      color: gray;
-      font-size: 25px;
+      .el-divider__text {
+        color: gray;
+        font-size: 25px;
       }
     }
-
   }
-
 </style>

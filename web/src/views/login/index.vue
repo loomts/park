@@ -188,8 +188,7 @@
   .login-container {
     height: 100vh;
     opacity: 0.9;
-    background: url('~@/assets/login_images/background.png') fixed
-      no-repeat;
+    background: url('~@/assets/login_images/background.png') fixed no-repeat;
     background-size: cover;
 
     .title {
