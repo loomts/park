@@ -186,7 +186,7 @@ export const asyncRoutes = [{
         redirect: 'noRedirect',
         name: 'Monitor',
         alwaysShow: true,
-        meta: { title: '重要场所监控', icon: 'box-open' },
+        meta: { title: '安全管理', icon: 'box-open' },
         children: [{
             path: 'monitortest',
             name: 'Monitortest',
