@@ -10,18 +10,19 @@
       stroke-color="blue"
       :stroke-opacity="0.5"
       :stroke-weight="2"
-      :editing="true"
+      :editing="false"
     ></bm-polyline>
     <!-- <bml-curve-line :points="arcPoints" :editing="true"></bml-curve-line> -->
-
-    <bml-curve-line :points="arcPoints" :editing="true"></bml-curve-line>
+    <bml-curve-line :points="arcPoints" :editing="false"></bml-curve-line>
+    <bml-curve-line :points="arcPoints1" :editing="false"></bml-curve-line>
+    <bml-curve-line :points="arcPoints2" :editing="false"></bml-curve-line>
     <bml-heatmap :data="heartData" :max="300" :radius="60"></bml-heatmap>
-    <bm-label
+    <!-- <bm-label
       content="我爱北京天安门"
       :position="{ lng: 116.404, lat: 39.915 }"
       :labelStyle="{ color: 'red', fontSize: '24px' }"
       title="Hover me"
-    />
+    /> -->
 
     <bm-marker
       :position="{ lng: 121.669562, lat: 31.146555 }"
@@ -100,13 +101,13 @@
         :offset="{ width: -35, height: 30 }"
       />
     </bm-marker>
-    <bm-view class="map"></bm-view>
+    <!-- <bm-view class="map"></bm-view>
     <bm-walking
       start="迪士尼梦幻世界"
       end="迪士尼·皮克斯玩具总动员"
       :auto-viewport="true"
       location="上海"
-    ></bm-walking>
+    ></bm-walking> -->
   </baidu-map>
 </template>
 
@@ -145,6 +146,9 @@ export default {
         { lng: 121.66795, lat: 31.149231 },
         { lng: 121.667846, lat: 31.148123 },
         { lng: 121.66629, lat: 31.148254 },
+      ],
+      arcPoints1:[
+        // {lng:}
       ],
       heartData: [
         // { lng: 121.667034, lat: 31.148808, count: 40 },
