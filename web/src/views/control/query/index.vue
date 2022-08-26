@@ -19,15 +19,15 @@
       <el-col :span="20" style="margin: 50px">
         <el-card class="card" shadow="always">
           <div slot="header">
-            <span style="font-size: 20px; color: #909399">MAC查询</span>
+            <span style="font-size: 20px; color: #909399">IP查询</span>
           </div>
           <div>
             <el-input
               v-model="input"
-              placeholder="输入查询用户的MAC地址"
+              placeholder="输入查询用户的IP地址"
               clearable
             ></el-input>
-            <!-- <el-input v-model="input" placeholder="输入查询用户的MAC地址"></el-input> -->
+            <!-- <el-input v-model="input" placeholder="输入查询用户的IP地址"></el-input> -->
           </div>
           <div style="margin: 20px; float: right">
             <el-button

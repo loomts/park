@@ -149,20 +149,20 @@ export const asyncRoutes = [{
         alwaysShow: true,
         meta: { title: '疫情防控', icon: 'box-open' },
         children: [
-        //{
-        //        path: 'queryway',
-        //        name: 'Queryway',
-        //        component: () =>
-        //            import ('@/views/control/queryway/index'),
-        //        meta: { title: '查询路径', permissions: ['admin'] },
-        //    },
-        //    {
-        //        path: 'querycontact',
-        //        name: 'Querycontact',
-        //        component: () =>
-        //            import ('@/views/control/querycloser/index'),
-        //        meta: { title: '密接查询', permissions: ['admin'] },
-        //    },
+            //{
+            //        path: 'queryway',
+            //        name: 'Queryway',
+            //        component: () =>
+            //            import ('@/views/control/queryway/index'),
+            //        meta: { title: '查询路径', permissions: ['admin'] },
+            //    },
+            //    {
+            //        path: 'querycontact',
+            //        name: 'Querycontact',
+            //        component: () =>
+            //            import ('@/views/control/querycloser/index'),
+            //        meta: { title: '密接查询', permissions: ['admin'] },
+            //    },
             {
                 path: 'query',
                 name: 'Query',
@@ -175,7 +175,7 @@ export const asyncRoutes = [{
                 name: 'QueryPath',
                 component: () =>
                     import ('@/views/control/queryPath/index'),
-                meta: { title: '游玩路径推荐', permissions: ['admin'] },
+                meta: { title: '游玩路线推荐', permissions: ['admin'] },
             },
         ],
     },
