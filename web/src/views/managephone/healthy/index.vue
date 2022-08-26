@@ -149,19 +149,28 @@
     text-align: center;
     font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
       'Microsoft YaHei', '微软雅黑';
+    //padding: 0px -100px px 0px;
+    //margin: 0px 0px 0px -300px;
   }
   .box-card {
-    width: 800px;
+    //margin: 10px 0px 10px 0px;
+    //padding: 0px 0px 0px 0px;
+    //display: inline-block;
+    width: 700px;
     height: 400px;
     margin-top: 15px;
   }
   .picturetable {
+    //margin: 10px 100px 10px 0px;
+    padding: 30px 350px 10px 50px;
+    display: inline-block;
     height: 400px;
-    width: 800px;
-    margin-left: 220px;
+    width: 400px;
+    //margin-left: 120px;
   }
   .pic {
     // margin-top: 100px;
     height: 300px;
+    //width: 10px;
   }
 </style>
