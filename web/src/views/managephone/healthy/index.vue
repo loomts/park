@@ -8,6 +8,7 @@
         <div :id="'Access' + index" class="pic"></div>
       </el-card>
     </div>
+    
   </div>
 </template>
 
@@ -156,8 +157,10 @@
     margin-top: 15px;
   }
   .picturetable {
+    margin: 30px 100px;
+    display: inline-block;
     height: 400px;
-    width: 800px;
+    width: 500px;
     margin-left: 220px;
   }
   .pic {

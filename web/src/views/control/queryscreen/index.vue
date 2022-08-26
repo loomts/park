@@ -5,6 +5,7 @@
     :zoom="18"
     :scroll-wheel-zoom="true"
   >
+    <!-- 路线 -->
     <bm-polyline
       :path="polylinePath"
       stroke-color="blue"
@@ -17,13 +18,61 @@
     <bml-curve-line :points="arcPoints1" :editing="false"></bml-curve-line>
     <bml-curve-line :points="arcPoints2" :editing="false"></bml-curve-line>
     <bml-heatmap :data="heartData" :max="300" :radius="60"></bml-heatmap>
-    <!-- <bm-label
-      content="我爱北京天安门"
-      :position="{ lng: 116.404, lat: 39.915 }"
+    <bm-label
+      content="A"
+      :position="{
+        lng: (121.667027 + 121.66629) / 2,
+        lat: (31.148817 + 31.148254) / 2,
+      }"
       :labelStyle="{ color: 'red', fontSize: '24px' }"
       title="Hover me"
-    /> -->
-
+    />
+    <bm-label
+      content="B"
+      :position="{
+        lng: (121.664107 + 121.66629) / 2,
+        lat: (31.148385 + 31.148254) / 2,
+      }"
+      :labelStyle="{ color: 'red', fontSize: '24px' }"
+      title="Hover me"
+    />
+    <bm-label
+      content="C"
+      :position="{
+        lng: (121.664107 + 121.663703) / 2,
+        lat: (31.148385 + 31.147597) / 2,
+      }"
+      :labelStyle="{ color: 'red', fontSize: '24px' }"
+      title="Hover me"
+    />
+    <bm-label
+      content="D"
+      :position="{
+        lng: (121.663818 + 121.664107) / 2,
+        lat: (31.149092 + 31.148385) / 2,
+      }"
+      :labelStyle="{ color: 'red', fontSize: '24px' }"
+      title="Hover me"
+    />
+    <bm-label
+      content="E"
+      :position="{
+        lng: (121.663818 + 121.66331) / 2,
+        lat: (31.149092 + 31.149625) / 2,
+      }"
+      :labelStyle="{ color: 'red', fontSize: '24px' }"
+      title="Hover me"
+    />
+    <bm-label
+      content="F"
+      :position="{
+        lng: (121.664114 + 121.66331) / 2,
+        lat: (31.150259 + 31.149625) / 2,
+      }"
+      :labelStyle="{ color: 'red', fontSize: '24px' }"
+      title="Hover me"
+    />
+    <!-- 路线 -->
     <bm-marker
       :position="{ lng: 121.669562, lat: 31.146555 }"
       :dragging="true"
@@ -126,6 +175,7 @@ export default {
         { lng: 121.66629, lat: 31.148254 },
         { lng: 121.664107, lat: 31.148385 },
         { lng: 121.663703, lat: 31.147597 },
+        { lng: 121.664107, lat: 31.148385 },
         { lng: 121.663818, lat: 31.149092 },
         { lng: 121.66331, lat: 31.149625 },
         { lng: 121.664114, lat: 31.150259 },
@@ -147,7 +197,7 @@ export default {
         { lng: 121.667846, lat: 31.148123 },
         { lng: 121.66629, lat: 31.148254 },
       ],
-      arcPoints1:[
+      arcPoints1: [
         // {lng:}
       ],
       heartData: [
