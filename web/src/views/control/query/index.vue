@@ -13,7 +13,6 @@
       </span>
     </div>
 
-
     <el-row :gutter="20">
       <!--  <div v-show="show"> -->
       <el-col :span="20" style="margin: 50px">
@@ -239,309 +238,310 @@
     </el-row>
   </div>
 </template>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=zIqWyMZvUlRW8IMU9djlFeTBhGytYp1Q"></script>
+<script
+  type="text/javascript"
+  src="http://api.map.baidu.com/api?v=3.0&ak=zIqWyMZvUlRW8IMU9djlFeTBhGytYp1Q"
+></script>
 <script>
-/* eslint-disable */
-import * as echarts from 'echarts'
-import { dependencies, devDependencies } from '../../../../package.json'
-import { getList } from '@/api/changeLog'
-import { getNoticeList } from '@/api/notice'
-require('echarts/extension/bmap/bmap');
+  /* eslint-disable */
+  import * as echarts from 'echarts'
+  import { dependencies, devDependencies } from '../../../../package.json'
+  import { getList } from '@/api/changeLog'
+  import { getNoticeList } from '@/api/notice'
+  require('echarts/extension/bmap/bmap')
 
- 
+  export default {
+    // name: "Map",
+    data() {
+      return {
+        chart: '',
+        bmap: {}, //定义一个当前的bmap
+        mapStyle: {
+          styleJson: [
+            {
+              featureType: 'land',
+              elementType: 'geometry',
+              stylers: {
+                color: '#081734',
+              },
+            },
+            {
+              featureType: 'building',
+              elementType: 'geometry',
+              stylers: {
+                color: '#04406F',
+              },
+            },
+            {
+              featureType: 'building',
+              elementType: 'labels',
+              stylers: {
+                visibility: 'off',
+              },
+            },
+            {
+              featureType: 'highway',
+              elementType: 'geometry',
+              stylers: {
+                color: '#015B99',
+              },
+            },
+            {
+              featureType: 'highway',
+              elementType: 'labels',
+              stylers: {
+                visibility: 'off',
+              },
+            },
+            {
+              featureType: 'arterial',
+              elementType: 'geometry',
+              stylers: {
+                color: '#003051',
+              },
+            },
+            {
+              featureType: 'arterial',
+              elementType: 'labels',
+              stylers: {
+                visibility: 'off',
+              },
+            },
+            {
+              featureType: 'green',
+              elementType: 'geometry',
+              stylers: {
+                visibility: 'off',
+              },
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: {
+                color: '#044161',
+              },
+            },
+            {
+              featureType: 'subway',
+              elementType: 'geometry.stroke',
+              stylers: {
+                color: '#003051',
+              },
+            },
+            {
+              featureType: 'subway',
+              elementType: 'labels',
+              stylers: {
+                visibility: 'off',
+              },
+            },
+            {
+              featureType: 'railway',
+              elementType: 'geometry',
+              stylers: {
+                visibility: 'off',
+              },
+            },
+            {
+              featureType: 'railway',
+              elementType: 'labels',
+              stylers: {
+                visibility: 'off',
+              },
+            },
+            {
+              featureType: 'all',
+              elementType: 'labels.text.stroke',
+              stylers: {
+                color: '#313131',
+              },
+            },
+            {
+              featureType: 'all',
+              elementType: 'labels.text.fill',
+              stylers: {
+                color: '#FFFFFF',
+              },
+            },
+            {
+              featureType: 'manmade',
+              elementType: 'geometry',
+              stylers: {
+                visibility: 'off',
+              },
+            },
+            {
+              featureType: 'manmade',
+              elementType: 'labels',
+              stylers: {
+                visibility: 'off',
+              },
+            },
+            {
+              featureType: 'local',
+              elementType: 'geometry',
+              stylers: {
+                visibility: 'off',
+              },
+            },
+            {
+              featureType: 'local',
+              elementType: 'labels',
+              stylers: {
+                visibility: 'off',
+              },
+            },
+            {
+              featureType: 'subway',
+              elementType: 'geometry',
+              stylers: {
+                lightness: -65,
+              },
+            },
+            {
+              featureType: 'railway',
+              elementType: 'all',
+              stylers: {
+                lightness: -40,
+              },
+            },
+            {
+              featureType: 'boundary',
+              elementType: 'geometry',
+              stylers: {
+                color: '#8b8787',
+                weight: '1',
+                lightness: -29,
+              },
+            },
+          ],
+        },
+        geoCoordMap: [
+          {
+            name: '米奇大街',
+            value: [121.668006, 31.147929],
+            tooltip: {
+              formatter: '时间:8:30am<br/>出发地:玩具总动员酒店',
+            },
+          },
+          {
+            name: '探险岛',
+            value: [121.669479, 31.149412],
+            tooltip: {
+              formatter: '时间:8:30am<br/>出发地:玩具总动员酒店',
+            },
+          },
+          {
+            name: '宝藏湾',
+            value: [121.669354, 31.151372],
+            tooltip: {
+              formatter: '时间:8:30am<br/>出发地:玩具总动员酒店',
+            },
+          },
+          {
+            name: '明日世界',
+            value: [121.663712, 31.147558],
+            tooltip: {
+              formatter: '时间:8:30am<br/>出发地:玩具总动员酒店',
+            },
+          },
+          {
+            name: '梦幻世界',
+            value: [121.666337, 31.150738],
+            tooltip: {
+              formatter: '时间:8:30am<br/>出发地:玩具总动员酒店',
+            },
+          },
+          {
+            name: '迪士尼·皮克斯玩具总动员',
+            value: [121.661448, 31.150927],
+            tooltip: {
+              formatter: '时间:8:30am<br/>出发地:玩具总动员酒店',
+            },
+          },
+          {
+            name: '上海迪士尼乐园酒店',
+            value: [121.672557, 31.141867],
+            tooltip: {
+              formatter: '时间:8:30am<br/>出发地:玩具总动员酒店',
+            },
+          },
+          {
+            name: '玩具总动员酒店',
+            value: [121.659886, 31.145592],
+            tooltip: {
+              formatter: '时间:8:30am<br/>出发地:玩具总动员酒店',
+            },
+          },
+        ],
+        line: [
+          {
+            fromName: '上海迪士尼乐园酒店',
+            toName: '玩具总动员酒店',
+            coords: [
+              [121.672557, 31.141867],
+              [121.659886, 31.145592],
+            ],
+          },
+          {
+            fromName: '玩具总动员酒店',
+            toName: '迪士尼·皮克斯玩具总动员',
+            coords: [
+              [121.659886, 31.145592],
+              [121.661448, 31.150927],
+            ],
+          },
+          {
+            fromName: '迪士尼·皮克斯玩具总动员',
+            toName: '梦幻世界',
+            coords: [
+              [121.661448, 31.150927],
+              [121.666337, 31.150738],
+            ],
+          },
+          {
+            fromName: '梦幻世界',
+            toName: '明日世界',
+            coords: [
+              [121.666337, 31.150738],
+              [121.663712, 31.147558],
+            ],
+          },
+          {
+            fromName: '明日世界',
+            toName: '宝藏湾',
+            coords: [
+              [121.663712, 31.147558],
+              [121.669354, 31.151372],
+            ],
+          },
+          {
+            fromName: '宝藏湾',
+            toName: '探险岛',
+            coords: [
+              [121.669354, 31.151372],
+              [121.669479, 31.149412],
+            ],
+          },
+          {
+            fromName: '探险岛',
+            toName: '米奇大街',
+            coords: [
+              [121.669479, 31.149412],
+              [121.668006, 31.147929],
+            ],
+          },
+        ],
+        // COLORS:["red", "yellow", "pink", "#900"]
 
-export default {
-  // name: "Map",
-  data() {
-    return {
-      chart: "",
-      bmap: {}, //定义一个当前的bmap
-      mapStyle: {
-        styleJson: [
-          {
-            featureType: "land",
-            elementType: "geometry",
-            stylers: {
-              color: "#081734"
-            }
-          },
-          {
-            featureType: "building",
-            elementType: "geometry",
-            stylers: {
-              color: "#04406F"
-            }
-          },
-          {
-            featureType: "building",
-            elementType: "labels",
-            stylers: {
-              visibility: "off"
-            }
-          },
-          {
-            featureType: "highway",
-            elementType: "geometry",
-            stylers: {
-              color: "#015B99"
-            }
-          },
-          {
-            featureType: "highway",
-            elementType: "labels",
-            stylers: {
-              visibility: "off"
-            }
-          },
-          {
-            featureType: "arterial",
-            elementType: "geometry",
-            stylers: {
-              color: "#003051"
-            }
-          },
-          {
-            featureType: "arterial",
-            elementType: "labels",
-            stylers: {
-              visibility: "off"
-            }
-          },
-          {
-            featureType: "green",
-            elementType: "geometry",
-            stylers: {
-              visibility: "off"
-            }
-          },
-          {
-            featureType: "water",
-            elementType: "geometry",
-            stylers: {
-              color: "#044161"
-            }
-          },
-          {
-            featureType: "subway",
-            elementType: "geometry.stroke",
-            stylers: {
-              color: "#003051"
-            }
-          },
-          {
-            featureType: "subway",
-            elementType: "labels",
-            stylers: {
-              visibility: "off"
-            }
-          },
-          {
-            featureType: "railway",
-            elementType: "geometry",
-            stylers: {
-              visibility: "off"
-            }
-          },
-          {
-            featureType: "railway",
-            elementType: "labels",
-            stylers: {
-              visibility: "off"
-            }
-          },
-          {
-            featureType: "all",
-            elementType: "labels.text.stroke",
-            stylers: {
-              color: "#313131"
-            }
-          },
-          {
-            featureType: "all",
-            elementType: "labels.text.fill",
-            stylers: {
-              color: "#FFFFFF"
-            }
-          },
-          {
-            featureType: "manmade",
-            elementType: "geometry",
-            stylers: {
-              visibility: "off"
-            }
-          },
-          {
-            featureType: "manmade",
-            elementType: "labels",
-            stylers: {
-              visibility: "off"
-            }
-          },
-          {
-            featureType: "local",
-            elementType: "geometry",
-            stylers: {
-              visibility: "off"
-            }
-          },
-          {
-            featureType: "local",
-            elementType: "labels",
-            stylers: {
-              visibility: "off"
-            }
-          },
-          {
-            featureType: "subway",
-            elementType: "geometry",
-            stylers: {
-              lightness: -65
-            }
-          },
-          {
-            featureType: "railway",
-            elementType: "all",
-            stylers: {
-              lightness: -40
-            }
-          },
-          {
-            featureType: "boundary",
-            elementType: "geometry",
-            stylers: {
-              color: "#8b8787",
-              weight: "1",
-              lightness: -29
-            }
-          }
-        ]
-      },
-      geoCoordMap: [
-        {
-          name: "米奇大街",
-          value: [121.668006,31.147929],
-          tooltip: {
-            formatter: "时间:8:30am<br/>出发地:玩具总动员酒店"
-          }
-        },
-        {
-          name: "探险岛",
-          value: [121.669479,31.149412],
-          tooltip: {
-            formatter: "时间:8:30am<br/>出发地:玩具总动员酒店"
-          }
-        },
-        {
-          name: "宝藏湾",
-          value: [121.669354,31.151372],
-          tooltip: {
-            formatter: "时间:8:30am<br/>出发地:玩具总动员酒店"
-          }
-        },
-        {
-          name: "明日世界",
-          value: [121.663712,31.147558],
-          tooltip: {
-            formatter: "时间:8:30am<br/>出发地:玩具总动员酒店"
-          }
-        },
-        {
-          name: "梦幻世界",
-          value: [121.666337,31.150738],
-          tooltip: {
-            formatter: "时间:8:30am<br/>出发地:玩具总动员酒店"
-          }
-        },
-        {
-          name: "迪士尼·皮克斯玩具总动员",
-          value: [121.661448,31.150927],
-          tooltip: {
-            formatter: "时间:8:30am<br/>出发地:玩具总动员酒店"
-          }
-        },
-        {
-          name: "上海迪士尼乐园酒店",
-          value: [121.672557,31.141867],
-          tooltip: {
-            formatter: "时间:8:30am<br/>出发地:玩具总动员酒店"
-          }
-        },
-        {
-          name: "玩具总动员酒店",
-          value: [121.659886,31.145592],
-          tooltip: {
-            formatter: "时间:8:30am<br/>出发地:玩具总动员酒店"
-          }
-        }
-      ],
-      line: [
-        {
-          fromName: "上海迪士尼乐园酒店",
-          toName: "玩具总动员酒店",
-          coords: [
-            [121.672557,31.141867],
-            [121.659886,31.145592]
-          ]
-        },
-        {
-          fromName: "玩具总动员酒店",
-          toName: "迪士尼·皮克斯玩具总动员",
-          coords: [
-            [121.659886,31.145592],
-            [121.661448,31.150927]
-          ]
-        },
-        {
-          fromName: "迪士尼·皮克斯玩具总动员",
-          toName: "梦幻世界",
-          coords: [
-            [121.661448,31.150927],
-            [121.666337,31.150738]
-          ]
-        },
-        {
-          fromName: "梦幻世界",
-          toName: "明日世界",
-          coords: [
-            [121.666337,31.150738],
-            [121.663712,31.147558]
-          ]
-        },
-        {
-          fromName: "明日世界",
-          toName: "宝藏湾",
-          coords: [
-            [121.663712,31.147558],
-            [121.669354,31.151372]
-          ]
-        },
-        {
-          fromName: "宝藏湾",
-          toName: "探险岛",
-          coords: [
-            [121.669354,31.151372],
-            [121.669479,31.149412]
-          ]
-        },
-        {
-          fromName: "探险岛",
-          toName: "米奇大街",
-          coords: [
-            [121.669479,31.149412],
-            [121.668006,31.147929]
-          ]
-        }
-      ],
-      // COLORS:["red", "yellow", "pink", "#900"]
-
-      show3: false,
-      timer: 0,
-      input: '',
-      updateTime: process.env.VUE_APP_UPDATE_TIME,
-      nodeEnv: process.env.NODE_ENV,
-      dependencies: dependencies,
-      devDependencies: devDependencies,
-      tableData: [
+        show3: false,
+        timer: 0,
+        input: '',
+        updateTime: process.env.VUE_APP_UPDATE_TIME,
+        nodeEnv: process.env.NODE_ENV,
+        dependencies: dependencies,
+        devDependencies: devDependencies,
+        tableData: [
           {
             way: '80-30-49-31-FA-65',
             time: '08:50:34',
@@ -613,8 +613,8 @@ export default {
             long: '32min',
             tag: '99.83',
           },
-      ],
-      tableData1: [
+        ],
+        tableData1: [
           {
             way: '80-30-49-31-FA-65',
             time: '10:50:58',
@@ -657,8 +657,8 @@ export default {
             long: '43min',
             tag: '10.25',
           },
-      ],
-      tableData2: [
+        ],
+        tableData2: [
           {
             way: '80-30-49-31-FA-65',
             time: '10:50:34',
@@ -709,178 +709,174 @@ export default {
             long: '22min',
             tag: '10.11',
           },
-      ],
-    };
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.loadBMap("zIqWyMZvUlRW8IMU9djlFeTBhGytYp1Q").then(() => {
-        this.initMap();
-        this.goAnchor();
+        ],
+      }
+    },
+    mounted() {
+      this.$nextTick(() => {
+        this.loadBMap('zIqWyMZvUlRW8IMU9djlFeTBhGytYp1Q').then(() => {
+          this.initMap()
+          this.goAnchor()
+        })
       })
-    })
-  },
-  methods: {
-    // 页面锚点:锚点定位+滚动条滚动 效果实现
-    loadBMap(ak) {
-      return new Promise(function(resolve, reject) {
+    },
+    methods: {
+      // 页面锚点:锚点定位+滚动条滚动 效果实现
+      loadBMap(ak) {
+        return new Promise(function (resolve, reject) {
           if (typeof BMap !== 'undefined') {
-              resolve(BMap)
-              return true
+            resolve(BMap)
+            return true
           }
-          window.onBMapCallback = function() {
-              resolve(BMap)
+          window.onBMapCallback = function () {
+            resolve(BMap)
           }
           let script = document.createElement('script')
           script.type = 'text/javascript'
           script.src =
-              'http://api.map.baidu.com/api?v=2.0&ak='+ ak +'&__ec_v__=20190126&callback=onBMapCallback'
+            'http://api.map.baidu.com/api?v=2.0&ak=' +
+            ak +
+            '&__ec_v__=20190126&callback=onBMapCallback'
           script.onerror = reject
           document.head.appendChild(script)
-      })
-    },
-    goAnchor(idNum){
-      document.querySelector('#'+idNum).scrollIntoView(false)
-      
-    },
-    initMap() {
-      this.chart = this.$echarts.init(this.$refs.map);
-      //初始化echarts
-      this.chart.setOption({
-        animation: true,
-        legend: {
-          orient: "vertical",
-          top: 10,
-          left: 10,
-          textStyle: {
-            color: "#FFFFFF"
+        })
+      },
+      goAnchor(idNum) {
+        document.querySelector('#' + idNum).scrollIntoView(false)
+      },
+      initMap() {
+        this.chart = this.$echarts.init(this.$refs.map)
+        //初始化echarts
+        this.chart.setOption({
+          animation: true,
+          legend: {
+            orient: 'vertical',
+            top: 10,
+            left: 10,
+            textStyle: {
+              color: '#FFFFFF',
+            },
+            selectedMode: 'multiple',
           },
-          selectedMode: "multiple"
-        },
-        bmap: {
-          // 加载 bmap 组件
-          center: [121.654287,31.154914],   //沪芦高速
-          zoom: 16,
-          roam: true,
-          label: {
-            show: true
-          },
-          mapStyle: this.mapStyle
-        },
-        // visualMap: {
-        //   type: "piecewise",
-        //   inverse: true,
-        //   top: 10,
-        //   left: 10,
-        //   pieces: [
-        //     {
-        //       value: 0,
-        //       color: this.COLORS[0]
-        //     },
-        //     {
-        //       value: 1,
-        //       color: this.COLORS[1]
-        //     },
-        //     {
-        //       value: 2,
-        //       color: this.COLORS[2]
-        //     },
-        //     {
-        //       value: 3,
-        //       color: this.COLORS[3]
-        //     }
-        //   ],
-        //   borderColor: "#ccc",
-        //   borderWidth: 2,
-        //   backgroundColor: "#eee",
-        //   dimension: 2,
-        //   inRange: {
-        //     color: this.COLORS,
-        //     opacity: 0.7
-        //   }
-        // },
-        tooltip: {
-          show: true,
-          trigger: "item",
-          hideDelay: 4000,
-          formatter: function(d) {
-            var tool = "经度：" + d.value[0] + "<br/>";
-            tool += "纬度：" + d.value[1];
-            console.log(tool)
-            return tool;
-          }
-        },
-        series: [
-          {
-            name: "地点",
-            type: "effectScatter",
-            coordinateSystem: "bmap",
-            polyline: true,
-            data: this.geoCoordMap,
-            silent: true,
+          bmap: {
+            // 加载 bmap 组件
+            center: [121.654287, 31.154914], //沪芦高速
+            zoom: 16,
+            roam: true,
             label: {
-              normal: {
-                show: true,
-                position: "right",
-                formatter: "{b}",
-                color: "yellow"
-              }
-            },
-            symbolSize: 10,
-            showEffectOn: "render",
-            itemStyle: {
-              normal: {
-                color: "red"
-              }
-            },
-            progressiveThreshold: 100,
-            progressive: 400
-          },
-          {
-            name: "轨迹路线",
-            type: "lines",
-            coordinateSystem: "bmap",
-            silent: true, // 图形不响应和触发鼠标事件
-            polyline: false,
-            lineStyle: { color: "red", width: "2" },
-            z: 15,
-            data: this.line,
-            effect: {
               show: true,
-              period: 3, //轨迹移动的实体指向速度，值越小速度越快
-              trailLength: 0.5, //特效尾迹长度[0,1]值越大，尾迹越长重
-              color: "yellow",
-              symbol:
-                "path://M30.9,53.2C16.8,53.2,5.3,41.7,5.3,27.6S16.8,2,30.9,2C45,2,56.4,13.5,56.4,27.6S45,53.2,30.9,53.2z M30.9,3.5C17.6,3.5,6.8,14.4,6.8,27.6c0,13.3,10.8,24.1,24.101,24.1C44.2,51.7,55,40.9,55,27.6C54.9,14.4,44.1,3.5,30.9,3.5z M36.9,35.8c0,0.601-0.4,1-0.9,1h-1.3c-0.5,0-0.9-0.399-0.9-1V19.5c0-0.6,0.4-1,0.9-1H36c0.5,0,0.9,0.4,0.9,1V35.8z M27.8,35.8 c0,0.601-0.4,1-0.9,1h-1.3c-0.5,0-0.9-0.399-0.9-1V19.5c0-0.6,0.4-1,0.9-1H27c0.5,0,0.9,0.4,0.9,1L27.8,35.8L27.8,35.8z", //轨迹移动的实体
-              symbolSize: 15 //图标大小
-            }
-          }
-        ]
-      });
-      this.bmap = this.chart
-        .getModel()
-        .getComponent("bmap")
-        .getBMap();
-      this.bmap.addControl(
-        new BMap.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_RIGHT })
-      ); // 在左下角显示比例尺控件
-      this.bmap.addEventListener("click", function(e) {
-        alert(e.point.lng + "," + e.point.lat);
-      });
-    }
+            },
+            mapStyle: this.mapStyle,
+          },
+          // visualMap: {
+          //   type: "piecewise",
+          //   inverse: true,
+          //   top: 10,
+          //   left: 10,
+          //   pieces: [
+          //     {
+          //       value: 0,
+          //       color: this.COLORS[0]
+          //     },
+          //     {
+          //       value: 1,
+          //       color: this.COLORS[1]
+          //     },
+          //     {
+          //       value: 2,
+          //       color: this.COLORS[2]
+          //     },
+          //     {
+          //       value: 3,
+          //       color: this.COLORS[3]
+          //     }
+          //   ],
+          //   borderColor: "#ccc",
+          //   borderWidth: 2,
+          //   backgroundColor: "#eee",
+          //   dimension: 2,
+          //   inRange: {
+          //     color: this.COLORS,
+          //     opacity: 0.7
+          //   }
+          // },
+          tooltip: {
+            show: true,
+            trigger: 'item',
+            hideDelay: 4000,
+            formatter: function (d) {
+              var tool = '经度：' + d.value[0] + '<br/>'
+              tool += '纬度：' + d.value[1]
+              console.log(tool)
+              return tool
+            },
+          },
+          series: [
+            {
+              name: '地点',
+              type: 'effectScatter',
+              coordinateSystem: 'bmap',
+              polyline: true,
+              data: this.geoCoordMap,
+              silent: true,
+              label: {
+                normal: {
+                  show: true,
+                  position: 'right',
+                  formatter: '{b}',
+                  color: 'yellow',
+                },
+              },
+              symbolSize: 10,
+              showEffectOn: 'render',
+              itemStyle: {
+                normal: {
+                  color: 'red',
+                },
+              },
+              progressiveThreshold: 100,
+              progressive: 400,
+            },
+            {
+              name: '轨迹路线',
+              type: 'lines',
+              coordinateSystem: 'bmap',
+              silent: true, // 图形不响应和触发鼠标事件
+              polyline: false,
+              lineStyle: { color: 'red', width: '2' },
+              z: 15,
+              data: this.line,
+              effect: {
+                show: true,
+                period: 3, //轨迹移动的实体指向速度，值越小速度越快
+                trailLength: 0.5, //特效尾迹长度[0,1]值越大，尾迹越长重
+                color: 'yellow',
+                symbol:
+                  'path://M30.9,53.2C16.8,53.2,5.3,41.7,5.3,27.6S16.8,2,30.9,2C45,2,56.4,13.5,56.4,27.6S45,53.2,30.9,53.2z M30.9,3.5C17.6,3.5,6.8,14.4,6.8,27.6c0,13.3,10.8,24.1,24.101,24.1C44.2,51.7,55,40.9,55,27.6C54.9,14.4,44.1,3.5,30.9,3.5z M36.9,35.8c0,0.601-0.4,1-0.9,1h-1.3c-0.5,0-0.9-0.399-0.9-1V19.5c0-0.6,0.4-1,0.9-1H36c0.5,0,0.9,0.4,0.9,1V35.8z M27.8,35.8 c0,0.601-0.4,1-0.9,1h-1.3c-0.5,0-0.9-0.399-0.9-1V19.5c0-0.6,0.4-1,0.9-1H27c0.5,0,0.9,0.4,0.9,1L27.8,35.8L27.8,35.8z', //轨迹移动的实体
+                symbolSize: 15, //图标大小
+              },
+            },
+          ],
+        })
+        this.bmap = this.chart.getModel().getComponent('bmap').getBMap()
+        this.bmap.addControl(
+          new BMap.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_RIGHT })
+        ) // 在左下角显示比例尺控件
+        this.bmap.addEventListener('click', function (e) {
+          alert(e.point.lng + ',' + e.point.lat)
+        })
+      },
+    },
   }
-};
 </script>
- 
+
 <style lang="scss" scoped>
-.map {
+  .map {
+    width: 2500px;
+    height: 500px;
+  }
 
-  width: 2500px;
-  height: 500px;
- 
-}
-
-.index-container {
+  .index-container {
     padding: 0 !important;
     margin: 0 !important;
     background: #f5f7f8 !important;
@@ -972,14 +968,4 @@ export default {
       }
     }
   }
-
-
 </style>
-
-
-
-
-
-
-
-

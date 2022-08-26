@@ -10,7 +10,7 @@
           <span>认 证 旅 客</span>
         </div>
         <center style="margin-top: 20px; margin-bottom: 100px">
-          <el-container class="cot" style="width: 1000px">
+          <el-container class="cot" style="width: 1200px">
             <el-main>
               <el-table
                 :data="tableData_1"
@@ -37,15 +37,20 @@
                 <el-table-column
                   prop="ifPortal"
                   label="是否认证"
-                  width="200"
+                  width="150"
                 ></el-table-column>
 
                 <el-table-column
                   prop="visitTime"
                   label="访问时间"
-                  width="200"
+                  width="230"
                 ></el-table-column>
 
+                <el-table-column
+                  prop="phoneNumber"
+                  label="手机号码"
+                  width="200"
+                ></el-table-column>
                 <!-- <el-table-column 
             prop="check" 
             label="具体详情" 
@@ -123,13 +128,15 @@
           userGroup: '无线组——华为手机',
           ifPortal: '已认证',
           visitTime: '2022-07-02 20:27:30',
+          phoneNumber: '17813564375',
         },
         {
           id: '2',
           IPAddress: '192.168.1.108',
-          userGroup: 'R&D——BRUSE电脑',
+          userGroup: '无线组——荣耀手机',
           ifPortal: '已认证',
           visitTime: '2022-07-02 19:16:07',
+          phoneNumber: '15673468345',
         },
         {
           id: '3',
@@ -137,6 +144,7 @@
           userGroup: '无线组——iPhone',
           ifPortal: '已认证',
           visitTime: '2022-07-02 19:03:52',
+          phoneNumber: '18944274542',
         },
         {
           id: '4',
@@ -144,6 +152,7 @@
           userGroup: '无线组——华为手机',
           ifPortal: '已认证',
           visitTime: '2022-07-02 18:55:48',
+          phoneNumber: '16746557564',
         },
         {
           id: '5',
@@ -151,13 +160,15 @@
           userGroup: '无线组——荣耀手机',
           ifPortal: '已认证',
           visitTime: '2022-07-02 18:47:03',
+          phoneNumber: '17867465649',
         },
         {
           id: '6',
           IPAddress: '192.168.3.76',
-          userGroup: 'R&D——BRUSE电脑',
+          userGroup: '无线组——VIVO手机',
           ifPortal: '已认证',
           visitTime: '2022-07-02 18:44:27',
+          phoneNumber: '18768656355',
         },
         {
           id: '7',
@@ -165,6 +176,7 @@
           userGroup: '无线组——小米手机',
           ifPortal: '已认证',
           visitTime: '2022-07-02 18:42:11',
+          phoneNumber: '17685324543',
         },
         {
           id: '8',
@@ -172,6 +184,7 @@
           userGroup: '无线组——OPPO手机',
           ifPortal: '已认证',
           visitTime: '2022-07-02 18:31:09',
+          phoneNumber: '19878456324',
         },
       ]
       const item_2 = [
@@ -206,14 +219,14 @@
         {
           id: '5',
           IPAddress: '192.168.3.84',
-          userGroup: 'R&D——Tina电脑',
+          userGroup: '无线组——VIVO手机',
           ifPortal: '未认证',
           visitTime: '2022-07-02 18:20:18',
         },
         {
           id: '6',
           IPAddress: '192.168.1.15',
-          userGroup: 'R&D——BRUSE电脑',
+          userGroup: '无线组——华为手机',
           ifPortal: '未认证',
           visitTime: '2022-07-02 18:15:29',
         },
