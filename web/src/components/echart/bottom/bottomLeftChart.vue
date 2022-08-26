@@ -45,6 +45,7 @@
           if (jsonObj[i].humanFlow > 10000 && jsonObj[i].humanFlow < 60000)
             list.push(jsonObj[i].humanFlow - 15000)
         }
+        console.log(list)
         return list
       },
       async draw() {

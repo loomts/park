@@ -53,6 +53,23 @@ export const asyncRoutes = [
       },
     ],
   },
+  /* {
+            path: "/test",
+            component: Layout,
+            redirect: "noRedirect",
+            children: [
+              {
+                path: "test",
+                name: "Test",
+                component: () => import("@/views/test/index"),
+                meta: {
+                  title: "test",
+                  icon: "marker",
+                  permissions: ["admin"],
+                },
+              },
+            ],
+          }, */
 
   {
     path: '/manage',
@@ -80,12 +97,12 @@ export const asyncRoutes = [
         component: () => import('@/views/manage/hotgraph/index'),
         meta: { title: '热点图', permissions: ['admin'] },
       },
-      // {
-      //   path: 'managework',
-      //   name: 'Managework',
-      //   component: () => import('@/views/vab/verify/index'),
-      //   meta: { title: '园区基础设施', permissions: ['admin'] },
-      // },
+      {
+        path: 'shop',
+        name: 'Shop',
+        component: () => import('@/views/manage/shop/index'),
+        meta: { title: '商店营业状况', permissions: ['admin'] },
+      },
       {
         path: 'manageparking',
         name: 'Manageparking',

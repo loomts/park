@@ -187,8 +187,8 @@
 <style lang="scss" scoped>
   .login-container {
     height: 100vh;
-    background: url('~@/assets/login_images/background.jpg') center center fixed
-      no-repeat;
+    opacity: 0.9;
+    background: url('~@/assets/login_images/background.png') fixed no-repeat;
     background-size: cover;
 
     .title {

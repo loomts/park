@@ -64,7 +64,7 @@
           class="warning"
           style="margin-left: 130px; margin-top: 50px; margin-bottom: 20px"
         >
-        <!-- <vab-colorful-icon icon-class="expired" /> -->
+          <!-- <vab-colorful-icon icon-class="expired" /> -->
           <span>未 认 证 旅 客</span>
         </div>
         <center style="margin-top: 20px; margin-bottom: 100px">
@@ -248,7 +248,7 @@
         }
         return list
       },
-    }
+    },
   }
 </script>
 
