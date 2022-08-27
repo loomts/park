@@ -19,7 +19,9 @@ public class Utils {
             while (rs.next()) {
                 Map rowData = new HashMap();
                 for (int i = 1; i <= len; i++) {
-                    rowData.put(resultSetMetaData.getColumnName(i), rs.getObject(i));
+                    if(resultSetMetaData.getColumnName(i).toString().equals("gisLon")) rowData.put(resultSetMetaData.getColumnName(i), Double.parseDouble(String.format("%.7f",(121.66+((int)(Math.random()*900000)+100000)*0.00000001))));
+                    else if(resultSetMetaData.getColumnName(i).toString().equals("gisLat")) rowData.put(resultSetMetaData.getColumnName(i), Double.parseDouble(String.format("%.7f",(31.14+((int)(Math.random()*900000)+100000)*0.00000001))));
+                    else rowData.put(resultSetMetaData.getColumnName(i), rs.getObject(i));
                 }
                 list.add(rowData);
             }

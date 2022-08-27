@@ -1,7 +1,7 @@
 <template>
   <div class="test">
     <el-row>
-      <el-col :span="20" style="margin: 50px">
+      <el-col :span="20" style="margin: 50px;width:1465px">
         <el-card class="card" shadow="always">
           <div slot="header">
             <span style="font-size: 20px; color: #909399">设备名称</span>
@@ -203,7 +203,7 @@
   .box-card {
     margin-left: 100px;
     margin-top: 20px;
-    width: 1200px;
+    width: 1360px;
   }
   .topImg {
     width: 25px;
@@ -389,7 +389,7 @@
     margin-top: -100px;
     margin-left: 920px;
     height: 100px;
-    width: 200px;
+    width: 400px;
   }
   .circle5 {
     width: 15px;

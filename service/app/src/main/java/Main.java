@@ -256,8 +256,8 @@ public class Main{
         String mac=dataObject.get("mac").toString();
         String returnStr="{" +
                 "name: "+"\""+name+"\""+","+
-                "gisLon: "+gisLon+","+
-                "gisLat: "+gisLat+","+
+                "gisLon: "+(121.66+((int)(Math.random()*900000)+100000)*0.0000001)+","+
+                "gisLat: "+(31.14+((int)(Math.random()*900000)+100000)*0.0000001)+","+
                 "traffic: "+traffic+","+
                 "upwardSpeed: "+upwardSpeed+","+
                 "downwardSpeed: "+downwardSpeed+","+
