@@ -1,7 +1,7 @@
 <template>
   <div class="test">
     <el-row>
-      <el-col :span="20" style="margin: 50px;width:1465px">
+      <el-col :span="20" style="margin: 50px; width: 1465px">
         <el-card class="card" shadow="always">
           <div slot="header">
             <span style="font-size: 20px; color: #909399">设备名称</span>
