@@ -765,10 +765,31 @@
       }
     },
     mounted() {
-      this.initMap()
-      this.goAnchor()
+      this.$nextTick(() => {
+        this.loadBMap("zIqWyMZvUlRW8IMU9djlFeTBhGytYp1Q").then(() => {
+          this.initMap()
+          this.goAnchor()
+        })
+      })
     },
     methods: {
+      loadBMap(ak) {
+          return new Promise(function(resolve, reject) {
+              if (typeof BMap !== 'undefined') {
+                  resolve(BMap)
+                  return true
+              }
+              window.onBMapCallback = function() {
+                  resolve(BMap)
+              }
+              let script = document.createElement('script')
+              script.type = 'text/javascript'
+              script.src =
+                  'http://api.map.baidu.com/api?v=2.0&ak='+ ak +'&__ec_v__=20190126&callback=onBMapCallback'
+              script.onerror = reject
+              document.head.appendChild(script)
+          })
+      },
       // 页面锚点:锚点定位+滚动条滚动 效果实现
       goAnchor(idNum) {
         document.querySelector('#' + idNum).scrollIntoView(false)
