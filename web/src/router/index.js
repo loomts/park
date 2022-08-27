@@ -135,84 +135,82 @@ export const asyncRoutes = [
     ],
   },
 
-    {
-        path: '/control',
-        component: Layout,
-        redirect: 'noRedirect',
-        name: 'Control',
-        alwaysShow: true,
-        meta: { title: '疫情防控', icon: 'box-open' },
-        children: [
-            //{
-            //        path: 'queryway',
-            //        name: 'Queryway',
-            //        component: () =>
-            //            import ('@/views/control/queryway/index'),
-            //        meta: { title: '查询路径', permissions: ['admin'] },
-            //    },
-            //    {
-            //        path: 'querycontact',
-            //        name: 'Querycontact',
-            //        component: () =>
-            //            import ('@/views/control/querycloser/index'),
-            //        meta: { title: '密接查询', permissions: ['admin'] },
-            //    },
-            {
-                path: 'query',
-                name: 'Query',
-                component: () =>
-                    import ('@/views/control/query/index'),
-                meta: { title: '防控查询', permissions: ['admin'] },
-            },
-            {
-                path: 'queryPath',
-                name: 'QueryPath',
-                component: () =>
-                    import ('@/views/control/queryPath/index'),
-                meta: { title: '游玩路线推荐', permissions: ['admin'] },
-            },
-        ],
-    },
+  {
+    path: '/control',
+    component: Layout,
+    redirect: 'noRedirect',
+    name: 'Control',
+    alwaysShow: true,
+    meta: { title: '疫情防控', icon: 'box-open' },
+    children: [
+      //{
+      //        path: 'queryway',
+      //        name: 'Queryway',
+      //        component: () =>
+      //            import ('@/views/control/queryway/index'),
+      //        meta: { title: '查询路径', permissions: ['admin'] },
+      //    },
+      //    {
+      //        path: 'querycontact',
+      //        name: 'Querycontact',
+      //        component: () =>
+      //            import ('@/views/control/querycloser/index'),
+      //        meta: { title: '密接查询', permissions: ['admin'] },
+      //    },
+      {
+        path: 'query',
+        name: 'Query',
+        component: () => import('@/views/control/query/index'),
+        meta: { title: '防控查询', permissions: ['admin'] },
+      },
+      {
+        path: 'queryPath',
+        name: 'QueryPath',
+        component: () => import('@/views/control/queryPath/index'),
+        meta: { title: '游玩路线推荐', permissions: ['admin'] },
+      },
+    ],
+  },
 
-    {
-        path: '/monitor',
-        component: Layout,
-        redirect: 'noRedirect',
-        name: 'Monitor',
-        alwaysShow: true,
-        meta: { title: '安全管理', icon: 'box-open' },
-        children: [{
-            path: 'monitortest',
-            name: 'Monitortest',
-            component: () =>
-                import ('@/views/monitor/monitortest/index'),
-            meta: { title: '重要场所监控', permissions: ['admin'] },
-        }, ],
-    },
+  {
+    path: '/monitor',
+    component: Layout,
+    redirect: 'noRedirect',
+    name: 'Monitor',
+    alwaysShow: true,
+    meta: { title: '安全管理', icon: 'box-open' },
+    children: [
+      {
+        path: 'monitortest',
+        name: 'Monitortest',
+        component: () => import('@/views/monitor/monitortest/index'),
+        meta: { title: '重要场所监控', permissions: ['admin'] },
+      },
+    ],
+  },
 
-    {
-        path: '/logg',
-        component: Layout,
-        redirect: 'noRedirect',
-        name: 'Logg',
-        alwaysShow: true,
-        meta: { title: '日常管理', icon: 'box-open' },
-        children: [{
-                path: 'nowlog',
-                name: 'Nowlog',
-                component: () =>
-                    import ('@/views/logg/nowlog/index'),
-                meta: { title: '日志详情', permissions: ['admin'] },
-            },
-            {
-                path: 'portal',
-                name: 'portal',
-                component: () =>
-                    import ('@/views/portal/index'),
-                meta: { title: '认证详情', permissions: ['admin'] },
-            },
-        ],
-    },
+  {
+    path: '/logg',
+    component: Layout,
+    redirect: 'noRedirect',
+    name: 'Logg',
+    alwaysShow: true,
+    meta: { title: '日常管理', icon: 'box-open' },
+    children: [
+      {
+        path: 'nowlog',
+        name: 'Nowlog',
+        component: () => import('@/views/logg/nowlog/index'),
+        meta: { title: '日志详情', permissions: ['admin'] },
+      },
+      {
+        path: 'portal',
+        name: 'portal',
+        component: () => import('@/views/portal/index'),
+        meta: { title: '认证详情', permissions: ['admin'] },
+      },
+    ],
+  },
 
   // {
   //   path: '/vab',
