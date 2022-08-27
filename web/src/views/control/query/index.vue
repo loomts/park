@@ -775,7 +775,7 @@
     methods: {
       loadBMap(ak) {
           return new Promise(function(resolve, reject) {
-              if (typeof BMap !== 'undefined') {
+              if (typeof BMap !== 'cd wundefined') {
                   resolve(BMap)
                   return true
               }
