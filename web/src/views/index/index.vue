@@ -12,14 +12,14 @@
     <!-- <div :style="{ backgroundImage: `url{{backgroundImgUrl}}` }"></div> -->
     <!-- <div class="title">园区总览</div> -->
 
-    <div class="boxall" style="height: 475px">
+    <div class="boxall" style="height: 475px;width:500px">
       <div class="alltitle1">游客数量</div>
       <echarts4Vue class="echart1"></echarts4Vue>
       <div class="foot1"></div>
     </div>
 
     <!-- <div></div> -->
-    <div class="boxall2" style="height: 470px">
+    <div class="boxall2" style="height: 470px;width:500px">
       <div class="alltitle2">停车场使用情况</div>
       <echarts2Vue class="echart2"></echarts2Vue>
       <div class="foot2"></div>
@@ -56,7 +56,7 @@
     </div>
 
     <!-- :header-cell-style="{ background: '#DCD6F7', color: '#ffffff' }" -->
-    <div class="boxall5" style="height: 350px">
+    <div class="boxall5" style="height: 370px;width:550px">
       <div class="alltitle5">站点健康度</div>
       <echarts5Vue class="echart5"></echarts5Vue>
 
