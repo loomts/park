@@ -1,0 +1,90 @@
+type (
+	Request {
+		Name string `path:"name=you|me"`
+	}
+	accessResp {
+		Id       int64  `json:"id"`
+		Location string `json:"location"` // 接入地点
+		Date     string `json:"date"`     // 接入日期
+		Num      int64  `json:"num"`      // 接入数量
+	}
+	incomeResp {
+		Id   int64  `json:"id"`
+		Type string `json:"type"` // 收入类型
+		Date string `json:"date"` // 日期
+		Num  int64  `json:"num"`  // 当天收入
+	}
+	parkingLotResp {
+		Id       int64  `json:"id"`
+		Name     string `json:"name"`     // 停车场名字
+		Duration int64  `json:"duration"` // 停车时间（小时）
+		Num      int64  `json:"num"`      // 泊车数
+	}
+	siteInfoResp {
+		Id           int64  `json:"id"`
+		Date         string `json:"date"`          // 日期
+		RevisitRate  int64  `json:"revisit_rate"`  // 重复访问率（%）
+		SiteHealth   int64  `json:"site_health"`   // 站点健康度
+		RfHealth     int64  `json:"rf_health"`     // 射频健康度
+		DeviceHealth int64  `json:"device_health"` // 设备健康度
+		Flow         int64  `json:"flow"`          // 当日站点流量
+	}
+	touristFlowResp {
+		Id       int64  `json:"id"`
+		Location string `json:"location"` // 园区地点
+		Date     string `json:"date"`     // 时间
+		Num      int64  `json:"num"`      // 游客数量
+	}
+	touristCarProvinceResp {
+		Id       int64  `json:"id"`
+		Province string `json:"province"` // 省份
+		Date     string `json:"date"`     // 日期
+		FlowNum  int64  `json:"flow_num"` // 人流数量
+		CarNum   int64  `json:"car_num"`  // 车辆数
+	}
+	userResp {
+		Username string `json:"username"` // 用户名
+		Password string `json:"password"` // 密码
+	}
+	wechatResp {
+		Date string `json:"date"` // 日期
+		Num  int64  `json:"num"`  // 微信关注数量
+	}
+)
+
+@server(
+	prefix: api
+)
+service park-api {
+	@doc "获取接入详情"
+	@handler accessHandler
+	get /access returns (accessResp)
+
+	@doc "获取日收入详情"
+	@handler incomeHandler
+	get /income returns (incomeResp)
+
+	@doc "获取停车详情"
+	@handler parkingLotHandler
+	get /parkingLot returns (parkingLotResp)
+
+	@doc "获取站点详情"
+	@handler siteInfoHandler
+	get /siteInfo returns (siteInfoResp)
+
+	@doc "获取客流量详情"
+	@handler touristFlowHandler
+	get /touristFlow returns (touristFlowResp)
+
+	@doc "获取游客与车辆来源省份"
+	@handler touristCarProvinceHandler
+	get /touristCarProvince returns (touristCarProvinceResp)
+
+	@doc "获取用户详情"
+	@handler userHandle
+	get /user returns (userResp)
+
+	@doc "获取微信关注详情"
+	@handler wechatHandler
+	get /wechat returns (wechatResp)
+}
