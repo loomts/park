@@ -5,13 +5,20 @@ import (
 
 	"github.com/loomts/EP1/service/api/internal/logic"
 	"github.com/loomts/EP1/service/api/internal/svc"
+	"github.com/loomts/EP1/service/api/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
-func userHandleHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func userHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		l := logic.NewUserHandleLogic(r.Context(), svcCtx)
-		resp, err := l.UserHandle()
+		var req types.UserReq
+		if err := httpx.Parse(r, &req); err != nil {
+			httpx.ErrorCtx(r.Context(), w, err)
+			return
+		}
+
+		l := logic.NewUserLogic(r.Context(), svcCtx)
+		resp, err := l.User(&req)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {

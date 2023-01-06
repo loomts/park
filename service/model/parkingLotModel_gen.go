@@ -18,7 +18,7 @@ import (
 var (
 	parkingLotFieldNames          = builder.RawFieldNames(&ParkingLot{})
 	parkingLotRows                = strings.Join(parkingLotFieldNames, ",")
-	parkingLotRowsExpectAutoSet   = strings.Join(stringx.Remove(parkingLotFieldNames, "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), ",")
+	parkingLotRowsExpectAutoSet   = strings.Join(stringx.Remove(parkingLotFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), ",")
 	parkingLotRowsWithPlaceHolder = strings.Join(stringx.Remove(parkingLotFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), "=?,") + "=?"
 
 	cacheParkingLotIdPrefix = "cache:parkingLot:id:"
@@ -81,8 +81,8 @@ func (m *defaultParkingLotModel) FindOne(ctx context.Context, id int64) (*Parkin
 func (m *defaultParkingLotModel) Insert(ctx context.Context, data *ParkingLot) (sql.Result, error) {
 	parkingLotIdKey := fmt.Sprintf("%s%v", cacheParkingLotIdPrefix, data.Id)
 	ret, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?)", m.table, parkingLotRowsExpectAutoSet)
-		return conn.ExecCtx(ctx, query, data.Id, data.Name, data.Duration, data.Num)
+		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, parkingLotRowsExpectAutoSet)
+		return conn.ExecCtx(ctx, query, data.Name, data.Duration, data.Num)
 	}, parkingLotIdKey)
 	return ret, err
 }

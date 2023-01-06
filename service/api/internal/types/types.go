@@ -51,9 +51,13 @@ type TouristCarProvinceResp struct {
 	CarNum   int64  `json:"car_num"`  // 车辆数
 }
 
+type UserReq struct {
+	Id int64 `json:"id"` // 用户id
+}
+
 type UserResp struct {
+	Id       int64  `json:"id"`       // 用户id
 	Username string `json:"username"` // 用户名
-	Password string `json:"password"` // 密码
 }
 
 type WechatResp struct {

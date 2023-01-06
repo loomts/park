@@ -42,9 +42,12 @@ type (
 		FlowNum  int64  `json:"flow_num"` // 人流数量
 		CarNum   int64  `json:"car_num"`  // 车辆数
 	}
+	userReq {
+		Id int64 `json:"id"` // 用户id
+	}
 	userResp {
+		Id       int64  `json:"id"`       // 用户id
 		Username string `json:"username"` // 用户名
-		Password string `json:"password"` // 密码
 	}
 	wechatResp {
 		Date string `json:"date"` // 日期
@@ -59,31 +62,31 @@ service park-api {
 	@doc "获取接入详情"
 	@handler accessHandler
 	get /access returns (accessResp)
-
+	
 	@doc "获取日收入详情"
 	@handler incomeHandler
 	get /income returns (incomeResp)
-
+	
 	@doc "获取停车详情"
 	@handler parkingLotHandler
 	get /parkingLot returns (parkingLotResp)
-
+	
 	@doc "获取站点详情"
 	@handler siteInfoHandler
 	get /siteInfo returns (siteInfoResp)
-
+	
 	@doc "获取客流量详情"
 	@handler touristFlowHandler
 	get /touristFlow returns (touristFlowResp)
-
+	
 	@doc "获取游客与车辆来源省份"
 	@handler touristCarProvinceHandler
 	get /touristCarProvince returns (touristCarProvinceResp)
-
+	
 	@doc "获取用户详情"
-	@handler userHandle
-	get /user returns (userResp)
-
+	@handler userHandler
+	post /user (userReq) returns (userResp)
+	
 	@doc "获取微信关注详情"
 	@handler wechatHandler
 	get /wechat returns (wechatResp)

@@ -19,8 +19,8 @@ import (
 var (
 	accessFieldNames          = builder.RawFieldNames(&Access{})
 	accessRows                = strings.Join(accessFieldNames, ",")
-	accessRowsExpectAutoSet   = strings.Join(stringx.Remove(accessFieldNames, "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), ",")
-	accessRowsWithPlaceHolder = strings.Join(stringx.Remove(accessFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), "=?,") + "=?"
+	accessRowsExpectAutoSet   = strings.Join(stringx.Remove(accessFieldNames, "`id`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`"), ",")
+	accessRowsWithPlaceHolder = strings.Join(stringx.Remove(accessFieldNames, "`id`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`"), "=?,") + "=?"
 
 	cacheAccessIdPrefix = "cache:access:id:"
 )
@@ -82,8 +82,8 @@ func (m *defaultAccessModel) FindOne(ctx context.Context, id int64) (*Access, er
 func (m *defaultAccessModel) Insert(ctx context.Context, data *Access) (sql.Result, error) {
 	accessIdKey := fmt.Sprintf("%s%v", cacheAccessIdPrefix, data.Id)
 	ret, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?)", m.table, accessRowsExpectAutoSet)
-		return conn.ExecCtx(ctx, query, data.Id, data.Location, data.Date, data.Num)
+		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, accessRowsExpectAutoSet)
+		return conn.ExecCtx(ctx, query, data.Location, data.Date, data.Num)
 	}, accessIdKey)
 	return ret, err
 }

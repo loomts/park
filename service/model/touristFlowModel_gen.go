@@ -7,6 +7,7 @@ import (
 	"database/sql"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/zeromicro/go-zero/core/stores/builder"
 	"github.com/zeromicro/go-zero/core/stores/cache"
@@ -18,7 +19,7 @@ import (
 var (
 	touristFlowFieldNames          = builder.RawFieldNames(&TouristFlow{})
 	touristFlowRows                = strings.Join(touristFlowFieldNames, ",")
-	touristFlowRowsExpectAutoSet   = strings.Join(stringx.Remove(touristFlowFieldNames, "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), ",")
+	touristFlowRowsExpectAutoSet   = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), ",")
 	touristFlowRowsWithPlaceHolder = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), "=?,") + "=?"
 
 	cacheTouristFlowIdPrefix = "cache:touristFlow:id:"
@@ -38,10 +39,10 @@ type (
 	}
 
 	TouristFlow struct {
-		Id       int64  `db:"id"`
-		Location string `db:"location"` // 园区地点
-		Date     string `db:"date"`     // 时间
-		Num      int64  `db:"num"`      // 游客数量
+		Id       int64     `db:"id"`
+		Location string    `db:"location"` // 园区地点
+		Date     time.Time `db:"date"`     // 时间
+		Num      int64     `db:"num"`      // 游客数量
 	}
 )
 
@@ -81,8 +82,8 @@ func (m *defaultTouristFlowModel) FindOne(ctx context.Context, id int64) (*Touri
 func (m *defaultTouristFlowModel) Insert(ctx context.Context, data *TouristFlow) (sql.Result, error) {
 	touristFlowIdKey := fmt.Sprintf("%s%v", cacheTouristFlowIdPrefix, data.Id)
 	ret, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?)", m.table, touristFlowRowsExpectAutoSet)
-		return conn.ExecCtx(ctx, query, data.Id, data.Location, data.Date, data.Num)
+		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, touristFlowRowsExpectAutoSet)
+		return conn.ExecCtx(ctx, query, data.Location, data.Date, data.Num)
 	}, touristFlowIdKey)
 	return ret, err
 }

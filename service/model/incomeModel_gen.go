@@ -7,6 +7,7 @@ import (
 	"database/sql"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/zeromicro/go-zero/core/stores/builder"
 	"github.com/zeromicro/go-zero/core/stores/cache"
@@ -18,8 +19,8 @@ import (
 var (
 	incomeFieldNames          = builder.RawFieldNames(&Income{})
 	incomeRows                = strings.Join(incomeFieldNames, ",")
-	incomeRowsExpectAutoSet   = strings.Join(stringx.Remove(incomeFieldNames, "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), ",")
-	incomeRowsWithPlaceHolder = strings.Join(stringx.Remove(incomeFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), "=?,") + "=?"
+	incomeRowsExpectAutoSet   = strings.Join(stringx.Remove(incomeFieldNames, "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), ",")
+	incomeRowsWithPlaceHolder = strings.Join(stringx.Remove(incomeFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), "=?,") + "=?"
 
 	cacheIncomeIdPrefix = "cache:income:id:"
 )
@@ -38,10 +39,10 @@ type (
 	}
 
 	Income struct {
-		Id   int64  `db:"id"`
-		Type string `db:"type"` // 收入类型
-		Date string `db:"date"` // 日期
-		Num  int64  `db:"num"`  // 当天收入
+		Id   int64     `db:"id"`
+		Type string    `db:"type"` // 收入类型
+		Date time.Time `db:"date"` // 日期
+		Num  int64     `db:"num"`  // 当天收入
 	}
 )
 

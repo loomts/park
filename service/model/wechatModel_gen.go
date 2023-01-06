@@ -19,18 +19,18 @@ import (
 var (
 	wechatFieldNames          = builder.RawFieldNames(&Wechat{})
 	wechatRows                = strings.Join(wechatFieldNames, ",")
-	wechatRowsExpectAutoSet   = strings.Join(stringx.Remove(wechatFieldNames, "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`"), ",")
-	wechatRowsWithPlaceHolder = strings.Join(stringx.Remove(wechatFieldNames, "`date`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`"), "=?,") + "=?"
+	wechatRowsExpectAutoSet   = strings.Join(stringx.Remove(wechatFieldNames, "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), ",")
+	wechatRowsWithPlaceHolder = strings.Join(stringx.Remove(wechatFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), "=?,") + "=?"
 
-	cacheWechatDatePrefix = "cache:wechat:date:"
+	cacheWechatIdPrefix = "cache:wechat:id:"
 )
 
 type (
 	wechatModel interface {
 		Insert(ctx context.Context, data *Wechat) (sql.Result, error)
-		FindOne(ctx context.Context, date time.Time) (*Wechat, error)
+		FindOne(ctx context.Context, id int64) (*Wechat, error)
 		Update(ctx context.Context, data *Wechat) error
-		Delete(ctx context.Context, date time.Time) error
+		Delete(ctx context.Context, id int64) error
 	}
 
 	defaultWechatModel struct {
@@ -39,6 +39,7 @@ type (
 	}
 
 	Wechat struct {
+		Id   int64     `db:"id"`
 		Date time.Time `db:"date"` // 日期
 		Num  int64     `db:"num"`  // 微信关注数量
 	}
@@ -51,21 +52,21 @@ func newWechatModel(conn sqlx.SqlConn, c cache.CacheConf) *defaultWechatModel {
 	}
 }
 
-func (m *defaultWechatModel) Delete(ctx context.Context, date time.Time) error {
-	wechatDateKey := fmt.Sprintf("%s%v", cacheWechatDatePrefix, date)
+func (m *defaultWechatModel) Delete(ctx context.Context, id int64) error {
+	wechatIdKey := fmt.Sprintf("%s%v", cacheWechatIdPrefix, id)
 	_, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("delete from %s where `date` = ?", m.table)
-		return conn.ExecCtx(ctx, query, date)
-	}, wechatDateKey)
+		query := fmt.Sprintf("delete from %s where `id` = ?", m.table)
+		return conn.ExecCtx(ctx, query, id)
+	}, wechatIdKey)
 	return err
 }
 
-func (m *defaultWechatModel) FindOne(ctx context.Context, date time.Time) (*Wechat, error) {
-	wechatDateKey := fmt.Sprintf("%s%v", cacheWechatDatePrefix, date)
+func (m *defaultWechatModel) FindOne(ctx context.Context, id int64) (*Wechat, error) {
+	wechatIdKey := fmt.Sprintf("%s%v", cacheWechatIdPrefix, id)
 	var resp Wechat
-	err := m.QueryRowCtx(ctx, &resp, wechatDateKey, func(ctx context.Context, conn sqlx.SqlConn, v interface{}) error {
-		query := fmt.Sprintf("select %s from %s where `date` = ? limit 1", wechatRows, m.table)
-		return conn.QueryRowCtx(ctx, v, query, date)
+	err := m.QueryRowCtx(ctx, &resp, wechatIdKey, func(ctx context.Context, conn sqlx.SqlConn, v interface{}) error {
+		query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", wechatRows, m.table)
+		return conn.QueryRowCtx(ctx, v, query, id)
 	})
 	switch err {
 	case nil:
@@ -78,29 +79,29 @@ func (m *defaultWechatModel) FindOne(ctx context.Context, date time.Time) (*Wech
 }
 
 func (m *defaultWechatModel) Insert(ctx context.Context, data *Wechat) (sql.Result, error) {
-	wechatDateKey := fmt.Sprintf("%s%v", cacheWechatDatePrefix, data.Date)
+	wechatIdKey := fmt.Sprintf("%s%v", cacheWechatIdPrefix, data.Id)
 	ret, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("insert into %s (%s) values (?, ?)", m.table, wechatRowsExpectAutoSet)
-		return conn.ExecCtx(ctx, query, data.Date, data.Num)
-	}, wechatDateKey)
+		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, wechatRowsExpectAutoSet)
+		return conn.ExecCtx(ctx, query, data.Id, data.Date, data.Num)
+	}, wechatIdKey)
 	return ret, err
 }
 
 func (m *defaultWechatModel) Update(ctx context.Context, data *Wechat) error {
-	wechatDateKey := fmt.Sprintf("%s%v", cacheWechatDatePrefix, data.Date)
+	wechatIdKey := fmt.Sprintf("%s%v", cacheWechatIdPrefix, data.Id)
 	_, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("update %s set %s where `date` = ?", m.table, wechatRowsWithPlaceHolder)
-		return conn.ExecCtx(ctx, query, data.Num, data.Date)
-	}, wechatDateKey)
+		query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, wechatRowsWithPlaceHolder)
+		return conn.ExecCtx(ctx, query, data.Date, data.Num, data.Id)
+	}, wechatIdKey)
 	return err
 }
 
 func (m *defaultWechatModel) formatPrimary(primary interface{}) string {
-	return fmt.Sprintf("%s%v", cacheWechatDatePrefix, primary)
+	return fmt.Sprintf("%s%v", cacheWechatIdPrefix, primary)
 }
 
 func (m *defaultWechatModel) queryPrimary(ctx context.Context, conn sqlx.SqlConn, v, primary interface{}) error {
-	query := fmt.Sprintf("select %s from %s where `date` = ? limit 1", wechatRows, m.table)
+	query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", wechatRows, m.table)
 	return conn.QueryRowCtx(ctx, v, query, primary)
 }
 

@@ -19,7 +19,7 @@ import (
 var (
 	touristCarProvinceFieldNames          = builder.RawFieldNames(&TouristCarProvince{})
 	touristCarProvinceRows                = strings.Join(touristCarProvinceFieldNames, ",")
-	touristCarProvinceRowsExpectAutoSet   = strings.Join(stringx.Remove(touristCarProvinceFieldNames, "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), ",")
+	touristCarProvinceRowsExpectAutoSet   = strings.Join(stringx.Remove(touristCarProvinceFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), ",")
 	touristCarProvinceRowsWithPlaceHolder = strings.Join(stringx.Remove(touristCarProvinceFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), "=?,") + "=?"
 
 	cacheTouristCarProvinceIdPrefix = "cache:touristCarProvince:id:"
@@ -83,8 +83,8 @@ func (m *defaultTouristCarProvinceModel) FindOne(ctx context.Context, id int64) 
 func (m *defaultTouristCarProvinceModel) Insert(ctx context.Context, data *TouristCarProvince) (sql.Result, error) {
 	touristCarProvinceIdKey := fmt.Sprintf("%s%v", cacheTouristCarProvinceIdPrefix, data.Id)
 	ret, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?)", m.table, touristCarProvinceRowsExpectAutoSet)
-		return conn.ExecCtx(ctx, query, data.Id, data.Province, data.Date, data.FlowNum, data.CarNum)
+		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?)", m.table, touristCarProvinceRowsExpectAutoSet)
+		return conn.ExecCtx(ctx, query, data.Province, data.Date, data.FlowNum, data.CarNum)
 	}, touristCarProvinceIdKey)
 	return ret, err
 }

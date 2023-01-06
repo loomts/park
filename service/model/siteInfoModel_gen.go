@@ -7,6 +7,7 @@ import (
 	"database/sql"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/zeromicro/go-zero/core/stores/builder"
 	"github.com/zeromicro/go-zero/core/stores/cache"
@@ -18,8 +19,8 @@ import (
 var (
 	siteInfoFieldNames          = builder.RawFieldNames(&SiteInfo{})
 	siteInfoRows                = strings.Join(siteInfoFieldNames, ",")
-	siteInfoRowsExpectAutoSet   = strings.Join(stringx.Remove(siteInfoFieldNames, "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`"), ",")
-	siteInfoRowsWithPlaceHolder = strings.Join(stringx.Remove(siteInfoFieldNames, "`id`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`"), "=?,") + "=?"
+	siteInfoRowsExpectAutoSet   = strings.Join(stringx.Remove(siteInfoFieldNames, "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), ",")
+	siteInfoRowsWithPlaceHolder = strings.Join(stringx.Remove(siteInfoFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), "=?,") + "=?"
 
 	cacheSiteInfoIdPrefix = "cache:siteInfo:id:"
 )
@@ -38,13 +39,13 @@ type (
 	}
 
 	SiteInfo struct {
-		Id           int64  `db:"id"`
-		Date         string `db:"date"`          // 日期
-		RevisitRate  int64  `db:"revisit_rate"`  // 重复访问率（%）
-		SiteHealth   int64  `db:"site_health"`   // 站点健康度
-		RfHealth     int64  `db:"rf_health"`     // 射频健康度
-		DeviceHealth int64  `db:"device_health"` // 设备健康度
-		Flow         int64  `db:"flow"`          // 当日站点流量
+		Id           int64     `db:"id"`
+		Date         time.Time `db:"date"`          // 日期
+		RevisitRate  int64     `db:"revisit_rate"`  // 重复访问率（%）
+		SiteHealth   int64     `db:"site_health"`   // 站点健康度
+		RfHealth     int64     `db:"rf_health"`     // 射频健康度
+		DeviceHealth int64     `db:"device_health"` // 设备健康度
+		Flow         int64     `db:"flow"`          // 当日站点流量
 	}
 )
 

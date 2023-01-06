@@ -43,9 +43,9 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: touristCarProvinceHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodGet,
+				Method:  http.MethodPost,
 				Path:    "/user",
-				Handler: userHandleHandler(serverCtx),
+				Handler: userHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
