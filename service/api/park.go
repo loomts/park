@@ -4,9 +4,9 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/loomts/EP1/service/api/internal/config"
-	"github.com/loomts/EP1/service/api/internal/handler"
-	"github.com/loomts/EP1/service/api/internal/svc"
+	"service/api/internal/config"
+	"service/api/internal/handler"
+	"service/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"

@@ -1,9 +1,6 @@
 package model
 
-import (
-	"github.com/zeromicro/go-zero/core/stores/cache"
-	"github.com/zeromicro/go-zero/core/stores/sqlx"
-)
+import "github.com/zeromicro/go-zero/core/stores/sqlx"
 
 var _ UserModel = (*customUserModel)(nil)
 
@@ -20,8 +17,8 @@ type (
 )
 
 // NewUserModel returns a model for the database table.
-func NewUserModel(conn sqlx.SqlConn, c cache.CacheConf) UserModel {
+func NewUserModel(conn sqlx.SqlConn) UserModel {
 	return &customUserModel{
-		defaultUserModel: newUserModel(conn, c),
+		defaultUserModel: newUserModel(conn),
 	}
 }

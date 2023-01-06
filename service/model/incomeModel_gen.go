@@ -10,7 +10,6 @@ import (
 	"time"
 
 	"github.com/zeromicro/go-zero/core/stores/builder"
-	"github.com/zeromicro/go-zero/core/stores/cache"
 	"github.com/zeromicro/go-zero/core/stores/sqlc"
 	"github.com/zeromicro/go-zero/core/stores/sqlx"
 	"github.com/zeromicro/go-zero/core/stringx"
@@ -19,10 +18,8 @@ import (
 var (
 	incomeFieldNames          = builder.RawFieldNames(&Income{})
 	incomeRows                = strings.Join(incomeFieldNames, ",")
-	incomeRowsExpectAutoSet   = strings.Join(stringx.Remove(incomeFieldNames, "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), ",")
-	incomeRowsWithPlaceHolder = strings.Join(stringx.Remove(incomeFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), "=?,") + "=?"
-
-	cacheIncomeIdPrefix = "cache:income:id:"
+	incomeRowsExpectAutoSet   = strings.Join(stringx.Remove(incomeFieldNames, "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), ",")
+	incomeRowsWithPlaceHolder = strings.Join(stringx.Remove(incomeFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), "=?,") + "=?"
 )
 
 type (
@@ -34,7 +31,7 @@ type (
 	}
 
 	defaultIncomeModel struct {
-		sqlc.CachedConn
+		conn  sqlx.SqlConn
 		table string
 	}
 
@@ -46,29 +43,23 @@ type (
 	}
 )
 
-func newIncomeModel(conn sqlx.SqlConn, c cache.CacheConf) *defaultIncomeModel {
+func newIncomeModel(conn sqlx.SqlConn) *defaultIncomeModel {
 	return &defaultIncomeModel{
-		CachedConn: sqlc.NewConn(conn, c),
-		table:      "`income`",
+		conn:  conn,
+		table: "`income`",
 	}
 }
 
 func (m *defaultIncomeModel) Delete(ctx context.Context, id int64) error {
-	incomeIdKey := fmt.Sprintf("%s%v", cacheIncomeIdPrefix, id)
-	_, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("delete from %s where `id` = ?", m.table)
-		return conn.ExecCtx(ctx, query, id)
-	}, incomeIdKey)
+	query := fmt.Sprintf("delete from %s where `id` = ?", m.table)
+	_, err := m.conn.ExecCtx(ctx, query, id)
 	return err
 }
 
 func (m *defaultIncomeModel) FindOne(ctx context.Context, id int64) (*Income, error) {
-	incomeIdKey := fmt.Sprintf("%s%v", cacheIncomeIdPrefix, id)
+	query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", incomeRows, m.table)
 	var resp Income
-	err := m.QueryRowCtx(ctx, &resp, incomeIdKey, func(ctx context.Context, conn sqlx.SqlConn, v interface{}) error {
-		query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", incomeRows, m.table)
-		return conn.QueryRowCtx(ctx, v, query, id)
-	})
+	err := m.conn.QueryRowCtx(ctx, &resp, query, id)
 	switch err {
 	case nil:
 		return &resp, nil
@@ -80,30 +71,15 @@ func (m *defaultIncomeModel) FindOne(ctx context.Context, id int64) (*Income, er
 }
 
 func (m *defaultIncomeModel) Insert(ctx context.Context, data *Income) (sql.Result, error) {
-	incomeIdKey := fmt.Sprintf("%s%v", cacheIncomeIdPrefix, data.Id)
-	ret, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?)", m.table, incomeRowsExpectAutoSet)
-		return conn.ExecCtx(ctx, query, data.Id, data.Type, data.Date, data.Num)
-	}, incomeIdKey)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?)", m.table, incomeRowsExpectAutoSet)
+	ret, err := m.conn.ExecCtx(ctx, query, data.Id, data.Type, data.Date, data.Num)
 	return ret, err
 }
 
 func (m *defaultIncomeModel) Update(ctx context.Context, data *Income) error {
-	incomeIdKey := fmt.Sprintf("%s%v", cacheIncomeIdPrefix, data.Id)
-	_, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, incomeRowsWithPlaceHolder)
-		return conn.ExecCtx(ctx, query, data.Type, data.Date, data.Num, data.Id)
-	}, incomeIdKey)
+	query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, incomeRowsWithPlaceHolder)
+	_, err := m.conn.ExecCtx(ctx, query, data.Type, data.Date, data.Num, data.Id)
 	return err
-}
-
-func (m *defaultIncomeModel) formatPrimary(primary interface{}) string {
-	return fmt.Sprintf("%s%v", cacheIncomeIdPrefix, primary)
-}
-
-func (m *defaultIncomeModel) queryPrimary(ctx context.Context, conn sqlx.SqlConn, v, primary interface{}) error {
-	query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", incomeRows, m.table)
-	return conn.QueryRowCtx(ctx, v, query, primary)
 }
 
 func (m *defaultIncomeModel) tableName() string {

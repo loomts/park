@@ -1,9 +1,6 @@
 package model
 
-import (
-	"github.com/zeromicro/go-zero/core/stores/cache"
-	"github.com/zeromicro/go-zero/core/stores/sqlx"
-)
+import "github.com/zeromicro/go-zero/core/stores/sqlx"
 
 var _ IncomeModel = (*customIncomeModel)(nil)
 
@@ -20,8 +17,8 @@ type (
 )
 
 // NewIncomeModel returns a model for the database table.
-func NewIncomeModel(conn sqlx.SqlConn, c cache.CacheConf) IncomeModel {
+func NewIncomeModel(conn sqlx.SqlConn) IncomeModel {
 	return &customIncomeModel{
-		defaultIncomeModel: newIncomeModel(conn, c),
+		defaultIncomeModel: newIncomeModel(conn),
 	}
 }

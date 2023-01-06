@@ -1,9 +1,6 @@
 package model
 
-import (
-	"github.com/zeromicro/go-zero/core/stores/cache"
-	"github.com/zeromicro/go-zero/core/stores/sqlx"
-)
+import "github.com/zeromicro/go-zero/core/stores/sqlx"
 
 var _ ParkingLotModel = (*customParkingLotModel)(nil)
 
@@ -20,8 +17,8 @@ type (
 )
 
 // NewParkingLotModel returns a model for the database table.
-func NewParkingLotModel(conn sqlx.SqlConn, c cache.CacheConf) ParkingLotModel {
+func NewParkingLotModel(conn sqlx.SqlConn) ParkingLotModel {
 	return &customParkingLotModel{
-		defaultParkingLotModel: newParkingLotModel(conn, c),
+		defaultParkingLotModel: newParkingLotModel(conn),
 	}
 }

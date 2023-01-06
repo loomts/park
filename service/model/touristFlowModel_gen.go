@@ -10,7 +10,6 @@ import (
 	"time"
 
 	"github.com/zeromicro/go-zero/core/stores/builder"
-	"github.com/zeromicro/go-zero/core/stores/cache"
 	"github.com/zeromicro/go-zero/core/stores/sqlc"
 	"github.com/zeromicro/go-zero/core/stores/sqlx"
 	"github.com/zeromicro/go-zero/core/stringx"
@@ -19,10 +18,8 @@ import (
 var (
 	touristFlowFieldNames          = builder.RawFieldNames(&TouristFlow{})
 	touristFlowRows                = strings.Join(touristFlowFieldNames, ",")
-	touristFlowRowsExpectAutoSet   = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), ",")
-	touristFlowRowsWithPlaceHolder = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), "=?,") + "=?"
-
-	cacheTouristFlowIdPrefix = "cache:touristFlow:id:"
+	touristFlowRowsExpectAutoSet   = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), ",")
+	touristFlowRowsWithPlaceHolder = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), "=?,") + "=?"
 )
 
 type (
@@ -34,7 +31,7 @@ type (
 	}
 
 	defaultTouristFlowModel struct {
-		sqlc.CachedConn
+		conn  sqlx.SqlConn
 		table string
 	}
 
@@ -46,29 +43,23 @@ type (
 	}
 )
 
-func newTouristFlowModel(conn sqlx.SqlConn, c cache.CacheConf) *defaultTouristFlowModel {
+func newTouristFlowModel(conn sqlx.SqlConn) *defaultTouristFlowModel {
 	return &defaultTouristFlowModel{
-		CachedConn: sqlc.NewConn(conn, c),
-		table:      "`tourist_flow`",
+		conn:  conn,
+		table: "`tourist_flow`",
 	}
 }
 
 func (m *defaultTouristFlowModel) Delete(ctx context.Context, id int64) error {
-	touristFlowIdKey := fmt.Sprintf("%s%v", cacheTouristFlowIdPrefix, id)
-	_, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("delete from %s where `id` = ?", m.table)
-		return conn.ExecCtx(ctx, query, id)
-	}, touristFlowIdKey)
+	query := fmt.Sprintf("delete from %s where `id` = ?", m.table)
+	_, err := m.conn.ExecCtx(ctx, query, id)
 	return err
 }
 
 func (m *defaultTouristFlowModel) FindOne(ctx context.Context, id int64) (*TouristFlow, error) {
-	touristFlowIdKey := fmt.Sprintf("%s%v", cacheTouristFlowIdPrefix, id)
+	query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", touristFlowRows, m.table)
 	var resp TouristFlow
-	err := m.QueryRowCtx(ctx, &resp, touristFlowIdKey, func(ctx context.Context, conn sqlx.SqlConn, v interface{}) error {
-		query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", touristFlowRows, m.table)
-		return conn.QueryRowCtx(ctx, v, query, id)
-	})
+	err := m.conn.QueryRowCtx(ctx, &resp, query, id)
 	switch err {
 	case nil:
 		return &resp, nil
@@ -80,30 +71,15 @@ func (m *defaultTouristFlowModel) FindOne(ctx context.Context, id int64) (*Touri
 }
 
 func (m *defaultTouristFlowModel) Insert(ctx context.Context, data *TouristFlow) (sql.Result, error) {
-	touristFlowIdKey := fmt.Sprintf("%s%v", cacheTouristFlowIdPrefix, data.Id)
-	ret, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, touristFlowRowsExpectAutoSet)
-		return conn.ExecCtx(ctx, query, data.Location, data.Date, data.Num)
-	}, touristFlowIdKey)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, touristFlowRowsExpectAutoSet)
+	ret, err := m.conn.ExecCtx(ctx, query, data.Location, data.Date, data.Num)
 	return ret, err
 }
 
 func (m *defaultTouristFlowModel) Update(ctx context.Context, data *TouristFlow) error {
-	touristFlowIdKey := fmt.Sprintf("%s%v", cacheTouristFlowIdPrefix, data.Id)
-	_, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, touristFlowRowsWithPlaceHolder)
-		return conn.ExecCtx(ctx, query, data.Location, data.Date, data.Num, data.Id)
-	}, touristFlowIdKey)
+	query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, touristFlowRowsWithPlaceHolder)
+	_, err := m.conn.ExecCtx(ctx, query, data.Location, data.Date, data.Num, data.Id)
 	return err
-}
-
-func (m *defaultTouristFlowModel) formatPrimary(primary interface{}) string {
-	return fmt.Sprintf("%s%v", cacheTouristFlowIdPrefix, primary)
-}
-
-func (m *defaultTouristFlowModel) queryPrimary(ctx context.Context, conn sqlx.SqlConn, v, primary interface{}) error {
-	query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", touristFlowRows, m.table)
-	return conn.QueryRowCtx(ctx, v, query, primary)
 }
 
 func (m *defaultTouristFlowModel) tableName() string {

@@ -2,9 +2,8 @@ package logic
 
 import (
 	"context"
-
-	"github.com/loomts/EP1/service/api/internal/svc"
-	"github.com/loomts/EP1/service/api/internal/types"
+	"service/api/internal/svc"
+	"service/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -23,8 +22,15 @@ func NewWechatLogic(ctx context.Context, svcCtx *svc.ServiceContext) *WechatLogi
 	}
 }
 
-func (l *WechatLogic) Wechat() (resp *types.WechatResp, err error) {
+func (l *WechatLogic) Wechat() (resp []*types.WechatResp, err error) {
 	// todo: add your logic here and delete this line
-	
-	return
+	wechats, err := l.svcCtx.WechatModel.QueryAll(l.ctx)
+	var wechatResps []*types.WechatResp
+	for _, v := range *wechats {
+		wechatResps = append(wechatResps, &types.WechatResp{
+			Date: v.Date.String(),
+			Num:  v.Num,
+		})
+	}
+	return wechatResps, err
 }

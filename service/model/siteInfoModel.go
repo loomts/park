@@ -1,9 +1,6 @@
 package model
 
-import (
-	"github.com/zeromicro/go-zero/core/stores/cache"
-	"github.com/zeromicro/go-zero/core/stores/sqlx"
-)
+import "github.com/zeromicro/go-zero/core/stores/sqlx"
 
 var _ SiteInfoModel = (*customSiteInfoModel)(nil)
 
@@ -20,8 +17,8 @@ type (
 )
 
 // NewSiteInfoModel returns a model for the database table.
-func NewSiteInfoModel(conn sqlx.SqlConn, c cache.CacheConf) SiteInfoModel {
+func NewSiteInfoModel(conn sqlx.SqlConn) SiteInfoModel {
 	return &customSiteInfoModel{
-		defaultSiteInfoModel: newSiteInfoModel(conn, c),
+		defaultSiteInfoModel: newSiteInfoModel(conn),
 	}
 }

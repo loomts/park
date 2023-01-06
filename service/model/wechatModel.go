@@ -1,9 +1,6 @@
 package model
 
-import (
-	"github.com/zeromicro/go-zero/core/stores/cache"
-	"github.com/zeromicro/go-zero/core/stores/sqlx"
-)
+import "github.com/zeromicro/go-zero/core/stores/sqlx"
 
 var _ WechatModel = (*customWechatModel)(nil)
 
@@ -20,8 +17,8 @@ type (
 )
 
 // NewWechatModel returns a model for the database table.
-func NewWechatModel(conn sqlx.SqlConn, c cache.CacheConf) WechatModel {
+func NewWechatModel(conn sqlx.SqlConn) WechatModel {
 	return &customWechatModel{
-		defaultWechatModel: newWechatModel(conn, c),
+		defaultWechatModel: newWechatModel(conn),
 	}
 }

@@ -3,8 +3,8 @@ package logic
 import (
 	"context"
 
-	"github.com/loomts/EP1/service/api/internal/svc"
-	"github.com/loomts/EP1/service/api/internal/types"
+	"service/api/internal/svc"
+	"service/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

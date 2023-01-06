@@ -10,7 +10,6 @@ import (
 	"time"
 
 	"github.com/zeromicro/go-zero/core/stores/builder"
-	"github.com/zeromicro/go-zero/core/stores/cache"
 	"github.com/zeromicro/go-zero/core/stores/sqlc"
 	"github.com/zeromicro/go-zero/core/stores/sqlx"
 	"github.com/zeromicro/go-zero/core/stringx"
@@ -21,8 +20,6 @@ var (
 	wechatRows                = strings.Join(wechatFieldNames, ",")
 	wechatRowsExpectAutoSet   = strings.Join(stringx.Remove(wechatFieldNames, "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), ",")
 	wechatRowsWithPlaceHolder = strings.Join(stringx.Remove(wechatFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), "=?,") + "=?"
-
-	cacheWechatIdPrefix = "cache:wechat:id:"
 )
 
 type (
@@ -34,7 +31,7 @@ type (
 	}
 
 	defaultWechatModel struct {
-		sqlc.CachedConn
+		conn  sqlx.SqlConn
 		table string
 	}
 
@@ -45,29 +42,23 @@ type (
 	}
 )
 
-func newWechatModel(conn sqlx.SqlConn, c cache.CacheConf) *defaultWechatModel {
+func newWechatModel(conn sqlx.SqlConn) *defaultWechatModel {
 	return &defaultWechatModel{
-		CachedConn: sqlc.NewConn(conn, c),
-		table:      "`wechat`",
+		conn:  conn,
+		table: "`wechat`",
 	}
 }
 
 func (m *defaultWechatModel) Delete(ctx context.Context, id int64) error {
-	wechatIdKey := fmt.Sprintf("%s%v", cacheWechatIdPrefix, id)
-	_, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("delete from %s where `id` = ?", m.table)
-		return conn.ExecCtx(ctx, query, id)
-	}, wechatIdKey)
+	query := fmt.Sprintf("delete from %s where `id` = ?", m.table)
+	_, err := m.conn.ExecCtx(ctx, query, id)
 	return err
 }
 
 func (m *defaultWechatModel) FindOne(ctx context.Context, id int64) (*Wechat, error) {
-	wechatIdKey := fmt.Sprintf("%s%v", cacheWechatIdPrefix, id)
+	query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", wechatRows, m.table)
 	var resp Wechat
-	err := m.QueryRowCtx(ctx, &resp, wechatIdKey, func(ctx context.Context, conn sqlx.SqlConn, v interface{}) error {
-		query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", wechatRows, m.table)
-		return conn.QueryRowCtx(ctx, v, query, id)
-	})
+	err := m.conn.QueryRowCtx(ctx, &resp, query, id)
 	switch err {
 	case nil:
 		return &resp, nil
@@ -79,30 +70,15 @@ func (m *defaultWechatModel) FindOne(ctx context.Context, id int64) (*Wechat, er
 }
 
 func (m *defaultWechatModel) Insert(ctx context.Context, data *Wechat) (sql.Result, error) {
-	wechatIdKey := fmt.Sprintf("%s%v", cacheWechatIdPrefix, data.Id)
-	ret, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, wechatRowsExpectAutoSet)
-		return conn.ExecCtx(ctx, query, data.Id, data.Date, data.Num)
-	}, wechatIdKey)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, wechatRowsExpectAutoSet)
+	ret, err := m.conn.ExecCtx(ctx, query, data.Id, data.Date, data.Num)
 	return ret, err
 }
 
 func (m *defaultWechatModel) Update(ctx context.Context, data *Wechat) error {
-	wechatIdKey := fmt.Sprintf("%s%v", cacheWechatIdPrefix, data.Id)
-	_, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, wechatRowsWithPlaceHolder)
-		return conn.ExecCtx(ctx, query, data.Date, data.Num, data.Id)
-	}, wechatIdKey)
+	query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, wechatRowsWithPlaceHolder)
+	_, err := m.conn.ExecCtx(ctx, query, data.Date, data.Num, data.Id)
 	return err
-}
-
-func (m *defaultWechatModel) formatPrimary(primary interface{}) string {
-	return fmt.Sprintf("%s%v", cacheWechatIdPrefix, primary)
-}
-
-func (m *defaultWechatModel) queryPrimary(ctx context.Context, conn sqlx.SqlConn, v, primary interface{}) error {
-	query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", wechatRows, m.table)
-	return conn.QueryRowCtx(ctx, v, query, primary)
 }
 
 func (m *defaultWechatModel) tableName() string {

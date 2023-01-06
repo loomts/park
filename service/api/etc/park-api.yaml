@@ -1,13 +1,6 @@
 Name: park-api
 Host: 0.0.0.0
-Port: 8888
-user: loomt
-password: 123456
-url: 127.0.0.1:3306
-db: park
-host: 127.0.0.1:6379
+Port: 8899
+
 Mysql:
-  DataSource: $user:$password@tcp($url)/$db?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
-CacheRedis:
-  - Host: $host
-    Type: node
+  DataSource: "loomt:123456@tcp(127.0.0.1:3306)/park?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai"

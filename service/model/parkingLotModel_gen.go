@@ -9,7 +9,6 @@ import (
 	"strings"
 
 	"github.com/zeromicro/go-zero/core/stores/builder"
-	"github.com/zeromicro/go-zero/core/stores/cache"
 	"github.com/zeromicro/go-zero/core/stores/sqlc"
 	"github.com/zeromicro/go-zero/core/stores/sqlx"
 	"github.com/zeromicro/go-zero/core/stringx"
@@ -18,10 +17,8 @@ import (
 var (
 	parkingLotFieldNames          = builder.RawFieldNames(&ParkingLot{})
 	parkingLotRows                = strings.Join(parkingLotFieldNames, ",")
-	parkingLotRowsExpectAutoSet   = strings.Join(stringx.Remove(parkingLotFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), ",")
-	parkingLotRowsWithPlaceHolder = strings.Join(stringx.Remove(parkingLotFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), "=?,") + "=?"
-
-	cacheParkingLotIdPrefix = "cache:parkingLot:id:"
+	parkingLotRowsExpectAutoSet   = strings.Join(stringx.Remove(parkingLotFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), ",")
+	parkingLotRowsWithPlaceHolder = strings.Join(stringx.Remove(parkingLotFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), "=?,") + "=?"
 )
 
 type (
@@ -33,7 +30,7 @@ type (
 	}
 
 	defaultParkingLotModel struct {
-		sqlc.CachedConn
+		conn  sqlx.SqlConn
 		table string
 	}
 
@@ -45,29 +42,23 @@ type (
 	}
 )
 
-func newParkingLotModel(conn sqlx.SqlConn, c cache.CacheConf) *defaultParkingLotModel {
+func newParkingLotModel(conn sqlx.SqlConn) *defaultParkingLotModel {
 	return &defaultParkingLotModel{
-		CachedConn: sqlc.NewConn(conn, c),
-		table:      "`parking_lot`",
+		conn:  conn,
+		table: "`parking_lot`",
 	}
 }
 
 func (m *defaultParkingLotModel) Delete(ctx context.Context, id int64) error {
-	parkingLotIdKey := fmt.Sprintf("%s%v", cacheParkingLotIdPrefix, id)
-	_, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("delete from %s where `id` = ?", m.table)
-		return conn.ExecCtx(ctx, query, id)
-	}, parkingLotIdKey)
+	query := fmt.Sprintf("delete from %s where `id` = ?", m.table)
+	_, err := m.conn.ExecCtx(ctx, query, id)
 	return err
 }
 
 func (m *defaultParkingLotModel) FindOne(ctx context.Context, id int64) (*ParkingLot, error) {
-	parkingLotIdKey := fmt.Sprintf("%s%v", cacheParkingLotIdPrefix, id)
+	query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", parkingLotRows, m.table)
 	var resp ParkingLot
-	err := m.QueryRowCtx(ctx, &resp, parkingLotIdKey, func(ctx context.Context, conn sqlx.SqlConn, v interface{}) error {
-		query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", parkingLotRows, m.table)
-		return conn.QueryRowCtx(ctx, v, query, id)
-	})
+	err := m.conn.QueryRowCtx(ctx, &resp, query, id)
 	switch err {
 	case nil:
 		return &resp, nil
@@ -79,30 +70,15 @@ func (m *defaultParkingLotModel) FindOne(ctx context.Context, id int64) (*Parkin
 }
 
 func (m *defaultParkingLotModel) Insert(ctx context.Context, data *ParkingLot) (sql.Result, error) {
-	parkingLotIdKey := fmt.Sprintf("%s%v", cacheParkingLotIdPrefix, data.Id)
-	ret, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, parkingLotRowsExpectAutoSet)
-		return conn.ExecCtx(ctx, query, data.Name, data.Duration, data.Num)
-	}, parkingLotIdKey)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, parkingLotRowsExpectAutoSet)
+	ret, err := m.conn.ExecCtx(ctx, query, data.Name, data.Duration, data.Num)
 	return ret, err
 }
 
 func (m *defaultParkingLotModel) Update(ctx context.Context, data *ParkingLot) error {
-	parkingLotIdKey := fmt.Sprintf("%s%v", cacheParkingLotIdPrefix, data.Id)
-	_, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, parkingLotRowsWithPlaceHolder)
-		return conn.ExecCtx(ctx, query, data.Name, data.Duration, data.Num, data.Id)
-	}, parkingLotIdKey)
+	query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, parkingLotRowsWithPlaceHolder)
+	_, err := m.conn.ExecCtx(ctx, query, data.Name, data.Duration, data.Num, data.Id)
 	return err
-}
-
-func (m *defaultParkingLotModel) formatPrimary(primary interface{}) string {
-	return fmt.Sprintf("%s%v", cacheParkingLotIdPrefix, primary)
-}
-
-func (m *defaultParkingLotModel) queryPrimary(ctx context.Context, conn sqlx.SqlConn, v, primary interface{}) error {
-	query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", parkingLotRows, m.table)
-	return conn.QueryRowCtx(ctx, v, query, primary)
 }
 
 func (m *defaultParkingLotModel) tableName() string {

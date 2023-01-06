@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"github.com/loomts/EP1/service/api/internal/logic"
-	"github.com/loomts/EP1/service/api/internal/svc"
 	"github.com/zeromicro/go-zero/rest/httpx"
+	"service/api/internal/logic"
+	"service/api/internal/svc"
 )
 
 func touristCarProvinceHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {

@@ -4,7 +4,7 @@ package handler
 import (
 	"net/http"
 
-	"github.com/loomts/EP1/service/api/internal/svc"
+	"service/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )
