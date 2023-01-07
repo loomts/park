@@ -26,7 +26,6 @@ func NewUserLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserLogic {
 }
 
 func (l *UserLogic) User(req *types.UserReq) (resp *types.UserResp, err error) {
-	// todo: add your logic here and delete this line
 	user, err := l.svcCtx.UserModel.FindOne(l.ctx, req.Id)
 	if err == nil && err == model.ErrNotFound {
 		return nil, errors.New("查询数据失败")

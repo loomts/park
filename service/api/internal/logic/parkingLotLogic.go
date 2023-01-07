@@ -2,6 +2,8 @@ package logic
 
 import (
 	"context"
+	"errors"
+	"service/model"
 
 	"service/api/internal/svc"
 	"service/api/internal/types"
@@ -23,8 +25,22 @@ func NewParkingLotLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Parkin
 	}
 }
 
-func (l *ParkingLotLogic) ParkingLot() (resp *types.ParkingLotResp, err error) {
-	// todo: add your logic here and delete this line
-
-	return
+func (l *ParkingLotLogic) ParkingLot() (resp *[]types.ParkingLotResp, err error) {
+	parkingLog, err := l.svcCtx.ParkingLotModel.QueryAll(l.ctx)
+	if err == nil && err == model.ErrNotFound {
+		return nil, errors.New("查询数据失败")
+	}
+	if parkingLog == nil {
+		return nil, errors.New("游客流量数据不存在")
+	}
+	parkingLogResps := make([]types.ParkingLotResp, 0)
+	for _, v := range *parkingLog {
+		parkingLogResps = append(parkingLogResps, types.ParkingLotResp{
+			Id:       v.Id,
+			Name:     v.Name,
+			Duration: v.Duration,
+			Num:      v.Num,
+		})
+	}
+	return &parkingLogResps, err
 }

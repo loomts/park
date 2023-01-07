@@ -27,7 +27,6 @@ type (
 		FindOne(ctx context.Context, id int64) (*ParkingLot, error)
 		Update(ctx context.Context, data *ParkingLot) error
 		Delete(ctx context.Context, id int64) error
-		QueryAll(ctx context.Context) (*[]ParkingLot, error)
 	}
 
 	defaultParkingLotModel struct {
@@ -84,11 +83,4 @@ func (m *defaultParkingLotModel) Update(ctx context.Context, data *ParkingLot) e
 
 func (m *defaultParkingLotModel) tableName() string {
 	return m.table
-}
-
-func (m *defaultParkingLotModel) QueryAll(ctx context.Context) (*[]ParkingLot, error) {
-	query := fmt.Sprintf("select * from %s", m.table)
-	resp := make([]ParkingLot, 0)
-	err := m.conn.QueryRowsCtx(ctx, &resp, query)
-	return &resp, err
 }

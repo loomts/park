@@ -2,8 +2,10 @@ package logic
 
 import (
 	"context"
+	"errors"
 	"service/api/internal/svc"
 	"service/api/internal/types"
+	"service/model"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -22,15 +24,20 @@ func NewWechatLogic(ctx context.Context, svcCtx *svc.ServiceContext) *WechatLogi
 	}
 }
 
-func (l *WechatLogic) Wechat() (resp []*types.WechatResp, err error) {
-	// todo: add your logic here and delete this line
+func (l *WechatLogic) Wechat() (resp *[]types.WechatResp, err error) {
 	wechats, err := l.svcCtx.WechatModel.QueryAll(l.ctx)
-	var wechatResps []*types.WechatResp
+	if err == nil && err == model.ErrNotFound {
+		return nil, errors.New("查询数据失败")
+	}
+	if wechats == nil {
+		return nil, errors.New("微信关注记录不存在")
+	}
+	wechatResps := make([]types.WechatResp, 0)
 	for _, v := range *wechats {
-		wechatResps = append(wechatResps, &types.WechatResp{
+		wechatResps = append(wechatResps, types.WechatResp{
 			Date: v.Date.String(),
 			Num:  v.Num,
 		})
 	}
-	return wechatResps, err
+	return &wechatResps, err
 }

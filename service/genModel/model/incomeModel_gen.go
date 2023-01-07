@@ -28,7 +28,6 @@ type (
 		FindOne(ctx context.Context, id int64) (*Income, error)
 		Update(ctx context.Context, data *Income) error
 		Delete(ctx context.Context, id int64) error
-		QueryAll(ctx context.Context) (*[]Income, error)
 	}
 
 	defaultIncomeModel struct {
@@ -85,11 +84,4 @@ func (m *defaultIncomeModel) Update(ctx context.Context, data *Income) error {
 
 func (m *defaultIncomeModel) tableName() string {
 	return m.table
-}
-
-func (m *defaultIncomeModel) QueryAll(ctx context.Context) (*[]Income, error) {
-	query := fmt.Sprintf("select * from %s", m.table)
-	resp := make([]Income, 0)
-	err := m.conn.QueryRowsCtx(ctx, &resp, query)
-	return &resp, err
 }

@@ -18,8 +18,8 @@ import (
 var (
 	touristCarProvinceFieldNames          = builder.RawFieldNames(&TouristCarProvince{})
 	touristCarProvinceRows                = strings.Join(touristCarProvinceFieldNames, ",")
-	touristCarProvinceRowsExpectAutoSet   = strings.Join(stringx.Remove(touristCarProvinceFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), ",")
-	touristCarProvinceRowsWithPlaceHolder = strings.Join(stringx.Remove(touristCarProvinceFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), "=?,") + "=?"
+	touristCarProvinceRowsExpectAutoSet   = strings.Join(stringx.Remove(touristCarProvinceFieldNames, "`id`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`"), ",")
+	touristCarProvinceRowsWithPlaceHolder = strings.Join(stringx.Remove(touristCarProvinceFieldNames, "`id`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`"), "=?,") + "=?"
 )
 
 type (
@@ -28,7 +28,6 @@ type (
 		FindOne(ctx context.Context, id int64) (*TouristCarProvince, error)
 		Update(ctx context.Context, data *TouristCarProvince) error
 		Delete(ctx context.Context, id int64) error
-		QueryAll(ctx context.Context) (*[]TouristCarProvince, error)
 	}
 
 	defaultTouristCarProvinceModel struct {
@@ -86,11 +85,4 @@ func (m *defaultTouristCarProvinceModel) Update(ctx context.Context, data *Touri
 
 func (m *defaultTouristCarProvinceModel) tableName() string {
 	return m.table
-}
-
-func (m *defaultTouristCarProvinceModel) QueryAll(ctx context.Context) (*[]TouristCarProvince, error) {
-	query := fmt.Sprintf("select * from %s", m.table)
-	resp := make([]TouristCarProvince, 0)
-	err := m.conn.QueryRowsCtx(ctx, &resp, query)
-	return &resp, err
 }

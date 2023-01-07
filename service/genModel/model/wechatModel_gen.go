@@ -18,7 +18,7 @@ import (
 var (
 	wechatFieldNames          = builder.RawFieldNames(&Wechat{})
 	wechatRows                = strings.Join(wechatFieldNames, ",")
-	wechatRowsExpectAutoSet   = strings.Join(stringx.Remove(wechatFieldNames, "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), ",")
+	wechatRowsExpectAutoSet   = strings.Join(stringx.Remove(wechatFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), ",")
 	wechatRowsWithPlaceHolder = strings.Join(stringx.Remove(wechatFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), "=?,") + "=?"
 )
 
@@ -28,7 +28,6 @@ type (
 		FindOne(ctx context.Context, id int64) (*Wechat, error)
 		Update(ctx context.Context, data *Wechat) error
 		Delete(ctx context.Context, id int64) error
-		QueryAll(ctx context.Context) (*[]Wechat, error)
 	}
 
 	defaultWechatModel struct {
@@ -71,8 +70,8 @@ func (m *defaultWechatModel) FindOne(ctx context.Context, id int64) (*Wechat, er
 }
 
 func (m *defaultWechatModel) Insert(ctx context.Context, data *Wechat) (sql.Result, error) {
-	query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?)", m.table, wechatRowsExpectAutoSet)
-	ret, err := m.conn.ExecCtx(ctx, query, data.Id, data.Date, data.Num)
+	query := fmt.Sprintf("insert into %s (%s) values (?, ?)", m.table, wechatRowsExpectAutoSet)
+	ret, err := m.conn.ExecCtx(ctx, query, data.Date, data.Num)
 	return ret, err
 }
 
@@ -84,11 +83,4 @@ func (m *defaultWechatModel) Update(ctx context.Context, data *Wechat) error {
 
 func (m *defaultWechatModel) tableName() string {
 	return m.table
-}
-
-func (m *defaultWechatModel) QueryAll(ctx context.Context) (*[]Wechat, error) {
-	query := fmt.Sprintf("select * from %s", m.table)
-	resp := make([]Wechat,0)
-	err := m.conn.QueryRowsCtx(ctx,&resp,query)
-	return &resp ,err
 }

@@ -18,8 +18,8 @@ import (
 var (
 	siteInfoFieldNames          = builder.RawFieldNames(&SiteInfo{})
 	siteInfoRows                = strings.Join(siteInfoFieldNames, ",")
-	siteInfoRowsExpectAutoSet   = strings.Join(stringx.Remove(siteInfoFieldNames, "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), ",")
-	siteInfoRowsWithPlaceHolder = strings.Join(stringx.Remove(siteInfoFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), "=?,") + "=?"
+	siteInfoRowsExpectAutoSet   = strings.Join(stringx.Remove(siteInfoFieldNames, "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), ",")
+	siteInfoRowsWithPlaceHolder = strings.Join(stringx.Remove(siteInfoFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), "=?,") + "=?"
 )
 
 type (
@@ -28,7 +28,6 @@ type (
 		FindOne(ctx context.Context, id int64) (*SiteInfo, error)
 		Update(ctx context.Context, data *SiteInfo) error
 		Delete(ctx context.Context, id int64) error
-		QueryAll(ctx context.Context) (*[]SiteInfo, error)
 	}
 
 	defaultSiteInfoModel struct {
@@ -88,11 +87,4 @@ func (m *defaultSiteInfoModel) Update(ctx context.Context, data *SiteInfo) error
 
 func (m *defaultSiteInfoModel) tableName() string {
 	return m.table
-}
-
-func (m *defaultSiteInfoModel) QueryAll(ctx context.Context) (*[]SiteInfo, error) {
-	query := fmt.Sprintf("select * from %s", m.table)
-	resp := make([]SiteInfo,0)
-	err := m.conn.QueryRowsCtx(ctx,&resp,query)
-	return &resp ,err
 }

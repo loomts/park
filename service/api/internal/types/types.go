@@ -60,4 +60,3 @@ type WechatResp struct {
 	Date string `json:"date"` // 日期
 	Num  int64  `json:"num"`  // 微信关注数量
 }
-

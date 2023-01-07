@@ -18,8 +18,8 @@ import (
 var (
 	accessFieldNames          = builder.RawFieldNames(&Access{})
 	accessRows                = strings.Join(accessFieldNames, ",")
-	accessRowsExpectAutoSet   = strings.Join(stringx.Remove(accessFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), ",")
-	accessRowsWithPlaceHolder = strings.Join(stringx.Remove(accessFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), "=?,") + "=?"
+	accessRowsExpectAutoSet   = strings.Join(stringx.Remove(accessFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), ",")
+	accessRowsWithPlaceHolder = strings.Join(stringx.Remove(accessFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), "=?,") + "=?"
 )
 
 type (
@@ -28,7 +28,6 @@ type (
 		FindOne(ctx context.Context, id int64) (*Access, error)
 		Update(ctx context.Context, data *Access) error
 		Delete(ctx context.Context, id int64) error
-		QueryAll(ctx context.Context) (*[]Access, error)
 	}
 
 	defaultAccessModel struct {
@@ -85,11 +84,4 @@ func (m *defaultAccessModel) Update(ctx context.Context, data *Access) error {
 
 func (m *defaultAccessModel) tableName() string {
 	return m.table
-}
-
-func (m *defaultAccessModel) QueryAll(ctx context.Context) (*[]Access, error) {
-	query := fmt.Sprintf("select * from %s", m.table)
-	resp := make([]Access, 0)
-	err := m.conn.QueryRowsCtx(ctx, &resp, query)
-	return &resp, err
 }

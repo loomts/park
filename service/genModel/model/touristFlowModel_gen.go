@@ -18,8 +18,8 @@ import (
 var (
 	touristFlowFieldNames          = builder.RawFieldNames(&TouristFlow{})
 	touristFlowRows                = strings.Join(touristFlowFieldNames, ",")
-	touristFlowRowsExpectAutoSet   = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), ",")
-	touristFlowRowsWithPlaceHolder = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), "=?,") + "=?"
+	touristFlowRowsExpectAutoSet   = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`"), ",")
+	touristFlowRowsWithPlaceHolder = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`"), "=?,") + "=?"
 )
 
 type (
@@ -28,7 +28,6 @@ type (
 		FindOne(ctx context.Context, id int64) (*TouristFlow, error)
 		Update(ctx context.Context, data *TouristFlow) error
 		Delete(ctx context.Context, id int64) error
-		QueryAll(ctx context.Context) (*[]TouristFlow, error)
 	}
 
 	defaultTouristFlowModel struct {
@@ -85,11 +84,4 @@ func (m *defaultTouristFlowModel) Update(ctx context.Context, data *TouristFlow)
 
 func (m *defaultTouristFlowModel) tableName() string {
 	return m.table
-}
-
-func (m *defaultTouristFlowModel) QueryAll(ctx context.Context) (*[]TouristFlow, error) {
-	query := fmt.Sprintf("select * from %s", m.table)
-	resp := make([]TouristFlow, 0)
-	err := m.conn.QueryRowsCtx(ctx, &resp, query)
-	return &resp, err
 }

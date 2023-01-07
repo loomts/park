@@ -2,6 +2,8 @@ package logic
 
 import (
 	"context"
+	"errors"
+	"service/model"
 
 	"service/api/internal/svc"
 	"service/api/internal/types"
@@ -23,8 +25,22 @@ func NewAccessLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AccessLogi
 	}
 }
 
-func (l *AccessLogic) Access() (resp *types.AccessResp, err error) {
-	// todo: add your logic here and delete this line
-
-	return
+func (l *AccessLogic) Access() (resp *[]types.AccessResp, err error) {
+	access, err := l.svcCtx.AccessModel.QueryAll(l.ctx)
+	if err == nil && err == model.ErrNotFound {
+		return nil, errors.New("查询数据失败")
+	}
+	if access == nil {
+		return nil, errors.New("游客流量数据不存在")
+	}
+	accessResps := make([]types.AccessResp, 0)
+	for _, v := range *access {
+		accessResps = append(accessResps, types.AccessResp{
+			Id:       v.Id,
+			Date:     v.Date.String(),
+			Location: v.Location,
+			Num:      v.Num,
+		})
+	}
+	return &accessResps, err
 }
