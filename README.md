@@ -1,13 +1,19 @@
+
 # RUN
 
-1. 用mysql建`database EP1`
-2. 导入 /service/mysql/EP1.sql
-3. 改 src/main/java/database/Conn.java 的mysql账号密码
-4. 开 /service/app/src/main/java/service/controller.java 的服务
-5. `cd web`
-6. `npm i` || `npx -p npm@6 npm install --legacy-peer-deps`
-7. `npm run lint --fix`
-8. `npm run serve`
+后端部分，详见[go-zero](https://go-zero.dev/cn/docs/prepare/dev-flow)，配好环境之后`go run park.go -f etc/park-api.yaml`
+
+> 目前数据库的数据是在[生成网站](https://www.sqlfather.com)rand的，需要的话可以改，调用api的前缀也因为服务器的域名需要备案只能通过ip的形式访问，后面可能会用nginx反代到域名
+
+前端部分，详见web/README.md
+
+> [示例](https://park.loomt.top)，感觉依赖很多，没用的页面也很多，打算删一下，不过还是先摸吧^_)
+
+## 后端API
+
+prefix: http://116.205.130.21:8899
+
+[![获取微信关注](https://i.postimg.cc/YSjW3GP2/Snipaste-2023-01-09-00-09-03.png)](https://postimg.cc/67Jq63wF)
 ### 1. "获取接入详情"
 
 1. route definition
