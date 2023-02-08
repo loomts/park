@@ -1,6 +1,0 @@
-{errcode: "0.0",errmsg: "",totalRecords: 0,data: [{timestamp: 1656738000,unit: "Mbps",uplinkRate: 1561.5,downlinkRate: 4015.2}]}
-{errcode: "0.0",errmsg: "",totalRecords: 0,data: [{timestamp: 1656738000,unit: "Mbps",uplinkRate: 13077.2,downlinkRate: 15256.7}]}
-{errcode: "0.0",errmsg: "",totalRecords: 0,data: [{timestamp: 1656738000,unit: "Mbps",uplinkRate: 1511.6,downlinkRate: 2267.4}]}
-{errcode: "0.0",errmsg: "",totalRecords: 0,data: [{timestamp: 1656738000,unit: "Mbps",uplinkRate: 5830.4,downlinkRate: 8745.6}]}
-{errcode: "0.0",errmsg: "",totalRecords: 0,data: [{timestamp: 1656738000,unit: "Mbps",uplinkRate: 8758.4,downlinkRate: 13137.6}]}
-{errcode: "0.0",errmsg: "",totalRecords: 0,data: [{timestamp: 1656738000,unit: "Mbps",uplinkRate: 6948.7,downlinkRate: 13897.3}]}
