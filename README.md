@@ -13,7 +13,7 @@
 
 prefix: http://116.205.130.21:8899
 
-[![获取微信关注](https://i.postimg.cc/YSjW3GP2/Snipaste-2023-01-09-00-09-03.png)](https://postimg.cc/67Jq63wF)
+
 ### 1. "获取接入详情"
 
 1. route definition
@@ -226,6 +226,35 @@ type UserResp struct {
 type WechatResp struct {
 	Date string `json:"date"` // 日期
 	Num int64 `json:"num"` // 微信关注数量
+}
+```
+
+### 9. "获取设备信息"
+
+1. route definition
+
+- Url: /api/deviceInfo
+- Method: GET
+- Request: `-`
+- Response: `deviceInfoResp`
+
+2. request definition
+
+
+
+3. response definition
+
+
+
+```golang
+type DeviceInfoResp struct {
+	Id int64 `json:"id"`
+	UplinkRate float64 `json:"uplink_rate"` // 上行速率
+	DownlinkRate float64 `json:"downlink_rate"` // 下载速率
+	Flow float64 `json:"flow"` // 流量
+	CpuRate float64 `json:"cpu_rate"` // CPU占有率
+	Longitude float64 `json:"longitude"` // 经度
+	Latitude float64 `json:"latitude"` // 纬度
 }
 ```
 

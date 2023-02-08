@@ -27,6 +27,8 @@ type (
 		FindOne(ctx context.Context, id int64) (*DeviceInfo, error)
 		Update(ctx context.Context, data *DeviceInfo) error
 		Delete(ctx context.Context, id int64) error
+		QueryAll(ctx context.Context) (*[]DeviceInfo, error)
+
 	}
 
 	defaultDeviceInfoModel struct {
@@ -86,4 +88,10 @@ func (m *defaultDeviceInfoModel) Update(ctx context.Context, data *DeviceInfo) e
 
 func (m *defaultDeviceInfoModel) tableName() string {
 	return m.table
+}
+func (m *defaultDeviceInfoModel) QueryAll(ctx context.Context) (*[]DeviceInfo, error) {
+	query := fmt.Sprintf("select * from %s", m.table)
+	resp := make([]DeviceInfo, 0)
+	err := m.conn.QueryRowsCtx(ctx, &resp, query)
+	return &resp, err
 }

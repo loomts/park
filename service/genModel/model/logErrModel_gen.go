@@ -18,8 +18,8 @@ import (
 var (
 	logErrFieldNames          = builder.RawFieldNames(&LogErr{})
 	logErrRows                = strings.Join(logErrFieldNames, ",")
-	logErrRowsExpectAutoSet   = strings.Join(stringx.Remove(logErrFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), ",")
-	logErrRowsWithPlaceHolder = strings.Join(stringx.Remove(logErrFieldNames, "`id`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`"), "=?,") + "=?"
+	logErrRowsExpectAutoSet   = strings.Join(stringx.Remove(logErrFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), ",")
+	logErrRowsWithPlaceHolder = strings.Join(stringx.Remove(logErrFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), "=?,") + "=?"
 )
 
 type (

@@ -17,8 +17,8 @@ import (
 var (
 	parkingLotFieldNames          = builder.RawFieldNames(&ParkingLot{})
 	parkingLotRows                = strings.Join(parkingLotFieldNames, ",")
-	parkingLotRowsExpectAutoSet   = strings.Join(stringx.Remove(parkingLotFieldNames, "`id`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`"), ",")
-	parkingLotRowsWithPlaceHolder = strings.Join(stringx.Remove(parkingLotFieldNames, "`id`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`"), "=?,") + "=?"
+	parkingLotRowsExpectAutoSet   = strings.Join(stringx.Remove(parkingLotFieldNames, "`id`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`"), ",")
+	parkingLotRowsWithPlaceHolder = strings.Join(stringx.Remove(parkingLotFieldNames, "`id`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`"), "=?,") + "=?"
 )
 
 type (

@@ -18,8 +18,8 @@ import (
 var (
 	wechatFieldNames          = builder.RawFieldNames(&Wechat{})
 	wechatRows                = strings.Join(wechatFieldNames, ",")
-	wechatRowsExpectAutoSet   = strings.Join(stringx.Remove(wechatFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), ",")
-	wechatRowsWithPlaceHolder = strings.Join(stringx.Remove(wechatFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), "=?,") + "=?"
+	wechatRowsExpectAutoSet   = strings.Join(stringx.Remove(wechatFieldNames, "`id`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`"), ",")
+	wechatRowsWithPlaceHolder = strings.Join(stringx.Remove(wechatFieldNames, "`id`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`"), "=?,") + "=?"
 )
 
 type (

@@ -18,8 +18,8 @@ import (
 var (
 	accessFieldNames          = builder.RawFieldNames(&Access{})
 	accessRows                = strings.Join(accessFieldNames, ",")
-	accessRowsExpectAutoSet   = strings.Join(stringx.Remove(accessFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), ",")
-	accessRowsWithPlaceHolder = strings.Join(stringx.Remove(accessFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), "=?,") + "=?"
+	accessRowsExpectAutoSet   = strings.Join(stringx.Remove(accessFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), ",")
+	accessRowsWithPlaceHolder = strings.Join(stringx.Remove(accessFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), "=?,") + "=?"
 )
 
 type (

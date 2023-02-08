@@ -18,8 +18,8 @@ import (
 var (
 	touristFlowFieldNames          = builder.RawFieldNames(&TouristFlow{})
 	touristFlowRows                = strings.Join(touristFlowFieldNames, ",")
-	touristFlowRowsExpectAutoSet   = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`"), ",")
-	touristFlowRowsWithPlaceHolder = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`"), "=?,") + "=?"
+	touristFlowRowsExpectAutoSet   = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`"), ",")
+	touristFlowRowsWithPlaceHolder = strings.Join(stringx.Remove(touristFlowFieldNames, "`id`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`", "`create_time`"), "=?,") + "=?"
 )
 
 type (

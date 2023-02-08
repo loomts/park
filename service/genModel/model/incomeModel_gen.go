@@ -18,8 +18,8 @@ import (
 var (
 	incomeFieldNames          = builder.RawFieldNames(&Income{})
 	incomeRows                = strings.Join(incomeFieldNames, ",")
-	incomeRowsExpectAutoSet   = strings.Join(stringx.Remove(incomeFieldNames, "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), ",")
-	incomeRowsWithPlaceHolder = strings.Join(stringx.Remove(incomeFieldNames, "`id`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`"), "=?,") + "=?"
+	incomeRowsExpectAutoSet   = strings.Join(stringx.Remove(incomeFieldNames, "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`"), ",")
+	incomeRowsWithPlaceHolder = strings.Join(stringx.Remove(incomeFieldNames, "`id`", "`create_time`", "`update_at`", "`updated_at`", "`update_time`", "`create_at`", "`created_at`"), "=?,") + "=?"
 )
 
 type (
