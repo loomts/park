@@ -1,0 +1,41 @@
+service/app/src/main/dataMaker
+# Compiled class file
+*.class
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Intellij
+*.ipr
+*.iml
+*.iws
+.idea/
+**/.idea/
+out/
+
+# Maven
+target/
+
+# Gradle
+build
+.gradle
+
+# Log file
+*.log
+log/
+
+# out
+**/out/
+
+# others
+*.zip
+*.tar
+*.tar.gz
+*.pid
+*.orig
+**/.github/
+**/.vscode/
+**/node_modules/
+node_modules/

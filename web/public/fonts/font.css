@@ -1,0 +1,10 @@
+@font-face {
+  font-family: Alimama_ShuHeiTi_Bold;
+  src: url('./Alimama_ShuHeiTi_Bold.otf');
+}
+
+/*如果还有别的字体，按照上面的格式，在下面可以继续添加font-face*/
+/*@font-face {
+  font-family: 字体名字;
+  src: url('字体文件相对路径');
+}*/
