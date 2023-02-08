@@ -60,3 +60,13 @@ type WechatResp struct {
 	Date string `json:"date"` // 日期
 	Num  int64  `json:"num"`  // 微信关注数量
 }
+
+type DeviceInfoResp struct {
+	Id           int64   `json:"id"`
+	UplinkRate   float64 `json:"uplink_rate"`   // 上行速率
+	DownlinkRate float64 `json:"downlink_rate"` // 下载速率
+	Flow         float64 `json:"flow"`          // 流量
+	CpuRate      float64 `json:"cpu_rate"`      // CPU占有率
+	Longitude    float64 `json:"longitude"`     // 经度
+	Latitude     float64 `json:"latitude"`      // 纬度
+}

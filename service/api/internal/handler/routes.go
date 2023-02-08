@@ -52,6 +52,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/wechat",
 				Handler: wechatHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/deviceInfo",
+				Handler: deviceInfoHandler(serverCtx),
+			},
 		},
 		rest.WithPrefix("/api"),
 	)

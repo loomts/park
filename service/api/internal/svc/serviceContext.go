@@ -16,6 +16,7 @@ type ServiceContext struct {
 	TouristFlowModel        model.TouristFlowModel
 	UserModel               model.UserModel
 	WechatModel             model.WechatModel
+	DeviceInfoModel         model.DeviceInfoModel
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -29,5 +30,6 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		TouristFlowModel:        model.NewTouristFlowModel(sqlx.NewMysql(c.Mysql.DataSource)),
 		UserModel:               model.NewUserModel(sqlx.NewMysql(c.Mysql.DataSource)),
 		WechatModel:             model.NewWechatModel(sqlx.NewMysql(c.Mysql.DataSource)),
+		DeviceInfoModel:         model.NewDeviceInfoModel(sqlx.NewMysql(c.Mysql.DataSource)),
 	}
 }
