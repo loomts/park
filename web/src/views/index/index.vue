@@ -12,14 +12,14 @@
     <!-- <div :style="{ backgroundImage: `url{{backgroundImgUrl}}` }"></div> -->
     <!-- <div class="title">园区总览</div> -->
 
-    <div class="boxall" style="height: 475px">
+    <div class="boxall" style="height: 475px;width:500px">
       <div class="alltitle1">游客数量</div>
       <echarts4Vue class="echart1"></echarts4Vue>
       <div class="foot1"></div>
     </div>
 
     <!-- <div></div> -->
-    <div class="boxall2" style="height: 470px">
+    <div class="boxall2" style="height: 470px;width:500px">
       <div class="alltitle2">停车场使用情况</div>
       <echarts2Vue class="echart2"></echarts2Vue>
       <div class="foot2"></div>
@@ -56,7 +56,7 @@
     </div>
 
     <!-- :header-cell-style="{ background: '#DCD6F7', color: '#ffffff' }" -->
-    <div class="boxall5" style="height: 350px">
+    <div class="boxall5" style="height: 370px;width:1050px">
       <div class="alltitle5">站点健康度</div>
       <echarts5Vue class="echart5"></echarts5Vue>
 
@@ -585,7 +585,7 @@
     // position: relative;
     //  margin-bottom: .15rem;
     // z-index: 10;
-    margin-left: 600px;
+    margin-left: 700px;
     margin-top: -400px;
     float: left;
   }
@@ -600,7 +600,7 @@
     float: left;
   }
   .boxall5 {
-    width: 65%;
+    width: 75%;
     // border: 1px solid rgba(25,186,139,.17);
     padding: 0.2rem 0.4rem 0.15rem;
     // background: rgba(255,255,255,.04) url('../../assets/line2.jpg');
@@ -608,7 +608,7 @@
     position: relative;
     margin-bottom: 0.15rem;
     z-index: 10;
-    margin-top: -550px;
+    margin-top: -540px;
     margin-left: 540px;
     float: left;
   }
@@ -667,7 +667,7 @@
     margin-bottom: 0.15rem;
     z-index: 10;
     margin-top: -1120px;
-    margin-left: 1180px;
+    margin-left: 1300px;
     float: left;
   }
 
@@ -773,7 +773,7 @@
     height: 600px;
     width: 580px;
     margin-top: -950px;
-    margin-left: 560px;
+    margin-left: 590px;
     // background:rgba(255,255,255,.04) url('../../assets/line3.jpg');
     float: left;
   }

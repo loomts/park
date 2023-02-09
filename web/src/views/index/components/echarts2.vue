@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id = "park">
     <!-- <button @click="change" data-id="1">1</button>
       <button @click="change" data-id="2">2</button>
       <button @click="change" data-id="3">23</button> -->
@@ -11,7 +11,7 @@
       <el-tab-pane label="地下停车场2">
         <div id="main22" ref="main22" style="width: 400px; height: 300px"></div>
       </el-tab-pane>
-      <el-tab-pane label="地下停车场3">
+      <el-tab-pane label="地下停车场3" >
         <div id="main23" ref="main23" style="width: 400px; height: 300px"></div>
       </el-tab-pane>
     </el-tabs>
@@ -55,7 +55,7 @@
             top: '5%',
             textStyle: {
               //图例文字的样式
-              color: '#fff',
+              // color: '#fff',
               fontSize: 16,
             },
             left: 'center',
@@ -217,39 +217,46 @@
   }
 </script>
 
-<style lang="scss">
-  el-tabs el-tab-pane div {
+<style >
+
+  #park  el-tabs el-tab-pane div {
     margin-left: -200px;
   }
 
-  .labelcolor {
+  #park .labelcolor {
     color: white;
     font-size: 16px;
     height: 50px;
     line-height: 50px;
     display: inline-block;
   }
-  .el-tabs__item {
+
+  #park .el-tabs__item  {
     height: 50px;
-    color: white;
+    color: white !important;
     font-size: 15px;
   }
-  .notices {
+  #park .el-tabs__item.is-active  {
+    height: 50px;
+    color: blue !important;
+    font-size: 15px;
+  }
+  #park .notices {
     color: #c0c4cc;
     font-size: 14px;
     height: 100px;
     line-height: 100px;
     display: inline-block;
   }
-  #main21 {
+  #park #main21 {
     margin-top: 40px;
     margin-left: -10px;
   }
-  #main22 {
+  #park #main22 {
     margin-top: 40px;
     margin-left: -10px;
   }
-  #main23 {
+  #park #main23 {
     margin-top: 40px;
     margin-left: -10px;
   }

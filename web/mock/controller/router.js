@@ -10,8 +10,8 @@ const data = [
         component: '@/views/index/index',
         meta: {
           title: '首页',
-          icon: 'home',
-          affix: true,
+          icon: 'home'
+          // affix: true,
         },
       },
     ],

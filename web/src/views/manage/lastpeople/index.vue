@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
   import * as allApi from '../../../../api.js'
   var dataMap = {}
   async function getMinFlowData() {
@@ -67,7 +68,17 @@
   }
 
   export default {
+    // inject:['reload'], 
+    created() {
+        // window.location.reload()
+    },
     mounted() {
+
+      // if (location.href.indexOf("#reloaded") == -1) {
+      //     location.href = location.href + "#reloaded";
+      //     location.reload();
+      // }
+      // this.reload()
       this.drawLine()
     },
     methods: {
