@@ -1,10 +1,10 @@
 <template>
-  <div id="main" style="width: 350px; height: 350px"></div>
+  <div id="main" ref="main" style="width: 350px; height: 350px"></div>
 </template>
 
 <script>
   import * as echarts from 'echarts'
-  import { htmlWhitespaceSensitivity } from '../../../../prettier.config'
+  // import { htmlWhitespaceSensitivity } from '../../../../prettier.config'
   export default {
     name: 'Echart1',
     data() {
@@ -13,14 +13,14 @@
     created() {
       setTimeout(() => {
         this.init()
-      }, 100),
-        this.init()
+      }, 1000)
+        // this.init()
     },
     mounted() {},
     methods: {
       init() {
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'))
+        var myChart = echarts.init(this.$refs.main)
 
         var option = {
           xAxis: {

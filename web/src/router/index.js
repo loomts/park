@@ -129,7 +129,7 @@ export const asyncRoutes = [
       {
         path: 'nowphone',
         name: 'Nowphone',
-        component: () => import('@/views/managephone/nowphone/test'),
+        component: () => import('@/views/managephone/nowphone/index'),
         meta: { title: '设备详情', permissions: ['admin'] },
       },
     ],

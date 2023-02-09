@@ -55,88 +55,88 @@
     components: {
       centreLeft1Chart,
     },
-    // data() {
-    //   return {
-    //     config: {
-    //       lineWidth: 30,
-    //       activeRadius: '80%',
-    //       radius: '75%',
-    //       activeTimeGap: 2000,
-    //       data: [
-    //         {
-    //           name: '明日世界',
-    //           value: 55,
-    //         },
-    //         {
-    //           name: '梦幻世界',
-    //           value: 120,
-    //         },
-    //         {
-    //           name: '奇想花园',
-    //           value: 78,
-    //         },
-    //         {
-    //           name: '宝藏湾',
-    //           value: 66,
-    //         },
-    //         {
-    //           name: '探险岛',
-    //           value: 80,
-    //         },
-    //       ],
-    //     },
-    //     numberData: [
-    //       {
-    //         number: {
-    //           number: [15],
-    //           toFixed: 1,
-    //           content: '{nt}',
-    //         },
-    //         text: '当前人数',
-    //       },
-    //       {
-    //         number: {
-    //           number: [1144],
-    //           toFixed: 1,
-    //           content: '{nt}',
-    //         },
-    //         text: '截至目前总共到达人数',
-    //       },
-    //       {
-    //         number: {
-    //           number: [361],
-    //           toFixed: 1,
-    //           content: '{nt}',
-    //         },
-    //         text: '正在离开',
-    //       },
-    //       {
-    //         number: {
-    //           number: [157],
-    //           toFixed: 1,
-    //           content: '{nt}',
-    //         },
-    //         text: '预计将到',
-    //       },
-    //     ],
-    //   }
-    // },
-    // mounted() {
-    //   this.changeTiming()
-    // },
-    // methods: {
-    //   changeTiming() {
-    //     setInterval(() => {
-    //       this.changeNumber()
-    //     }, 3000)
-    //   },
-    //   changeNumber() {
-    //     this.numberData.forEach((item, index) => {
-    //       item.number.number[0] += ++index
-    //       item.number = { ...item.number }
-    //     })
-    //   },
-    // },
+    data() {
+      return {
+        config: {
+          lineWidth: 30,
+          activeRadius: '80%',
+          radius: '75%',
+          activeTimeGap: 2000,
+          data: [
+            {
+              name: '明日世界',
+              value: 55,
+            },
+            {
+              name: '梦幻世界',
+              value: 120,
+            },
+            {
+              name: '奇想花园',
+              value: 78,
+            },
+            {
+              name: '宝藏湾',
+              value: 66,
+            },
+            {
+              name: '探险岛',
+              value: 80,
+            },
+          ],
+        },
+        numberData: [
+          {
+            number: {
+              number: [15],
+              toFixed: 1,
+              content: '{nt}',
+            },
+            text: '当前人数',
+          },
+          {
+            number: {
+              number: [1144],
+              toFixed: 1,
+              content: '{nt}',
+            },
+            text: '截至目前总共到达人数',
+          },
+          {
+            number: {
+              number: [361],
+              toFixed: 1,
+              content: '{nt}',
+            },
+            text: '正在离开',
+          },
+          {
+            number: {
+              number: [157],
+              toFixed: 1,
+              content: '{nt}',
+            },
+            text: '预计将到',
+          },
+        ],
+      }
+    },
+    mounted() {
+      this.changeTiming()
+    },
+    methods: {
+      changeTiming() {
+        setInterval(() => {
+          this.changeNumber()
+        }, 3000)
+      },
+      changeNumber() {
+        this.numberData.forEach((item, index) => {
+          item.number.number[0] += ++index
+          item.number = { ...item.number }
+        })
+      },
+    },
   }
 </script>
 

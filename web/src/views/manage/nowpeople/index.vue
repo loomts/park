@@ -105,22 +105,22 @@
 </template>
 
 <script>
-  import centerLeft1 from '../paking/centerLeft1'
+  // import centerLeft1 from '../paking/centerLeft1'
   // import centerLeft2 from './paking/centerLeft2'
   // import centerRight1 from './paking/centerRight1'
   // import centerRight2 from './paking/centerRight2'
   // import center from './paking/center'
-  import bottomLeft from '../paking/bottomLeft'
-  import bottomRight from '../paking/bottomRight'
+  // import bottomLeft from '../paking/bottomLeft'
+  // import bottomRight from '../paking/bottomRight'
   export default {
     components: {
-      centerLeft1,
+      centerLeft1 : () => import("../paking/centerLeft1.vue"),
       // centerLeft2,
       // centerRight1,
       // centerRight2,
       // center,
-      bottomLeft,
-      bottomRight,
+      bottomLeft : () => import("../paking/bottomLeft.vue"),
+      bottomRight : () => import("../paking/bottomRight.vue"),
     },
     data() {
       return {

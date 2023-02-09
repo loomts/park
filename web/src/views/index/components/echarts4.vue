@@ -1,5 +1,5 @@
 <template>
-  <div id="main4" style="width: 500px; height: 450px"></div>
+  <div id="main4" ref="main4" style="width: 500px; height: 450px"></div>
 </template>
 
 <script>
@@ -14,14 +14,14 @@
     created() {
       setTimeout(() => {
         this.init()
-      }, 100),
+      }, 1000),
         this.init()
     },
     mounted() {},
     methods: {
       init() {
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main4'))
+        var myChart = echarts.init(this.$refs.main4)
 
         function randomData() {
           now = new Date(+now + oneDay)

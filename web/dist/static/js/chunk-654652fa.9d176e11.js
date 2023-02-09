@@ -1,0 +1,7 @@
+/*!
+ *  build: vue-admin-better 
+ *  vue-admin-beautiful.com 
+ *  https://gitee.com/chu1204505056/vue-admin-better 
+ *  time: 2023-2-8 15:22:36
+ */
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-654652fa"],{"36db":function(t,a,o){t.exports=o.p+"static/media/test3.20d7114f.mp4"},"51b9":function(t,a,o){"use strict";o.r(a);var e=function(){var t=this,a=t._self._c;return a("div",{attrs:{id:"app"}},[a("div",{staticClass:"player-container"}),a("div",{attrs:{id:"part1"}},[a("vue-core-video-player",{attrs:{src:o("36db"),muted:!0,loop:!0,autoplay:!0,preload:"nona",controls:"auto"}})],1),a("div",{attrs:{id:"part2"}},[a("vue-core-video-player",{staticClass:"video1",attrs:{src:o("ac36"),muted:!0,loop:!0,autoplay:!0,preload:"nona",controls:"auto"}})],1),a("div",{attrs:{id:"part3"}},[a("vue-core-video-player",{staticClass:"video2",attrs:{src:o("36db"),muted:!0,loop:!0,autoplay:!0,preload:"nona",controls:"auto"}})],1),a("div",{attrs:{id:"part4"}},[a("vue-core-video-player",{staticClass:"video1",attrs:{src:o("ac36"),muted:!0,loop:!0,autoplay:!0,preload:"nona",controls:"auto"}})],1)])},r=[],s={name:"VideoPlay",components:{},data(){return{}},computed:{},mounted(){},methods:{}},d=s,n=(o("95a4"),o("3427")),i=Object(n["a"])(d,e,r,!1,null,null,null);a["default"]=i.exports},"685b":function(t,a,o){},"95a4":function(t,a,o){"use strict";o("685b")},ac36:function(t,a,o){t.exports=o.p+"static/media/test4.f17e8f54.mp4"}}]);

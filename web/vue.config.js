@@ -56,6 +56,15 @@ module.exports = {
       warnings: true,
       errors: true,
     },
+    proxy: {
+        '/api': {
+          target: 'http://116.205.130.21:8899',// 后端接口
+          changeOrigin: true, // 是否跨域
+          pathRewrite: {
+            '^/api': ''
+          }
+        }
+    },
     after: mockServer(),
   },
   configureWebpack() {

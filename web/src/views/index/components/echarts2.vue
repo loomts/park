@@ -6,13 +6,13 @@
 
     <el-tabs :tab-position="tabPosition" style="height: 380px; stretch: true">
       <el-tab-pane label="地下停车场1">
-        <div id="main21" style="width: 400px; height: 300px"></div>
+        <div id="main21" ref="main21" style="width: 400px; height: 300px"></div>
       </el-tab-pane>
       <el-tab-pane label="地下停车场2">
-        <div id="main22" style="width: 400px; height: 300px"></div>
+        <div id="main22" ref="main22" style="width: 400px; height: 300px"></div>
       </el-tab-pane>
       <el-tab-pane label="地下停车场3">
-        <div id="main23" style="width: 400px; height: 300px"></div>
+        <div id="main23" ref="main23" style="width: 400px; height: 300px"></div>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -33,7 +33,7 @@
         this.init()
         this.init2()
         this.init3()
-      }, 100)
+      }, 1000)
       // this.init()
       // this.init2()
     },
@@ -44,7 +44,7 @@
         this.tab = tabid
       },
       init3() {
-        var myChart = echarts.init(document.getElementById('main23'))
+        var myChart = echarts.init(this.$refs.main23)
         var option = {
           tooltip: {
             show: true,
@@ -100,7 +100,7 @@
         })
       },
       init2() {
-        var myChart = echarts.init(document.getElementById('main22'))
+        var myChart = echarts.init(this.$refs.main22)
         var option = {
           tooltip: {
             show: true,
@@ -159,7 +159,7 @@
       },
       init() {
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main21'))
+        var myChart = echarts.init(this.$refs.main21)
         var option = {
           tooltip: {
             show: true,

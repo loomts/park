@@ -3,7 +3,7 @@
     <div v-for="(item, index) in picturedata" :key="index" class="picturetable">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <span>站点id：{{ item.siteId }}</span>
+          <span>站点id：{{ item.id }}</span>
         </div>
         <div :id="'Access' + index" class="pic"></div>
       </el-card>
@@ -12,32 +12,18 @@
 </template>
 
 <script>
+// type SiteInfoResp struct {
+// 	Id int64 `json:"id"`
+// 	Date string `json:"date"` // 日期
+// 	RevisitRate int64 `json:"revisit_rate"` // 重复访问率（%）
+// 	SiteHealth int64 `json:"site_health"` // 站点健康度
+// 	RfHealth int64 `json:"rf_health"` // 射频健康度
+// 	DeviceHealth int64 `json:"device_health"` // 设备健康度
+// 	Flow int64 `json:"flow"` // 当日站点流量
+// }
   import * as echarts from 'echarts'
-  import * as allApi from '../../../../api.js'
-  async function getData() {
-    let data = []
-    let listId = []
-    var jsonObj = await allApi.getSitesFlow()
-    for (var i = 0; i < jsonObj.length; i++) {
-      listId.push(jsonObj[i].siteId)
-    }
-    for (var i = 0; i < listId.length; i++) {
-      var Healthy = []
-      var nowId = listId[i]
-      var siteSFlowObj = await allApi.getSitesHealthById(nowId)
-      Healthy.push(siteSFlowObj[0].deviceHealth)
-      Healthy.push(siteSFlowObj[0].radioHealth)
-      Healthy.push(siteSFlowObj[0].siteHealth)
-      var siteSFlowObj = await allApi.getSitesFlowById(nowId)
-      Healthy.push(siteSFlowObj[0].humanFlow)
-      Healthy.push(siteSFlowObj[0].reVisitedRate)
-      data.push({
-        siteId: nowId,
-        Healthy: Healthy,
-      })
-    }
-    return data
-  }
+  import axios from 'axios'
+
   export default {
     name: 'HealthyEcharts',
     data() {
@@ -46,26 +32,34 @@
       }
     },
     created() {
-      this.fetchData()
-      setTimeout(() => {
-        this.Access()
-      }, 500),
-        this.Access()
+        var that = this
+        axios.get('api/siteInfo')
+          .then(function (response) {
+            console.log(response.data)
+            that.picturedata = response.data;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+          clearTimeout(this.timer)
+          this.timer = setTimeout(() => {
+            console.log(that.picturedata)
+            that.Access()
+          }, 2000)
     },
     mounted() {},
     methods: {
-      async fetchData() {
-        this.picturedata = await getData()
-      },
+    
       Access() {
-        for (let i = 0; i < 6; i++) {
+        console.log(this.picturedata.length)
+        for (let i = 0; i < this.picturedata.length; i++) {
           let newPromise = new Promise((resolve, reject) => {
             resolve()
           })
           newPromise.then(() => {
             let chartDom = document.getElementById('Access' + i)
             var myChart = echarts.init(chartDom)
-            var that = this
+            var that = this.picturedata
             var option = {
               color: ['#67F9D8', '#FFE434', '#56A3F1', '#FF917C'],
               title: {
@@ -120,7 +114,8 @@
                   data: [
                     {
                       //value: [100, 100, 100, 100, 100],
-                      value: that.picturedata[i].Healthy,
+                      
+                      value: [that[i].device_health, that[i].rf_health, that[i].site_health, that[i].flow, that[i].revisit_rate],
                       label: {
                         show: true,
                         formatter: function (params) {

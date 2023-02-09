@@ -1,5 +1,5 @@
 <template>
-  <div id="main5" style="width: 380px; height: 300px"></div>
+  <div id="main5" ref="main5" style="width: 380px; height: 300px"></div>
 </template>
 
 <script>
@@ -12,14 +12,14 @@
     created() {
       setTimeout(() => {
         this.init()
-      }, 100)
+      }, 1000)
       // this.init()
     },
     mounted() {},
     methods: {
       init() {
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main5'))
+        var myChart = echarts.init(this.$refs.main5)
 
         let base = +new Date(2010, 9, 3)
         let oneDay = 24 * 3600 * 1000

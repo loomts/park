@@ -26,11 +26,13 @@
       }
     },
     mounted() {
-      this.$nextTick(() => {
+      setTimeout(() => {
+        this.$nextTick(() => {
         this.initChart()
         window.addEventListener('resize', this.screenAdapter)
         this.screenAdapter()
       })
+      }, 2000)
     },
     methods: {
       initChart() {

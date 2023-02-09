@@ -1,261 +1,292 @@
 <template>
-  <div class="nowphone">
-    <div class="block">
-      <div class="top">
-        <vab-icon class="topImg" :icon="['fas', 'user-circle']"></vab-icon>
-        <span class="toptext1">User1</span>
-        <div class="use">
-          <sapn class="user">普通用户</sapn>
-          <span class="mac">MAC:</span>
-          <sapn class="nowmac">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</sapn>
-        </div>
-      </div>
+  <div class="test">
+    <el-row>
+      <el-col :span="20" style="margin: 50px; width: 1465px">
+        <el-card class="card" shadow="always">
+          <div slot="header">
+            <span style="font-size: 20px; color: #909399">设备名称</span>
+          </div>
+          <div>
+            <el-input
+              v-model="queryForm.title"
+              placeholder="输入设备名称，支持模糊查询"
+              clearable
+            ></el-input>
+          </div>
+          <div style="margin: 20px; float: right">
+            <el-button native-type="submit" type="primary" @click="queryData">
+              搜索
+            </el-button>
+          </div>
+        </el-card>
+      </el-col>
 
-      <div class="Cen">
-        <div class="block1">
-          <div class="circle1"></div>
-          <div class="text1">平均速率</div>
-          <div class="text11">1645</div>
-          <div class="text12">Mbps</div>
-          <hr />
-        </div>
-        <div class="block2">
-          <div class="circle2"></div>
-          <div class="text2">时延</div>
-          <div class="text21">33</div>
-          <div class="text12">MS</div>
-          <hr />
-        </div>
-        <div class="block3">
-          <div class="circle3"></div>
-          <div class="text3">接入次数</div>
-          <div class="text31">1</div>
-          <div class="text12">次</div>
-          <hr />
-        </div>
-        <div class="block4">
-          <div class="circle4"></div>
-          <div class="text4">活跃时间</div>
-          <div class="text41">976</div>
-          <div class="text12">S</div>
-          <hr />
-        </div>
-        <div class="block5">
-          <div class="circle5"></div>
-          <div class="text5">位置</div>
-          <div class="text51">XX</div>
-          <div class="text12">XX</div>
-          <hr />
-        </div>
-      </div>
-    </div>
-
-    <div class="block">
-      <div class="top">
-        <vab-icon class="topImg" :icon="['fas', 'user-circle']"></vab-icon>
-        <span class="toptext1">User1</span>
-        <div class="use">
-          <sapn class="user">普通用户</sapn>
-          <span class="mac">MAC:</span>
-          <sapn class="nowmac">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</sapn>
-        </div>
-      </div>
-
-      <div class="Cen">
-        <div class="block1">
-          <div class="circle1"></div>
-          <div class="text1">平均速率</div>
-          <div class="text11">1645</div>
-          <div class="text12">Mbps</div>
-          <hr />
-        </div>
-        <div class="block2">
-          <div class="circle2"></div>
-          <div class="text2">时延</div>
-          <div class="text21">33</div>
-          <div class="text12">MS</div>
-          <hr />
-        </div>
-        <div class="block3">
-          <div class="circle3"></div>
-          <div class="text3">接入次数</div>
-          <div class="text31">1</div>
-          <div class="text12">次</div>
-          <hr />
-        </div>
-        <div class="block4">
-          <div class="circle4"></div>
-          <div class="text4">活跃时间</div>
-          <div class="text41">976</div>
-          <div class="text12">S</div>
-          <hr />
-        </div>
-        <div class="block5">
-          <div class="circle5"></div>
-          <div class="text5">位置</div>
-          <div class="text51">XX</div>
-          <div class="text12">XX</div>
-          <hr />
-        </div>
-      </div>
-    </div>
-
-    <div class="block">
-      <div class="top">
-        <vab-icon class="topImg" :icon="['fas', 'user-circle']"></vab-icon>
-        <span class="toptext1">User1</span>
-        <div class="use">
-          <sapn class="user">普通用户</sapn>
-          <span class="mac">MAC:</span>
-          <sapn class="nowmac">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</sapn>
-        </div>
-      </div>
-
-      <div class="Cen">
-        <div class="block1">
-          <div class="circle1"></div>
-          <div class="text1">平均速率</div>
-          <div class="text11">1645</div>
-          <div class="text12">Mbps</div>
-          <hr />
-        </div>
-        <div class="block2">
-          <div class="circle2"></div>
-          <div class="text2">时延</div>
-          <div class="text21">33</div>
-          <div class="text12">MS</div>
-          <hr />
-        </div>
-        <div class="block3">
-          <div class="circle3"></div>
-          <div class="text3">接入次数</div>
-          <div class="text31">1</div>
-          <div class="text12">次</div>
-          <hr />
-        </div>
-        <div class="block4">
-          <div class="circle4"></div>
-          <div class="text4">活跃时间</div>
-          <div class="text41">976</div>
-          <div class="text12">S</div>
-          <hr />
-        </div>
-        <div class="block5">
-          <div class="circle5"></div>
-          <div class="text5">位置</div>
-          <div class="text51">XX</div>
-          <div class="text12">XX</div>
-          <hr />
-        </div>
-      </div>
-    </div>
-
-    <div class="block">
-      <div class="top">
-        <vab-icon class="topImg" :icon="['fas', 'user-circle']"></vab-icon>
-        <span class="toptext1">User1</span>
-        <div class="use">
-          <sapn class="user">普通用户</sapn>
-          <span class="mac">MAC:</span>
-          <sapn class="nowmac">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</sapn>
-        </div>
-      </div>
-
-      <div class="Cen">
-        <div class="block1">
-          <div class="circle1"></div>
-          <div class="text1">平均速率</div>
-          <div class="text11">1645</div>
-          <div class="text12">Mbps</div>
-          <hr />
-        </div>
-        <div class="block2">
-          <div class="circle2"></div>
-          <div class="text2">时延</div>
-          <div class="text21">33</div>
-          <div class="text12">MS</div>
-          <hr />
-        </div>
-        <div class="block3">
-          <div class="circle3"></div>
-          <div class="text3">接入次数</div>
-          <div class="text31">1</div>
-          <div class="text12">次</div>
-          <hr />
-        </div>
-        <div class="block4">
-          <div class="circle4"></div>
-          <div class="text4">活跃时间</div>
-          <div class="text41">976</div>
-          <div class="text12">S</div>
-          <hr />
-        </div>
-        <div class="block5">
-          <div class="circle5"></div>
-          <div class="text5">位置</div>
-          <div class="text51">XX</div>
-          <div class="text12">XX</div>
-          <hr />
-        </div>
-      </div>
-    </div>
+      <el-col v-for="(item, index) in querydata" :key="index">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>
+              <div class="top">
+                <vab-icon
+                  class="topImg"
+                  :icon="['fas', 'user-circle']"
+                ></vab-icon>
+                <span class="toptext1">User</span>
+                <br />
+                <!-- <span class="mac">设备名称:</span> -->
+                <sapn class="nowmac">{{ item.name }}</sapn>
+              </div>
+            </span>
+          </div>
+          <div class="block1">
+            <div class="circle1"></div>
+            <div class="text1">上行速率</div>
+            <div class="text11">
+              {{ item.upwardSpeed }}
+              <span class="text12">Kb/s</span>
+            </div>
+            <br />
+            <div class="hr1"><hr /></div>
+          </div>
+          <div class="block2">
+            <div class="circle2"></div>
+            <div class="text2">下行速率</div>
+            <div class="text21">
+              {{ item.downwardSpeed }}
+              <span class="text22">Kb/s</span>
+            </div>
+            <br />
+            <div class="hr2"><hr /></div>
+          </div>
+          <div class="block3">
+            <div class="circle3"></div>
+            <div class="text3">流量</div>
+            <div class="text31">
+              {{ item.traffic }}
+              <span class="text32">Bps</span>
+            </div>
+            <br />
+            <div class="hr3"><hr /></div>
+          </div>
+          <div class="block4">
+            <div class="circle4"></div>
+            <div class="text4">cpu占有率</div>
+            <div class="text41">
+              {{ item.cpuRate }}
+              <span class="text42">%</span>
+            </div>
+            <br />
+            <div class="hr4"><hr /></div>
+          </div>
+          <div class="block5">
+            <div class="circle5"></div>
+            <div class="text5">经纬度</div>
+            <div class="text51">
+              ({{ item.gisLon }}, {{ item.gisLat }})
+              <span class="text52">度</span>
+            </div>
+            <br />
+            <div class="hr5"><hr /></div>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="24">
+        <el-pagination
+          :background="background"
+          :current-page="queryForm.pageNo"
+          :page-size="queryForm.pageSize"
+          :page-sizes="[72, 144, 216, 288]"
+          :layout="layout"
+          :total="total"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+        ></el-pagination>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
-    name: 'Upload',
-
+    name: 'Nowphone',
     data() {
-      return {}
+      return {
+        layout: 'total, sizes, prev, pager, next, jumper',
+        total: 0,
+        background: true,
+        height: 0,
+        selectRows: '',
+        elementLoadingText: '正在加载...',
+        querydata: [],
+        queryForm: {
+          pageNo: 1,
+          pageSize: 72,
+          title: '',
+        },
+      }
     },
-    methods: {},
+
+    created() {
+      this.fetchData()
+    },
+    methods: {
+       fetchData() {
+        var data = []
+        var that = this
+        axios.get('api/deviceInfo')
+          .then(function (response) {
+            // console.log(response.data)
+            data = response.data;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+          clearTimeout(this.timer)
+          this.timer = setTimeout(() => {
+            // console.log(data)
+            var t = data
+            console.log(t)
+            for (var i = 0; i < 20; i++) for (var j = 0; j < 50; j++) data.push(t[j])
+            var startNo = (that.queryForm.pageNo - 1) * that.queryForm.pageSize
+            var endNo = startNo + that.queryForm.pageSize
+
+            var obj = []
+            for (var i = 0; i < data.length; i++) {
+              if (that.queryForm.title == '' || (data[i].id+'').startsWith(that.queryForm.title+''))
+              obj.push({
+                name: data[i].id,
+                gisLon: data[i].longitude,
+                gisLat: data[i].latitude,
+                traffic: data[i].flow,
+                upwardSpeed: data[i].uplink_rate,
+                downwardSpeed: data[i].downlink_rate,
+                cpuRate: data[i].cpu_rate,
+              })
+            }
+
+            
+
+            var json = []  
+            for (var i = startNo; i < endNo && i < obj.length; i++) {
+              json.push({
+                name: obj[i].name,
+                gisLon: obj[i].gisLon,
+                gisLat: obj[i].gisLat,
+                traffic: obj[i].traffic,
+                upwardSpeed: obj[i].traffic,
+                downwardSpeed: obj[i].downwardSpeed,
+                cpuRate: obj[i].cpuRate,
+              })
+            }
+
+            this.querydata = json
+            this.total = obj.length
+          }, 1000)
+      },
+      handleSizeChange(val) {
+        this.queryForm.pageSize = val
+        this.fetchData()
+      },
+      handleCurrentChange(val) {
+        this.queryForm.pageNo = val
+        this.fetchData()
+      },
+      queryData() {
+        this.queryForm.pageNo = 1
+        this.fetchData()
+      }
+      // async fetchData() {
+      //   var res = await this.getNowUser(this.queryForm)
+      //   this.querydata = res[0]
+      //   this.total = res[1]
+      // },
+    },
   }
 </script>
-
 <style lang="scss" scoped>
+  .test {
+    font-family: 'Georgia', 'Lucida Sans', 'sans-serif', 'Lucida Grande',
+      'Lucida Sans';
+  }
+  .card {
+    ::v-deep {
+      .el-card__body {
+        .echarts {
+          width: 100%;
+          height: 305px;
+        }
+      }
+    }
+  }
+  .text {
+    font-size: 14px;
+  }
+
+  .item {
+    margin-bottom: 18px;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: '';
+  }
+  .clearfix:after {
+    clear: both;
+  }
+
+  .box-card {
+    margin-left: 100px;
+    margin-top: 20px;
+    width: 1360px;
+  }
   .topImg {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     margin-left: 10px;
   }
   .toptext1 {
-    font-size: 20px;
+    font-size: 15px;
     padding-left: 10px;
   }
   .use {
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 35px;
+    font-size: 20px;
   }
   .user {
-    font-size: 14px;
+    font-size: 20px;
   }
   .nowmac {
-    padding-left: 10px;
-    font-size: 14px;
+    margin-top: 30px;
+    padding-left: 30px;
+    font-size: 20px;
   }
   .mac {
-    font-size: 14px;
+    font-size: 20px;
     padding-left: 10px;
-    color: blue;
+    // color: blue;
   }
-  .block {
-    height: 200px;
-    width: 800px;
-    // border: 1px solid red;
-  }
+  // .block {
+  //   height: 200px;
+  //   width: 700px;
+  //   // border: 1px solid red;
+  // }
   .circle1 {
-    width: 16px;
-    height: 16px;
-    border: 1px solid red;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #f0ebe3;
     border-radius: 50%;
-    background-color: red;
+    background-color: #f0ebe3;
+    margin-top: -20px;
   }
   .text1 {
     font-size: 15px;
-    color: red;
-    margin-top: -17px;
+    text-align: left;
+    margin-top: -16px;
     margin-left: 25px;
+    color: #565454;
   }
   .block1 {
     margin-top: 10px;
@@ -264,107 +295,165 @@
     // border: 1px solid orange;
   }
   .text11 {
-    font-size: 40px;
-    color: red;
+    font-size: 30px;
+    margin-top: 10px;
+    // color: red;
   }
   .text12 {
+    font-family: 'Lucida Sans';
     font-size: 20px;
+    text-align: left;
+    margin-top: 5px;
     color: gray;
     // margin-top: 5px;
   }
+  .hr1 {
+    margin-top: -8px;
+  }
   .block2 {
     margin-top: -100px;
-    margin-left: 220px;
+    margin-left: 230px;
     height: 100px;
     width: 200px;
     // border: 1px solid orange;
   }
   .circle2 {
-    width: 16px;
-    height: 16px;
-    border: 1px solid orange;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #a0d995;
     border-radius: 50%;
-    background-color: orange;
+    background-color: #a0d995;
+    margin-top: -20px;
   }
   .text2 {
     font-size: 15px;
-    color: orange;
-    margin-top: -17px;
+    // color: orange;
+    text-align: left;
+    margin-top: -16px;
     margin-left: 25px;
   }
   .text21 {
-    font-size: 40px;
-    color: orange;
+    font-size: 30px;
+    margin-top: 10px;
+    // color: orange;
+  }
+  .text22 {
+    font-family: 'Lucida Sans';
+    font-size: 20px;
+    text-align: left;
+    margin-top: 5px;
+    color: gray;
+  }
+  .hr2 {
+    margin-top: -8px;
   }
   .block3 {
     margin-top: -100px;
-    margin-left: 440px;
+    margin-left: 460px;
     height: 100px;
     width: 200px;
     // border: 1px solid pink;
   }
   .circle3 {
-    width: 16px;
-    height: 16px;
-    border: 1px solid pink;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #fcbad3;
     border-radius: 50%;
-    background-color: pink;
+    background-color: #fcbad3;
+    margin-top: -20px;
   }
   .text3 {
     font-size: 15px;
-    color: pink;
-    margin-top: -17px;
+    // color: pink;
+    text-align: left;
+    margin-top: -16px;
     margin-left: 25px;
   }
   .text31 {
-    font-size: 40px;
-    color: pink;
+    font-size: 30px;
+    margin-top: 10px;
+    // color: pink;
+  }
+  .text32 {
+    font-family: 'Lucida Sans';
+    font-size: 20px;
+    text-align: left;
+    margin-top: 5px;
+    color: gray;
+  }
+  .hr3 {
+    margin-top: -8px;
   }
   .block4 {
     margin-top: -100px;
-    margin-left: 660px;
+    margin-left: 690px;
     height: 100px;
     width: 200px;
     // border: 1px solid green;
   }
   .circle4 {
-    width: 16px;
-    height: 16px;
-    border: 1px solid green;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #ffffd2;
     border-radius: 50%;
-    background-color: green;
+    background-color: #ffffd2;
+    margin-top: -20px;
   }
   .text4 {
     font-size: 15px;
-    color: green;
-    margin-top: -17px;
+    // color: green;
+    text-align: left;
+    margin-top: -16px;
     margin-left: 25px;
   }
   .text41 {
-    font-size: 40px;
-    color: green;
+    font-size: 30px;
+    margin-top: 10px;
+    // color: green;
+  }
+  .text42 {
+    font-family: 'Lucida Sans';
+    font-size: 20px;
+    text-align: left;
+    margin-top: 5px;
+    color: gray;
+  }
+  .hr4 {
+    margin-top: -8px;
   }
   .block5 {
     margin-top: -100px;
-    margin-left: 880px;
+    margin-left: 920px;
     height: 100px;
-    width: 200px;
+    width: 400px;
   }
   .circle5 {
-    width: 16px;
-    height: 16px;
-    border: 1px solid purple;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #aa96da;
     border-radius: 50%;
-    background-color: purple;
+    background-color: #aa96da;
+    margin-top: -20px;
   }
   .text5 {
     font-size: 15px;
-    color: purple;
-    margin-top: -17px;
+    // color: purple;
+    text-align: left;
+    margin-top: -16px;
     margin-left: 25px;
   }
   .text51 {
-    font-size: 40px;
-    color: purple;
+    font-size: 30px;
+    margin-top: 10px;
+    color: pruple;
+  }
+  .text52 {
+    font-size: 20px;
+    text-align: left;
+    margin-top: 5px;
+    color: gray;
+  }
+  .hr5 {
+    margin-top: -8px;
   }
 </style>
