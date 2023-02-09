@@ -4,7 +4,7 @@
       <span
         style="
           font-size: 33px;
-          color: grey; /*#909399*/
+          color: #000000; /*grey; /*#909399*/
           margin: 45px;
           font-weight: bold;
 
@@ -41,7 +41,7 @@
                   float: left;
                   margin: 10px 0px;
                   font-weight: bold;
-                  color: #909399;
+                  color: #000000;
                 "
               >
                 异常
@@ -52,7 +52,7 @@
               <span
                 style="
                   font-size: 8px;
-                  color: gray /*#ff8b8b*/;
+                  color: #000000; /*#ff8b8b*/;
                   margin-left: 3px;
                   font-weight: bold;
                 "
@@ -80,7 +80,7 @@
                   float: left;
                   margin: 10px 0px;
                   font-weight: bold;
-                  color: #909399;
+                  color: #000000;
                 "
               >
                 今日
@@ -91,7 +91,7 @@
               <span
                 style="
                   font-size: 8px;
-                  color: gray /*#ff8b8b*/;
+                  color: #000000 /*#ff8b8b*/;
                   margin-left: 3px;
                   font-weight: bold;
                 "
@@ -119,7 +119,7 @@
                   float: left;
                   margin: 10px 0px;
                   font-weight: bold;
-                  color: #909399;
+                  color:#000000; /*#909399;*/
                 "
               >
                 空闲
@@ -132,7 +132,7 @@
               <span
                 style="
                   font-size: 8px;
-                  color: gray /*#ff8b8b*/;
+                  color: #000000;/*gray /*#ff8b8b*/;
                   margin-left: 3px;
                   font-weight: bold;
                 "
@@ -160,7 +160,7 @@
                   float: left;
                   margin: 10px 0px;
                   font-weight: bold;
-                  color: #909399;
+                  color: #000000;/*#909399;*/
                 "
               >
                 实况
@@ -171,7 +171,7 @@
               <span
                 style="
                   font-size: 8px;
-                  color: gray /*#ff8b8b*/;
+                  color: #000000;/*gray /*#ff8b8b*/;
                   margin-left: 3px;
                   font-weight: bold;
                 "
@@ -195,6 +195,7 @@
               height: 335px;
               margin-left: -10px;
               margin-top: 15px;
+              color: '#000000';
             "
           >
             <div>
@@ -204,7 +205,7 @@
                   display: block;
                   margin: 10px 15px;
                   font-weight: bold;
-                  color: #909399;
+                  color: #000000;
                   margin-left: -135px;
                 "
               >
@@ -213,7 +214,7 @@
               <span
                 style="
                   font-size: 18px;
-                  color: #909399;
+                  color: #000000;
                   margin: 0px 15px;
                   margin-left: -165px;
                 "
@@ -250,7 +251,7 @@
                   display: block;
                   margin: 10px 15px;
                   font-weight: bold;
-                  color: #909399;
+                  color: #000000;
                   margin-left: -135px;
                 "
               >
@@ -259,7 +260,7 @@
               <span
                 style="
                   font-size: 18px;
-                  color: #909399;
+                  color: #000000;
                   margin: 0px 15px;
                   margin-left: -165px;
                 "
@@ -300,7 +301,7 @@
                   display: block;
                   margin: 10px 15px;
                   font-weight: bold;
-                  color: #909399;
+                  color: #000000;
                   margin-left: -135px;
                 "
               >
@@ -309,7 +310,7 @@
               <span
                 style="
                   font-size: 18px;
-                  color: #909399;
+                  color: #000000;
                   margin: 0px 15px;
                   margin-left: -165px;
                 "
@@ -356,6 +357,7 @@
                   padding: 0px 0px;
                   border-color: gainsboro;
                   border-radius: 8px;
+                  color: #000000;
                 "
               ></div>
             </div>
@@ -385,7 +387,7 @@
                   display: block;
                   margin: 10px 0px;
                   font-weight: bold;
-                  color: #909399;
+                  color: #000000;/*#909399;*/
                 "
               >
                 进出车次统计
@@ -828,7 +830,7 @@
           title: {
             text: '今日营收情况 >> 每小时',
             textStyle: {
-              color: '#909399',
+              color: '#000000',
             },
           },
           tooltip: {},
@@ -1019,7 +1021,7 @@
           title: {
             text: '驿停车辆统计',
             textStyle: {
-              color: '#909399',
+              color: '#000000',
               fontSize: 16,
             },
           },
@@ -1048,7 +1050,6 @@
           series: [
             {
               name: '今日新增',
-
               type: 'bar',
               stack: 'total',
               label: {
@@ -1085,7 +1086,7 @@
           title: {
             text: '微信关注人数',
             textStyle: {
-              color: '#909399',
+              color: '#000000',
               fontSize: 16,
             },
           },
@@ -1249,6 +1250,13 @@
 </script>
 
 <style lang="scss" scoped>
+  *{
+    font-family: AlimamaShuHeiTi-Bold;
+  }
+  @font-face {
+    font-family: AlimamaShuHeiTi-Bold;
+    src: url('./AlimamaShuHeiTi-Bold.otf');
+  }
   .topBox {
     width: 98%;
     height: 85px;
@@ -1284,6 +1292,7 @@
     padding: 0 !important;
     margin: 0 !important;
     background: #f5f7f8 !important;
+    font-family: AlimamaShuHeiTi-Bold;
 
     ::v-deep {
       .el-alert {
@@ -1296,6 +1305,7 @@
           color: #909399;
           background-color: $base-color-white;
           border: 1px solid #ebeef5;
+          font-family: AlimamaShuHeiTi-Bold;
         }
       }
 
@@ -1303,6 +1313,7 @@
         .echarts {
           width: 100%;
           height: 1500px;
+          font-family: AlimamaShuHeiTi-Bold;
         }
       }
     }
@@ -1313,6 +1324,7 @@
           .echarts {
             width: 100%;
             height: 1500px;
+            font-family: AlimamaShuHeiTi-Bold;
           }
         }
       }
@@ -1328,6 +1340,7 @@
       color: #595959;
       text-align: left;
       border-top: 1px solid $base-border-color;
+      font-family: AlimamaShuHeiTi-Bold;
     }
 
     .table {
@@ -1335,6 +1348,7 @@
       color: #666;
       border-collapse: collapse;
       background-color: #fff;
+      font-family: AlimamaShuHeiTi-Bold;
 
       td {
         position: relative;
@@ -1356,6 +1370,7 @@
       height: 117px;
       text-align: center;
       cursor: pointer;
+      font-family: AlimamaShuHeiTi-Bold;
 
       svg {
         font-size: 40px;
@@ -1377,6 +1392,7 @@
       .el-divider__text {
         color: gray;
         font-size: 25px;
+        font-family: AlimamaShuHeiTi-Bold;
       }
     }
   }

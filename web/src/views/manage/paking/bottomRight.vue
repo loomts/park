@@ -1,15 +1,30 @@
 <template>
   <div
     id="bottomRight"
-    style="border: solid white 1px; height: 450px; margin-left: 80px"
+    style="
+      border: solid black 1px; 
+      height: 430px; 
+      width: 80%;
+      margin-left:120px;
+      margin-top: 40px;
+      box-shadow:0 2px 5px 5px gray;
+      border-radius: 12.25px;
+      "
+
   >
     <div class="bg-color-black">
       <div class="d-flex pt-2 pl-2">
-        <span style="color: #5cd9e8">
+        <span style="color: #000000">
           <icon name="chart-area"></icon>
         </span>
         <div class="d-flex">
-          <span class="fs-xl text mx-2">人群趋向图</span>
+          <span class="fs-xl text mx-2"
+            style="
+              color: #000000;
+            "
+          >
+            人群趋向图
+          </span>
           <div class="decoration2">
             <dv-decoration-2
               :reverse="true"

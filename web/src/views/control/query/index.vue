@@ -3,10 +3,11 @@
     <div>
       <span
         style="
-          font-size: 20px;
-          color: #909399;
+          font-size: 30px;
+          color: #000000;
           margin: 50px;
           line-height: 100px;
+          font-family: AlimamaShuHeiTi-Bold;
         "
       >
         防控查询
@@ -21,7 +22,7 @@
       <el-col :span="20" style="margin: 50px">
         <el-card class="card" shadow="always">
           <div slot="header">
-            <span style="font-size: 20px; color: #909399">IP查询</span>
+            <span style="font-size: 22px; color: #000000">IP查询</span>
           </div>
           <div>
             <el-input
@@ -937,6 +938,13 @@
 </script>
 
 <style lang="scss" scoped>
+  *{
+    font-family: AlimamaShuHeiTi-Bold;
+  }
+  @font-face {
+    font-family: AlimamaShuHeiTi-Bold;
+    src: url('./AlimamaShuHeiTi-Bold.otf');
+  }
   .map {
     width: 2500px;
     height: 800px;

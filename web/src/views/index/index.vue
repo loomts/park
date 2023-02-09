@@ -169,33 +169,8 @@
   }
 </script>
 
-<style scoped>
-  /* .el-card ::v-deep .el-card__header {
-    color: #fff;
-  }
-  .el-card ::v-deep .el-card__body {
-    color: #fff;
-  } */
-  ::v-deep .cell {
-    color: #fff;
-    padding: 0;
-  }
-  ::v-deep .el-table__header th {
-    padding: 0;
-    height: 30px;
-    line-height: 30px;
-    color: #fff;
-  }
-  ::v-deep .el-table__body tr,
-  ::v-deep.el-table__body td {
-    padding: 0;
-    height: 30px;
-    line-height: 30px;
-    color: #fff;
-  }
-</style>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .indeximg {
     // width: 650px;
     float: left;

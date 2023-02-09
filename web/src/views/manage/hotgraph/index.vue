@@ -1,15 +1,15 @@
 <!-- 热力图 -->
 <template>
   <!-- :center表示定位, 可使用如“广州市海珠区”的地区字符串，
-			也可以使用对象如 {lng: 116.404, lat: 39.915} 表示经纬度->lng-longitude; lat-latitude
-		 :zoom表示缩放等级；
-		 :scroll-wheel-zoom表示允许鼠标滚轮缩放 -->
+      也可以使用对象如 {lng: 116.404, lat: 39.915} 表示经纬度->lng-longitude; lat-latitude
+     :zoom表示缩放等级；
+     :scroll-wheel-zoom表示允许鼠标滚轮缩放 -->
   <baidu-map
     class="map"
     :center="{ lng: 121.668543, lat: 31.148081 }"
     :zoom="18"
     :scroll-wheel-zoom="true"
-    style="width: auto; height: 600px"
+    style="width: auto; height: 800px"
   >
     <!-- 全景 -->
     <bm-panorama></bm-panorama>
@@ -19,7 +19,7 @@
       anchor="BMAP_ANCHOR_TOP_LEFT"
     ></bm-map-type>
     <!-- :max表示权重最大值；:radius表示热力图半径；:gradient表示热力图渐变区间，
-    	其中 key 表示插值的位置，取值范围 0 ~ 1，value 为颜色值。 -->
+      其中 key 表示插值的位置，取值范围 0 ~ 1，value 为颜色值。 -->
     <bml-heatmap
       :data="data"
       :max="100"

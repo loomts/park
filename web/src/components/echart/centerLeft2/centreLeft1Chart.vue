@@ -54,7 +54,7 @@
             x: 'center',
             data: ['宝藏湾', '明日世界', '奇想花园', '探险岛', '梦幻世界'],
             textStyle: {
-              color: '#fff',
+              color: '#000000',
             },
           },
           series: [

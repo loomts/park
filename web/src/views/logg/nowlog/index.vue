@@ -1,61 +1,86 @@
 <template>
-  <div id="whole">
+  <div id="whole" style="font-family: 'SourceHanSans-Normal';">
     <!-- 人流预警 -->
     <template>
-      <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tabs v-model="activeName" @tab-click="handleClick" style="margin-left:20px;margin-top: -20px;">
         <el-tab-pane label="异常管理" name="first">
-          <el-tag type="danger" effect="light" class="disinfect2">
+<!--          <el-tag type="danger" effect="light" class="disinfect2">
             <span>园 区 异 常</span>
-          </el-tag>
-          <!-- <vab-colorful-icon icon-class="expired" /> -->
+          </el-tag> -->
           <!-- </div> -->
-          <center style="margin-top: 20px; margin-bottom: 100px">
-            <el-container class="cot" style="width: 70%">
+          <center style="margin-top: 20px; margin-bottom: 100px;">
+            <el-container class="cot" style="width: 95%;">
               <el-main>
                 <el-table
                   :data="tableData_1"
-                  stripe
+          stripe
                   :header-cell-style="{
-                    background: '#feedeb',
-                    color: '#ffffff',
+                    color:'#ffc000',
+          background: '#FAFAFA',
+          fontFamily: 'AlimamaShuHeiTi-Bold',
+          borderBottom: '2px solid rgba(192,80,77,0.5)'
                   }"
-                  style="font-size: 30px"
                 >
                   <el-table-column
                     prop="priority"
                     label="处理优先级"
                     width="100"
-                  ></el-table-column>
+          :filter-method="filterTag"
+          align="center"
+                  >
+          <div slot-scope="scope">
+                          <el-tag
+                            :type="scope.row.priority == 'P1' ? 'danger' : 'primary'"
+                            disable-transitions
+                          >
+                            {{ scope.row.priority }}
+                          </el-tag>
+                        </div>
+          </el-table-column>
 
                   <el-table-column
                     prop="date"
                     label="日期"
                     width="150"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
                     prop="time"
                     label="时间"
                     width="150"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
                     prop="place"
                     label="发生地点"
                     width="180"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
                     prop="way"
                     label="事件类型"
                     width="180"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
                     prop="reason"
                     label="异常原因"
                     width="180"
-                  ></el-table-column>
+          align="center"
+                  >
+          <div slot-scope="scope">
+                <el-tag
+                  :type="scope.row.reason == '人群过密' ? 'danger' : 'primary'"
+                  disable-transitions
+                >
+                  {{ scope.row.reason }}
+                </el-tag>
+              </div>
+          </el-table-column>
                 </el-table>
               </el-main>
             </el-container>
@@ -64,57 +89,72 @@
 
         <el-tab-pane label="消毒信息" name="second">
           <!-- 到点消毒 -->
-          <el-tag type="" effect="light" class="disinfect">
-            <!-- <vab-colorful-icon icon-class="expired" /> -->
+          <!-- <el-tag type="" effect="light" class="disinfect">
             <span>消 毒 信 息</span>
-          </el-tag>
-          <center style="margin-top: 20px; margin-bottom: 100px">
-            <el-container class="cot" style="width: 1000px">
+          </el-tag> -->
+          <center style="margin-top: 20px; margin-bottom: 100px;">
+            <el-container class="cot" style="width: 95%">
               <el-main>
                 <el-table
                   :data="tableData_2"
                   stripe
                   :header-cell-style="{
-                    background: '#e6f3ff',
-                    color: '#ffffff',
+                    background: '#FAFAFA',
+                    fontFamily: 'AlimamaShuHeiTi-Bold',
+          borderBottom: '2px solid rgba(255,192,0,0.5)'
                   }"
-                  style="font-size: 30px"
                 >
                   <el-table-column
                     prop="date"
                     label="日期"
                     width="150"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
                     prop="time"
                     label="时间"
                     width="150"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
                     prop="place"
                     label="消毒地点"
                     width="180"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
                     prop="way"
                     label="消毒方式"
                     width="180"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
                     prop="people"
                     label="操作人员"
                     width="180"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
                     prop="result"
                     label="操作结果"
                     width="100"
-                  ></el-table-column>
+          align="center"
+                  >
+          <div slot-scope="scope">
+                <el-tag
+                  :type="scope.row.result == '尚未完成！' ? 'danger' : 'primary'"
+                  disable-transitions
+                >
+                  {{ scope.row.result }}
+                </el-tag>
+              </div>
+          
+          </el-table-column>
                 </el-table>
               </el-main>
             </el-container>
@@ -122,19 +162,19 @@
         </el-tab-pane>
 
         <el-tab-pane label="人流预警" name="third">
-          <el-tag type="info" effect="light" class="disinfect">
-            <!-- <vab-colorful-icon icon-class="expired" /> -->
+<!--          <el-tag type="info" effect="light" class="disinfect">
             <span>人 流 预 警</span>
-          </el-tag>
+          </el-tag> -->
           <center style="margin-top: 20px; margin-bottom: 100px">
-            <el-container class="cot" style="width: 1100px">
+            <el-container class="cot" style="width: 95%">
               <el-main>
                 <el-table
                   :data="tableData_3"
                   stripe
                   :header-cell-style="{
-                    background: '#f4f4f5',
-                    color: '#ffffff',
+                    background: '#FAFAFA',
+                    borderBottom: '2px solid rgba(68,114,196,0.5)',
+          fontFamily: 'AlimamaShuHeiTi-Bold',
                   }"
                   style="font-size: 30px"
                 >
@@ -142,35 +182,50 @@
                     prop="priority"
                     label="处理优先级"
                     width="180"
-                  ></el-table-column>
+          align="center"
+                  >
+          <div slot-scope="scope">
+                <el-tag
+                  :type="scope.row.priority == 'P1' ? 'danger' : 'primary'"
+                  disable-transitions
+                >
+                  {{ scope.row.priority }}
+                </el-tag>
+              </div>
+          </el-table-column>
 
                   <el-table-column
                     prop="date"
                     label="日期"
                     width="150"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
                     prop="time"
                     label="时间"
                     width="150"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
                     prop="place"
                     label="地点"
+          align="center"
                     width="180"
                   ></el-table-column>
 
                   <el-table-column
                     prop="number"
                     label="瞬时设备接入数"
+          align="center"
                     width="180"
                   ></el-table-column>
 
                   <el-table-column
                     prop="reason"
                     label="预警原因"
+          align="center"
                     width="180"
                   ></el-table-column>
                 </el-table>
@@ -180,56 +235,80 @@
         </el-tab-pane>
 
         <el-tab-pane label="AP故障" name="fourth">
-          <el-tag type="warning" effect="light" class="disinfect1">
-            <!-- <vab-colorful-icon icon-class="expired" /> -->
+<!--          <el-tag type="warning" effect="light" class="disinfect1">
             <span>A P 故 障</span>
-          </el-tag>
+          </el-tag> -->
           <center style="margin-top: 20px; margin-bottom: 100px">
-            <el-container class="cot" style="width: 1100px">
+            <el-container class="cot" style="width: 95%">
               <el-main>
                 <el-table
                   :data="tableData_4"
                   stripe
                   :header-cell-style="{
-                    background: '#fff6e8',
-                    color: '#ffffff',
+                    background: '#FAFAFA',
+                    borderBottom: '2px solid rgba(112,173,71,0.5)',
+          fontFamily: 'AlimamaShuHeiTi-Bold',
                   }"
                   style="font-size: 30px"
                 >
                   <el-table-column
                     prop="priority"
                     label="处理优先级"
+          align="center"
                     width="180"
-                  ></el-table-column>
+                  >
+          <div slot-scope="scope">
+                <el-tag
+                  :type="scope.row.priority == 'P1' ? 'danger' : 'primary'"
+                  disable-transitions
+                >
+                  {{ scope.row.priority }}
+                </el-tag>
+              </div>
+          </el-table-column>
 
                   <el-table-column
                     prop="date"
                     label="日期"
                     width="150"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
                     prop="time"
                     label="时间"
                     width="150"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
                     prop="way"
-                    label="问题类型"
+                    label="地点"
                     width="200"
+          align="center"
                   ></el-table-column>
 
                   <el-table-column
-                    prop="id"
-                    label="设备ID"
+                    prop="type"
+                    label="问题类型"
                     width="180"
-                  ></el-table-column>
+          align="center"
+                  >
+          <div slot-scope="scope">
+                <el-tag
+                  :type="scope.row.type == '设备故障' ? 'danger' : 'secondary'"
+                  disable-transitions
+                >
+                  {{ scope.row.type }}
+                </el-tag>
+              </div>
+          </el-table-column>
 
                   <el-table-column
-                    prop="area"
-                    label="站点区域"
+                    prop="reason"
+                    label="具体情况"
                     width="180"
+          align="center"
                   ></el-table-column>
                 </el-table>
               </el-main>
@@ -381,41 +460,41 @@
           priority: 'P1',
           date: '2022-07-02',
           time: '16:45',
-          place: '接入耗时过久',
+          place: '奇想花园',
           number: 'User327',
-          reason: '奇想花园',
+          reason: '接入耗时过久',
         },
         {
           priority: 'P1',
           date: '2022-07-02',
           time: '14:42',
-          place: '接入耗时过久',
+          place: '奇想花园',
           number: 'User109',
-          reason: '奇想花园',
+          reason: '接入耗时过久',
         },
         {
-          priority: 'P1',
+          priority: 'P2',
           date: '2022-07-02',
           time: '13:32',
-          place: '漫游达标率过低',
+          reason: '漫游达标率过低',
           number: 'User531',
-          reason: '明日世界',
+          place: '明日世界',
         },
         {
-          priority: 'P1',
+          priority: 'P2',
           date: '2022-07-02',
           time: '10:51',
-          place: 'AP上传速率出现异常',
+          reason: 'AP上传速率出现异常',
           number: 'User017',
-          reason: '探险岛',
+          place: '探险岛',
         },
         {
           priority: 'P1',
           date: '2022-07-02',
           time: '10:05',
-          place: '接入耗时过久',
+          reason: '接入耗时过久',
           number: 'User629',
-          reason: '奇想花园',
+          place: '奇想花园',
         },
       ]
       const item_4 = [
@@ -424,48 +503,48 @@
           date: '2022-07-02',
           time: '17:45',
           way: '探险岛',
-          id: '距离不当',
-          area: '疑似盗窃',
+          type: '距离不当',
+          reason: '疑似盗窃',
         },
         {
           priority: 'P1',
           date: '2022-07-02',
           time: '16:45',
           way: '探险岛',
-          id: '距离不当',
-          area: '疑似盗窃',
+          type: '距离不当',
+          reason: '疑似盗窃',
         },
         {
           priority: 'P1',
           date: '2022-07-02',
           time: '13:22',
           way: '明日世界',
-          id: '设备故障',
-          area: '极速光轮操纵按键失灵',
+          type: '设备故障',
+          reason: '极速光轮操纵按键失灵',
         },
         {
-          priority: 'P1',
+          priority: 'P2',
           date: '2022-07-02',
           time: '12:41',
           way: '梦幻世界',
-          id: '设备故障',
-          area: '晶彩奇航受雨暂停营业',
+          type: '设备故障',
+          reason: '晶彩奇航受雨暂停营业',
         },
         {
-          priority: 'P1',
+          priority: 'P2',
           date: '2022-07-02',
           time: '10:45',
           way: 'P3停车场',
-          id: '设备故障',
-          area: '升降杆损坏',
+          type: '设备故障',
+          reason: '升降杆损坏',
         },
         {
           priority: 'P1',
           date: '2022-07-02',
           time: '10:25',
           way: '奇想花园',
-          id: '游客纠纷',
-          area: '游客出现争吵',
+          type: '游客纠纷',
+          reason: '游客出现争吵',
         },
       ]
 
@@ -565,7 +644,7 @@
     font-size: 16px;
     border-radius: 50px;
   }
-  .el-header {
+ .el-header {
     background-color: #b3c0d1;
     line-height: 60px;
   }
@@ -579,4 +658,23 @@
     transition: all 0.15s ease;
     border: 1px solid #eee;
   }
+
+  
 </style>
+
+<style scopted>
+  /* 字体：阿里妈妈*/
+  @font-face {
+      font-family: AlimamaShuHeiTi-Bold;
+      src: url('./AlimamaShuHeiTi-Bold.otf');
+    }
+  
+  /* 字体:思源黑体 */
+  @font-face {
+      font-family: SourceHanSans-Normal;
+      src: url('./SourceHanSans-Normal.otf');
+    }
+</style>
+
+
+

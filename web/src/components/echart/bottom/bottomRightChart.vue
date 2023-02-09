@@ -153,13 +153,13 @@
           title: {
             text: '',
             textStyle: {
-              color: '#D3D6DD',
+              color: '#000000',
               fontSize: 24,
               fontWeight: 'normal',
             },
             subtext: year + '/' + weekCategory[6],
             subtextStyle: {
-              color: '#fff',
+              color: '#000000',
               fontSize: 16,
             },
             top: 50,
@@ -174,7 +174,7 @@
             itemHeight: 12,
             data: ['一小时内趋势', '当日趋势'],
             textStyle: {
-              color: '#fff',
+              color: '#000000',
               fontSize: 14,
             },
           },
@@ -185,7 +185,7 @@
             center: ['68%', '27%'],
             radius: '40%',
             name: {
-              color: '#fff',
+              color: '#000000',
             },
             splitNumber: 8,
             axisLine: {
@@ -205,7 +205,7 @@
                 color: '#fff',
                 opacity: 0.1,
                 shadowBlur: 25,
-                shadowColor: '#000',
+                shadowColor: '#000000',
                 shadowOffsetX: 0,
                 shadowOffsetY: 5,
               },
@@ -265,7 +265,7 @@
             splitLine: {
               show: true,
               lineStyle: {
-                color: '#fff',
+                color: '#000000',
                 opacity: 0.1,
               },
             },
@@ -338,7 +338,7 @@
               symbolSize: 8,
               itemStyle: {
                 normal: {
-                  color: '#fff',
+                  color: '#000000',
                 },
               },
               lineStyle: {
@@ -387,7 +387,7 @@
               itemStyle: {
                 normal: {
                   show: true,
-                  color: '#000',
+                  color: '#000000',
                   opacity: 0,
                 },
               },

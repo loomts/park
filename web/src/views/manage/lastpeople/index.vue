@@ -1,6 +1,9 @@
 <template>
-  <div id="myChart" :style="{ width: '100%', height: '1000px' }" />
+  <div id="myChart" :style="{ width: '100%', height: '550px', }">
+      
+  </div>
 </template>
+
 <script>
   import * as allApi from '../../../../api.js'
   var dataMap = {}
@@ -227,23 +230,25 @@
             },
             title: {
               subtext: '  ',
-            },
+      },
             tooltip: {},
             legend: {
-              left: 'center',
               data: [
-                '当年日均最高人流量',
-                '当年日均最低人流量',
-                '当年日均人流量',
+                '该月最高人流量',
+                '该月最低人流量',
+                '该月人均人流量',
                 '景区总销售额',
                 '酒店销售额',
                 '餐饮销售额',
               ],
               selected: {
                 景区总销售额: true,
-                酒店销售额: false,
-                餐饮销售额: false,
+                酒店销售额: true,
+                餐饮销售额: true,
               },
+        right: '10%',
+        top: '5%',
+        
             },
             calculable: true,
             grid: {
@@ -304,22 +309,36 @@
               { name: '景区总销售额', type: 'bar' },
               { name: '酒店销售额', type: 'bar' },
               { name: '餐饮销售额', type: 'bar' },
-              { name: '当年日均最低人流量', type: 'bar' },
-              { name: '当年日均最高人流量', type: 'bar' },
-              { name: '当年日均人流量', type: 'bar' },
+              { name: '该月最低人流量', type: 'bar' },
+              { name: '该月最高人流量', type: 'bar' },
+              { name: '该月人均人流量', type: 'bar' },
               {
                 name: 'GDP占比',
                 type: 'pie',
                 center: ['75%', '35%'],
                 radius: '28%',
+        barwidth: 100,
                 z: 100,
               },
             ],
           },
           options: [
             {
-              title: { text: '2012景区人流量' },
+              title: { 
+          text: '景区人流量\n2012',
+          left: '2%',
+          top: '1%',
+          textStyle: {
+            //标题颜色
+            color: '#000',
+            fontFamily:'AlimamaShuHeiTi-Bold',
+            fontWeight:'bold',
+            fontSize: 28,
+            lineHeight: 48,
+          },
+        },
               series: [
+          
                 { data: dataMap.dataGDP['2012'] },
                 { data: dataMap.dataFinancial['2012'] },
                 { data: dataMap.dataEstate['2012'] },
@@ -329,23 +348,42 @@
                 {
                   data: [
                     {
-                      name: '当年日均最高人流量',
+                      name: '该月最高人流量',
                       value: dataMap.dataPI['2012sum'],
                     },
                     {
-                      name: '当年日均最低人流量',
+                      name: '该月最低人流量',
                       value: dataMap.dataSI['2012sum'],
                     },
                     {
-                      name: '当年日均人流量',
+                      name: '该月人均人流量',
                       value: dataMap.dataTI['2012sum'],
                     },
                   ],
                 },
               ],
+        grid: [
+          {
+            containLabel: true, //grid 区域是否包含坐标轴的刻度标签
+                bottom: '10%',
+                height: '400',
+          },
+        ],
             },
             {
-              title: { text: '2013景区人流量' },
+              title: {
+                        text: '景区人流量\n2013',
+                        left: '2%',
+                        top: '1%',
+                        textStyle: {
+                          //标题颜色
+                          color: '#000',
+                          fontFamily:'AlimamaShuHeiTi-Bold',
+                          fontWeight:'bold',
+                          fontSize: 28,
+                          lineHeight: 48,
+                        },
+                      },
               series: [
                 { data: dataMap.dataGDP['2013'] },
                 { data: dataMap.dataFinancial['2013'] },
@@ -356,23 +394,42 @@
                 {
                   data: [
                     {
-                      name: '当年日均最高人流量',
+                      name: '该月最高人流量',
                       value: dataMap.dataPI['2013sum'],
                     },
                     {
-                      name: '当年日均最低人流量',
+                      name: '该月最低人流量',
                       value: dataMap.dataSI['2013sum'],
                     },
                     {
-                      name: '当年日均人流量',
+                      name: '该月人均人流量',
                       value: dataMap.dataTI['2013sum'],
                     },
                   ],
                 },
               ],
+        grid: [
+          {
+            containLabel: true, //grid 区域是否包含坐标轴的刻度标签
+                bottom: '10%',
+                height: '400',
+          },
+        ],
             },
             {
-              title: { text: '2014景区人流量' },
+              title: {
+                        text: '景区人流量\n2014',
+                        left: '2%',
+                        top: '1%',
+                        textStyle: {
+                          //标题颜色
+                          color: '#000',
+                          fontFamily:'AlimamaShuHeiTi-Bold',
+                          fontWeight:'bold',
+                          fontSize: 28,
+                          lineHeight: 48,
+                        },
+                      },
               series: [
                 { data: dataMap.dataGDP['2014'] },
                 { data: dataMap.dataFinancial['2014'] },
@@ -383,15 +440,15 @@
                 {
                   data: [
                     {
-                      name: '当年日均最高人流量',
+                      name: '该月最高人流量',
                       value: dataMap.dataPI['2014sum'],
                     },
                     {
-                      name: '当年日均最低人流量',
+                      name: '该月最低人流量',
                       value: dataMap.dataSI['2014sum'],
                     },
                     {
-                      name: '当年日均人流量',
+                      name: '该月人均人流量',
                       value: dataMap.dataTI['2014sum'],
                     },
                   ],
@@ -399,7 +456,19 @@
               ],
             },
             {
-              title: { text: '2015景区人流量' },
+              title: {
+                        text: '景区人流量\n2015',
+                        left: '2%',
+                        top: '1%',
+                        textStyle: {
+                          //标题颜色
+                          color: '#000',
+                          fontFamily:'AlimamaShuHeiTi-Bold',
+                          fontWeight:'bold',
+                          fontSize: 28,
+                          lineHeight: 48,
+                        },
+                      },
               series: [
                 { data: dataMap.dataGDP['2015'] },
                 { data: dataMap.dataFinancial['2015'] },
@@ -410,23 +479,42 @@
                 {
                   data: [
                     {
-                      name: '当年日均最高人流量',
+                      name: '该月最高人流量',
                       value: dataMap.dataPI['2015sum'],
                     },
                     {
-                      name: '当年日均最低人流量',
+                      name: '该月最低人流量',
                       value: dataMap.dataSI['2015sum'],
                     },
                     {
-                      name: '当年日均人流量',
+                      name: '该月人均人流量',
                       value: dataMap.dataTI['2015sum'],
                     },
                   ],
                 },
               ],
+        grid: [
+          {
+            containLabel: true, //grid 区域是否包含坐标轴的刻度标签
+                bottom: '10%',
+                height: '400',
+          },
+        ],
             },
             {
-              title: { text: '2016景区人流量' },
+              title: {
+                        text: '景区人流量\n2016',
+                        left: '2%',
+                        top: '1%',
+                        textStyle: {
+                          //标题颜色
+                          color: '#000',
+                          fontFamily:'AlimamaShuHeiTi-Bold',
+                          fontWeight:'bold',
+                          fontSize: 28,
+                          lineHeight: 48,
+                        },
+                      },
               series: [
                 { data: dataMap.dataGDP['2016'] },
                 { data: dataMap.dataFinancial['2016'] },
@@ -437,23 +525,42 @@
                 {
                   data: [
                     {
-                      name: '当年日均最高人流量',
+                      name: '该月最高人流量',
                       value: dataMap.dataPI['2016sum'],
                     },
                     {
-                      name: '当年日均最低人流量',
+                      name: '该月最低人流量',
                       value: dataMap.dataSI['2016sum'],
                     },
                     {
-                      name: '当年日均人流量',
+                      name: '该月人均人流量',
                       value: dataMap.dataTI['2016sum'],
                     },
                   ],
                 },
               ],
+        grid: [
+          {
+            containLabel: true, //grid 区域是否包含坐标轴的刻度标签
+                bottom: '10%',
+                height: '400',
+          },
+        ],
             },
             {
-              title: { text: '2017景区人流量' },
+              title: {
+                        text: '景区人流量\n2017',
+                        left: '2%',
+                        top: '1%',
+                        textStyle: {
+                          //标题颜色
+                          color: '#000',
+                          fontFamily:'AlimamaShuHeiTi-Bold',
+                          fontWeight:'bold',
+                          fontSize: 28,
+                          lineHeight: 48,
+                        },
+                      },
               series: [
                 { data: dataMap.dataGDP['2017'] },
                 { data: dataMap.dataFinancial['2017'] },
@@ -464,15 +571,15 @@
                 {
                   data: [
                     {
-                      name: '当年日均最高人流量',
+                      name: '该月最高人流量',
                       value: dataMap.dataPI['2017sum'],
                     },
                     {
-                      name: '当年日均最低人流量',
+                      name: '该月最低人流量',
                       value: dataMap.dataSI['2017sum'],
                     },
                     {
-                      name: '当年日均人流量',
+                      name: '该月人均人流量',
                       value: dataMap.dataTI['2017sum'],
                     },
                   ],
@@ -480,7 +587,19 @@
               ],
             },
             {
-              title: { text: '2018景区人流量' },
+              title: {
+                        text: '景区人流量\n2018',
+                        left: '2%',
+                        top: '1%',
+                        textStyle: {
+                          //标题颜色
+                          color: '#000',
+                          fontFamily:'AlimamaShuHeiTi-Bold',
+                          fontWeight:'bold',
+                          fontSize: 28,
+                          lineHeight: 48,
+                        },
+                      },
               series: [
                 { data: dataMap.dataGDP['2018'] },
                 { data: dataMap.dataFinancial['2018'] },
@@ -491,23 +610,42 @@
                 {
                   data: [
                     {
-                      name: '当年日均最高人流量',
+                      name: '该月最高人流量',
                       value: dataMap.dataPI['2018sum'],
                     },
                     {
-                      name: '当年日均最低人流量',
+                      name: '该月最低人流量',
                       value: dataMap.dataSI['2018sum'],
                     },
                     {
-                      name: '当年日均人流量',
+                      name: '该月人均人流量',
                       value: dataMap.dataTI['2018sum'],
                     },
                   ],
                 },
               ],
+        grid: [
+          {
+            containLabel: true, //grid 区域是否包含坐标轴的刻度标签
+                bottom: '10%',
+                height: '400',
+          },
+        ],
             },
             {
-              title: { text: '2019景区人流量' },
+              title: {
+                        text: '景区人流量\n2019',
+                        left: '2%',
+                        top: '1%',
+                        textStyle: {
+                          //标题颜色
+                          color: '#000',
+                          fontFamily:'AlimamaShuHeiTi-Bold',
+                          fontWeight:'bold',
+                          fontSize: 28,
+                          lineHeight: 48,
+                        },
+                      },
               series: [
                 { data: dataMap.dataGDP['2019'] },
                 { data: dataMap.dataFinancial['2019'] },
@@ -518,23 +656,42 @@
                 {
                   data: [
                     {
-                      name: '当年日均最高人流量',
+                      name: '该月最高人流量',
                       value: dataMap.dataPI['2019sum'],
                     },
                     {
-                      name: '当年日均最低人流量',
+                      name: '该月最低人流量',
                       value: dataMap.dataSI['2019sum'],
                     },
                     {
-                      name: '当年日均人流量',
+                      name: '该月人均人流量',
                       value: dataMap.dataTI['2019sum'],
                     },
                   ],
                 },
               ],
+        grid: [
+          {
+            containLabel: true, //grid 区域是否包含坐标轴的刻度标签
+                bottom: '10%',
+                height: '400',
+          },
+        ],
             },
             {
-              title: { text: '2020景区人流量' },
+              title: {
+                        text: '景区人流量\n2020',
+                left: '2%',
+                        top: '1%',
+                textStyle: {
+                          //标题颜色
+                          color: '#000',
+                          fontFamily:'AlimamaShuHeiTi-Bold',
+                          fontWeight:'bold',
+                          fontSize: 28,
+                          lineHeight: 48,
+                          },
+                      },
               series: [
                 { data: dataMap.dataGDP['2020'] },
                 { data: dataMap.dataFinancial['2020'] },
@@ -545,23 +702,42 @@
                 {
                   data: [
                     {
-                      name: '当年日均最高人流量',
+                      name: '该月最高人流量',
                       value: dataMap.dataPI['2020sum'],
                     },
                     {
-                      name: '当年日均最低人流量',
+                      name: '该月最低人流量',
                       value: dataMap.dataSI['2020sum'],
                     },
                     {
-                      name: '当年日均人流量',
+                      name: '该月人均人流量',
                       value: dataMap.dataTI['2020sum'],
                     },
                   ],
                 },
               ],
+        grid: [
+          {
+            containLabel: true, //grid 区域是否包含坐标轴的刻度标签
+                bottom: '10%',
+                height: '400',
+          },
+        ],
             },
             {
-              title: { text: '2021景区人流量' },
+              title: {
+                        text: '景区人流量\n2021',
+                        left: '2%',
+                        top: '1%',
+                        textStyle: {
+                        //标题颜色
+                        color: '#000',
+                          fontFamily:'AlimamaShuHeiTi-Bold',
+                        fontWeight:'bold',
+                        fontSize: 28,
+                        lineHeight: 48,
+                          },
+                      },
               series: [
                 { data: dataMap.dataGDP['2021'] },
                 { data: dataMap.dataFinancial['2021'] },
@@ -572,20 +748,27 @@
                 {
                   data: [
                     {
-                      name: '当年日均最高人流量',
+                      name: '该月最高人流量',
                       value: dataMap.dataPI['2021sum'],
                     },
                     {
-                      name: '当年日均最低人流量',
+                      name: '该月最低人流量',
                       value: dataMap.dataSI['2021sum'],
                     },
                     {
-                      name: '当年日均人流量',
+                      name: '该月人均人流量',
                       value: dataMap.dataTI['2021sum'],
                     },
                   ],
                 },
               ],
+        grid: [
+          {
+            containLabel: true, //grid 区域是否包含坐标轴的刻度标签
+                bottom: '10%',
+                height: '400',
+          },
+        ],
             },
           ],
         })
@@ -593,3 +776,18 @@
     },
   }
 </script>
+
+<style scopted>
+#myChart{
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  
+} 
+
+/* 字体：阿里妈妈*/
+@font-face {
+    font-family: AlimamaShuHeiTi-Bold;
+    src: url('./AlimamaShuHeiTi-Bold.otf');
+  }
+  
+</style>

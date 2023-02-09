@@ -1,10 +1,10 @@
 <template>
   <div
     id="main"
-    style="background-color: white; display: absoulte; margin: 10px"
-  >
+    style="background-color: white; display: absoulte; margin: 10px">
+  
     <center style="height: 200px">
-      <!--关键数字-->
+      <!--title-->
       <center>
         <div style="width=: 100%">
           <h1
@@ -12,9 +12,9 @@
               text-align: center;
               transition: 2s;
               letter-spacing: 10px;
-              font-family: 微软雅黑;
-              color: #333333;
-            "
+              font-family: 'alimama';
+        margin-top: 0px;
+              color: #000;"
             class="key"
           >
             销售状况
@@ -27,13 +27,10 @@
           width: 90%;
           height: 180px;
           margin-top: -20px;
-          background-color: #f8fcf6;
-          border-top: 1px solid #cdcdcd;
-          border-bottom: 1px solid #cdcdcd;
+          background-color: #F7F7F7;
           box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
             0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-          border: 1px #efefef solid;
-          border-radius: 10px;
+          border-radius: 20px;
         "
       >
         <div class="data">
@@ -80,26 +77,26 @@
           id="BarChart1"
           style="
             margin: 10px;
-            width: 70%;
-            height: 400px;
-            border-radius: 10px;
+      margin-left: 4%;
+            width: 60%;
+            height: 480px;
+      background-color: #F7F7F7;
             box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
               0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-            border: 1px #efefef solid;
-            border-radius: 10px;
+            border-radius: 20px;
           "
         ></div>
         <div
           id="AgeRange"
           style="
             margin: 10px;
+      margin-left:4%;
             width: 30%;
-            height: 400px;
-            border-radius: 10px;
+            height: 480px;
+      background-color: #F7F7F7;
             box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
               0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-            border: 1px #efefef solid;
-            border-radius: 10px;
+            border-radius: 20px;
           "
         ></div>
       </el-container>
@@ -112,26 +109,26 @@
           id="LinerChart1"
           style="
             margin: 10px;
-            width: 50%;
+      margin-left: 4%;
+            width: 46%;
             height: 400px;
-            border-radius: 10px;
+      background-color: #F7F7F7;
             box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
               0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-            border: 1px #efefef solid;
-            border-radius: 10px;
+            border-radius: 20px;
           "
         ></div>
         <div
           id="piechart1"
           style="
             margin: 10px;
-            width: 50%;
+      margin-left: 4%;
+            width: 46%;
             height: 400px;
-            border-radius: 10px;
+      background-color: #F7F7F7;
             box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
               0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-            border: 1px #efefef solid;
-            border-radius: 10px;
+            border-radius: 20px;
           "
         ></div>
       </el-container>
@@ -150,14 +147,215 @@
       }
     },
     mounted() {
-      this.drawLiner()
-      this.PieChart1()
-      this.BarChart1()
+      this.drawLiner()  //左下角
+      this.PieChart1()  //右下角
+      this.BarChart1()  //左上角
       this.AgeRange()
-      this.SexRange()
+      this.ballChart()
     },
     methods: {
-      /**********各月销售额**************/
+     /**********上面：进度球**************/
+   drawLiner() {
+     let ballChart = this.$echarts.init(
+       document.getElementById('ballChart')
+     )
+      ballChart.setOption({
+          // backgroundColor: "#050038",
+          title: {
+            text: `总完成`,
+            left: "center",
+            top: "100",
+            textStyle: {
+              fontWeight: "normal",
+              fontSize: 20,
+              color: "rgb(0,0,0)"
+            },
+            subtext: `${this.progress.num}%`, //副标题
+            subtextStyle: {
+              fontWeight: "bold",
+              fontSize: 40,
+              color: "rgb(0,0,0)"
+            }
+          },
+   
+          series: [
+            {
+              type: "liquidFill", // 图表类型
+              radius: "80%",
+              center: ["50%", "50%"],
+              data: [
+                this.progress.num / 100,
+                this.progress.num / 100,
+                this.progress.num / 100
+              ], // data个数代表波浪数
+              backgroundStyle: {
+                borderWidth: 1,
+                color: "#F4F9FF"
+              },
+              label: {
+                normal: {
+                  show: false, //不显示label  用副标题代替了
+                  formatter: (0.5 * 100).toFixed(0) + "%",
+                  textStyle: {
+                    fontSize: 38,
+                    color: "black"
+                  }
+                }
+              },
+              color: [  //color一定要是个数组 ，每一项对应一个波浪，可以给每个波浪单独配置颜色
+                {
+                  type: "linear",
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [
+                    {
+                      offset: 1,
+                      color: "rgba(255,255,255,1)"
+                    },
+                    {
+                      offset: 0,
+                      color: "rgba(103,205,251,1)"
+                    }
+                  ],
+                  globalCoord: false
+                },
+                {
+                  type: "linear",
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [
+                    {
+                      offset: 1,
+                      color: "rgba(187,248,252,0.5)"
+                    },
+                    {
+                      offset: 0,
+                      color: "rgba(30,134,245,1)"
+                    }
+                  ],
+                  globalCoord: false
+                },
+                {
+                  type: "linear",
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [
+                    {
+                      offset: 1,
+                      color: "rgba(180,251,255,0.66)"
+                    },
+                    {
+                      offset: 0,
+                      color: "rgba(128,122,254,0.66)"
+                    }
+                  ],
+                  globalCoord: false
+                }
+              ],
+              outline: {
+                show: false
+              }
+            },
+            //外层线
+            {
+              type: "pie",
+              center: ["50%", "50%"],
+              radius: ["92%", "93%"], //外层线粗细
+              hoverAnimation: false,
+              data: [
+                {
+                  name: "",
+                  value: 100,
+                  labelLine: {
+                    show: false
+                  },
+                  itemStyle: {
+                    color: "#67CDFB"
+                  },
+                  emphasis: {
+                    labelLine: {
+                      show: false
+                    },
+                    itemStyle: {
+                      // color: "#5886f0"
+                    }
+                  }
+                }
+              ]
+            },
+            //进度线
+            {
+              type: "pie",
+              center: ["50%", "50%"],
+              radius: ["90%", "95%"], //进度线粗细
+              hoverAnimation: false,
+              data: [
+                {
+                  name: "",
+                  value: this.progress.num, //进度
+                  labelLine: {
+                    show: false
+                  },
+                  itemStyle: {
+                    color: {
+                      type: "linear",
+                      x: 0,
+                      y: 0,
+                      x2: 1,
+                      y2: 2,
+                      colorStops: [
+                        // !! 在此添加渐变过程色 !!
+                        { offset: 0, color: "#33E2ED" },
+                        { offset: 1, color: "#807AFE" }
+                      ]
+                    }
+                  },
+                  emphasis: {
+                    labelLine: {
+                      show: false
+                    },
+                    itemStyle: {
+                      // color: "#5886f0"
+                    }
+                  }
+                },
+                {
+                  //画剩余的刻度圆环
+                  name: "",
+                  value: 100 - this.progress.num,
+                  itemStyle: {
+                    color: "rgba(0,0,0,0)"
+                  },
+                  label: {
+                    show: false
+                  },
+                  labelLine: {
+                    show: false
+                  },
+                  emphasis: {
+                    labelLine: {
+                      show: false
+                    },
+                    itemStyle: {
+                      color: "#050038"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        });   
+   },
+   
+   
+   
+    /**********各月销售额--左下角**************/
       drawLiner() {
         let LinerChart1 = this.$echarts.init(
           document.getElementById('LinerChart1')
@@ -165,11 +363,16 @@
         LinerChart1.setOption({
           title: {
             text: '各月总销售额',
-            left: 'center',
-            textStyle: {
-              //标题颜色
-              color: '#333333',
-            },
+      left: '3%',
+      top: '5%',
+      textStyle: {
+        //标题颜色
+        color: '#000',
+        fontFamily:'SourceHanSans-Bold',
+        fontWeight:'bold',
+        fontSize: 28,
+        height: 150,
+      },
           },
           xAxis: {
             type: 'category',
@@ -222,22 +425,28 @@
           ],
           grid: [
             {
-              containLabel: true, //grid 区域是否包含坐标轴的刻度标签，
+              containLabel: true, //grid 区域是否包含坐标轴的刻度标签
+        bottom: '10%',
+        height: '250px',
             },
           ],
         })
       },
 
-      /***************右上第一个图********************/
+      /***************右下角--总营业额构成********************/
       PieChart1() {
         let piechart1 = this.$echarts.init(document.getElementById('piechart1'))
         piechart1.setOption({
           title: {
             text: '总营业额构成',
-            left: 'center',
+            left: '3%',
+      top: '5%',
             textStyle: {
               //标题颜色
-              color: '#333333',
+              color: '#000',
+        fontFamily:'SourceHanSans-Bold',
+        fontWeight:'bold',
+        fontSize: 28,
             },
           },
           tooltip: {
@@ -265,7 +474,7 @@
                 },
               },
               radius: '60%', //饼图的半径大小
-              center: ['50%', '50%'], //饼图的位置
+              center: ['50%', '60%'], //饼图的位置
               name: '销售额',
               type: 'pie',
               data: [
@@ -290,17 +499,22 @@
         })
       },
 
-      /*消费类型*/
+      /*左上角----消费类型*/
       BarChart1() {
         let barchart1 = this.$echarts.init(document.getElementById('BarChart1'))
         barchart1.setOption({
           title: {
             text: '消费类型',
-            left: 'center',
-            textStyle: {
-              //标题颜色
-              color: '#333333',
-            },
+      left: '3%',
+      top: '5%',
+      textStyle: {
+        //标题颜色
+        color: '#000',
+        fontFamily:'SourceHanSans-Bold',
+        fontWeight:'bold',
+        fontSize: 28,
+        height: 150,
+      },
           },
           tooltip: {
             trigger: 'axis',
@@ -309,19 +523,18 @@
             },
           },
 
-          legend: {
-            data: ['消费人数'],
-            left: 'right',
-            textStyle: {
-              //图例文字的样式
-              color: '#333333',
-              fontSize: 16,
-            },
-          },
+          // legend: {
+          //   data: ['消费人数'],
+          //   left: 'right',
+          //   textStyle: {
+          //     //图例文字的样式
+          //     color: '#333333',
+          //     fontSize: 16,
+          //   },
+          // },
           grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
+      bottom: '10%',
+      height: '350',
             containLabel: true,
           },
           xAxis: {
@@ -392,17 +605,21 @@
         })
       },
 
-      /*右下角第一个图：年龄分布图*/
+      /*左上角第一个图：年龄分布图*/
       AgeRange() {
         let agerange = this.$echarts.init(document.getElementById('AgeRange'))
         agerange.setOption({
           title: {
             text: '消费者年龄分布统计图',
-            subtext: '',
-            left: 'center',
+            left: '3%',
+            top: '5%',
             textStyle: {
               //标题颜色
-              color: '#333333',
+              color: '#000',
+              fontFamily:'SourceHanSans-Bold',
+              fontWeight:'bold',
+              fontSize: 28,
+              height: 150,
             },
           },
           tooltip: {
@@ -471,59 +688,6 @@
         })
       },
 
-      /*右下角第二个图：性别比例分布图*/
-      SexRange() {
-        let sexRange = this.$echarts.init(document.getElementById('SexRange'))
-        sexRange.setOption({
-          title: {
-            text: '患病者疾病分布',
-            subtext: '纯属虚构',
-            left: 'center',
-            textStyle: {
-              //标题颜色
-              color: '#333333',
-            },
-          },
-          tooltip: {
-            trigger: 'item',
-          },
-          legend: {
-            orient: 'vertical',
-            left: 'left',
-            textStyle: {
-              color: '#fdff85',
-            },
-          },
-          series: [
-            {
-              name: '患者人数',
-              type: 'pie',
-              radius: '58%',
-              data: [
-                { value: 484, name: '男' },
-                { value: 300, name: '女' },
-              ],
-              label: {
-                normal: {
-                  textStyle: {
-                    color: '#333333',
-                    fontSize: 13,
-                  },
-                  show: true,
-                  formatter: '{d}%', //自定义显示格式(b:name, c:value, d:百分比)
-                },
-              },
-              emphasis: {
-                itemStyle: {
-                  shadowBlur: 10,
-                  shadowOffsetX: 0,
-                  shadowColor: 'rgba(0, 0, 0, 0.5)',
-                },
-              },
-            },
-          ],
-        })
-      },
     },
   }
 </script>
@@ -588,6 +752,7 @@
 
   .key {
     opacity: 0;
+  font-family: 'AlimamaShuHeiTi-Bold';
     animation: keynum 0.5s linear forwards;
   }
   @keyframes keynum {
@@ -604,7 +769,7 @@
       /* transform: rotateY(0deg); */
       font-size: 60px;
       color: #555555;
-      font-family: '微软雅黑';
+      font-family: 'AlimamaShuHeiTi-Bold';
       filter: blur(0);
     }
   }
@@ -616,26 +781,52 @@
     margin: 1%;
   }
   .data1 {
-    font-family: '微软雅黑';
+    font-family: 'SourceHanSans-Bold';
     font-size: 24px;
     line-height: 30px;
-    color: #4472c4;
+    color: #000;
     font-weight: bold;
     text-align: center;
   }
   .data2 {
-    font-family: 'Alegreya SC Black';
-    font-size: 70px;
-    line-height: 70px;
-    color: #ffc000;
+    font-family: 'YouSheBiaoTiHei-2';
+    font-size: 50px;
+    line-height: 75px;
+    color: #007AFF;
     letter-spacing: 5px;
     text-align: center;
   }
   .data3 {
-    font-family: '苹方';
+    font-family: 'SourceHanSans-Normal';
     font-size: 16px;
     color: #333333;
     line-height: 30px;
     text-align: center;
   }
+
+/* 字体：阿里妈妈*/
+@font-face {
+    font-family: AlimamaShuHeiTi-Bold;
+    src: url('./AlimamaShuHeiTi-Bold.otf');
+  }
+
+/* 字体:思源黑体-粗体 */
+@font-face {
+    font-family: SourceHanSans-Bold;
+    src: url('./SourceHanSans-Bold.otf');
+  }
+ 
+/* 字体:优设标题黑 */
+@font-face {
+    font-family: YouSheBiaoTiHei-2;
+    src: url('./YouSheBiaoTiHei-2.ttf');
+  }
+
+/* 字体:思源黑体 */
+@font-face {
+    font-family: SourceHanSans-Normal;
+    src: url('./SourceHanSans-Normal.otf');
+  }
+  
+  
 </style>

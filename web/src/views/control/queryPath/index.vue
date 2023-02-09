@@ -286,13 +286,13 @@
     ></bm-walking> -->
     </baidu-map>
     <div>
-      <el-col :span="20" style="margin: 30px">
+      <el-col :span="20" style="margin: 30px; margin-left:6%;">
         <div class="block">
           <el-timeline>
             <div slot="header">
               <span style="font-size: 20px; color: #909399">行程记录</span>
             </div>
-            <el-timeline-item timestamp="入口处游玩路径推荐" placement="top">
+            <el-timeline-item timestamp="入口处游玩路径推荐" placement="top" style="color: #000000; font-size: 25px;">
               <el-card>
                 <div>
                   <el-table :data="tableData" style="width: 100%">
@@ -649,8 +649,22 @@
   }
 </script>
 <style>
+  *{
+    font-family: SourceHanSans-Bold;
+  }
+  @font-face {
+    font-family: SourceHanSans-Bold;
+    src: url('./SourceHanSans-Bold.otf');
+  }
   .map {
-    width: auto;
+    margin-left: 3%;
+    margin-top: 40px;
+    border: 2px solid gainsboro;
+    border-radius: 5px;
+    padding: 1px;
+    width: 93%;
     height: 800px;
+    box-shadow: 0px 2px 5px 5px gainsboro;
+    /*background-color: rgba(0, 0, 0, 1);*/
   }
 </style>
